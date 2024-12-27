@@ -1,16 +1,18 @@
 /* Integral CF Font */
 @font-face {
   font-family: 'IntegralCF';
-  src: url('@/assets/fonts/IntegralCF-ExtraBold.woff2') format('woff2'),
-       url('@/assets/fonts/IntegralCF-ExtraBold.woff') format('woff');
+  src:
+    url('@/assets/fonts/IntegralCF-ExtraBold.woff2') format('woff2'),
+    url('@/assets/fonts/IntegralCF-ExtraBold.woff') format('woff');
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'IntegralCF';
-  src: url('@/assets/fonts/IntegralCF-Medium.woff2') format('woff2'),
-       url('@/assets/fonts/IntegralCF-Medium.woff') format('woff');
+  src:
+    url('@/assets/fonts/IntegralCF-Medium.woff2') format('woff2'),
+    url('@/assets/fonts/IntegralCF-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
 }
