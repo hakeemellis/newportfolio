@@ -1,11 +1,24 @@
 <template>
-  <section class="outer-container">
-    <section>
-      <h2>Hakeem Ellis</h2>
-      <img src="../assets/images/profile.jpg" class="profile-photo">
-      <p>Component description or content goes here.</p>
+  
+    <section class="outer-container">
+
+      <section>
+        <section>
+          <h2>Hakeem Ellis</h2>
+          <img src="../assets/images/profile.jpg" class="profile-photo">
+          <h3 class="subtitle">Junior Software Engineer</h3>
+          <p style="font-size: 23px;">About</p>
+          <p style="font-size: 23px;">Experience</p>
+          <p style="font-size: 23px;">Projects</p>
+        </section>
+      </section>
+
+      <section style="text-align: center;">
+        <p> Random Shit</p>
+      </section>
+
     </section>
-  </section>
+
 </template>
 
 <script>
@@ -26,33 +39,46 @@ export default {
 /*Integral CF Font*/
 h2 {
   font-family: 'Integral CF';
+  font-weight: 800;
+  font-size: 31px;
+}
+
+.subtitle {
+  font-family: 'Integral CF';
+  font-weight: 500;
+  font-size: 23px;
+}
+
+/* Roboto Font */
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 23px;
 }
 
 /*Container For Stagnant Frame*/
+
+
 .outer-container {
   display: flex;
-  width: 50vw; /* 50% of the viewport's width */
-  height: 50vh; /* 50% of the viewport's height */
-  padding-bottom: 1161px; /* Adjusted based on 50vh */
-  flex-direction: column; /*used with display: flex to create a column layout*/
-  align-items: center; /*used because of flex-direction: column to align elements (vertical if column/horizontal if row */
+  flex-direction: column; /* Arrange children in a column */
+  align-items: center; /* Center children horizontally */
   text-align: center;
-  gap: 81px;
-  flex-shrink: 0; /*prevents container from shrinking elements inside*/
-  position: absolute; /* Positioning relative to the nearest positioned ancestor (position being used)*/
-  top: 36px; /* Set top to 86px */
-  left: 32px; /* Set left to 32px */
+  gap: 20px; /* Space between elements */
+  padding: 20px; /* Padding inside the container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
   overflow: hidden; /* Hide any content that overflows the container */
 }
 
-/*Profile Photo*/
+/* Profile Photo */
 .profile-photo {
-  border-radius: 50%; /* Makes it a perfect circle */
+  border-radius: 50%; /* Keeps it a perfect circle */
   border: 3px solid #000; /* Black border */
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
-  width: 100vw; /* Scales with the container width */
-  max-width: 200px; /* Prevents it from getting too large */
-  height: auto; /* Maintains aspect ratio */ 
+  width: 50vw; /* Makes the width 50% of the viewport width */
+  max-width: 200px; /* Shrinks the circle */
+  height: auto; /* Maintains aspect ratio */
 }
 
 h1 {
@@ -61,7 +87,7 @@ h1 {
 }
 
 p {
-  color: gray;
+  
   font-size: 1rem;
 }
 </style>
