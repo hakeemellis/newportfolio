@@ -1,1 +1,16 @@
+/* Integral CF Font */
+@font-face {
+  font-family: 'IntegralCF';
+  src: url('@/assets/fonts/IntegralCF-Regular.woff2') format('woff2'),
+       url('@/assets/fonts/IntegralCF-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'IntegralCF';
+  src: url('@/assets/fonts/IntegralCF-Bold.woff2') format('woff2'),
+       url('@/assets/fonts/IntegralCF-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
