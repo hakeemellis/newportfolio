@@ -7,9 +7,9 @@
           <h2>Hakeem Ellis</h2>
           <img src="../assets/images/profile.jpg" class="profile-photo">
           <h3 class="subtitle">Junior Software Engineer</h3>
-          <p style="font-size: 23px;">About</p>
-          <p style="font-size: 23px;">Experience</p>
-          <p style="font-size: 23px;">Projects</p>
+          <p style="font-size: 23px; line-height: 50%;">About</p>
+          <p style="font-size: 23px; line-height: 50%;">Experience</p>
+          <p style="font-size: 23px; line-height: 50%;">Projects</p>
         </section>
       </section>
 
