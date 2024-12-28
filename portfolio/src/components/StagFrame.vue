@@ -13,7 +13,7 @@
 
     <section style="text-align: center">
       <p>Random Shit</p>
-      <section>
+      <section class="flex justify-center items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="85"

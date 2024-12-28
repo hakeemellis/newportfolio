@@ -32,3 +32,5 @@ my-vue-app/                  # Root project directory
 ├── tailwind.config.js        # Tailwind CSS configuration
 ├── vite.config.js            # Vite configuration file
 └── README.md                 # Project documentation (optional, for your reference)
+
+Use npm run format - to forefully make prettier format the code in an ideal way
