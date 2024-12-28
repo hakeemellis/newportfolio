@@ -7,6 +7,9 @@ module.exports = {
         '3/10': '42%',
         '7/10': '58%',
       },
+      backgroundColor: {
+        'custom-gray': '#EDEDED',
+      },
     },
   },
   variants: {
