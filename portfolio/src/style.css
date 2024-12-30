@@ -1,3 +1,5 @@
+/* GLOBAL STYLES */
+
 /* Integral CF Font */
 @font-face {
   font-family: 'IntegralCF';
@@ -16,3 +18,6 @@
   font-weight: 500;
   font-style: normal;
 }
+
+
+/* END GLOBAL STYLES */

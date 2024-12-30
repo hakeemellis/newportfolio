@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <section>
+  <section class="bg-custom-gray">
     <Home />
   </section>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <!-- START OF MASTER CONTAINER -->
   <section
-    class="flex flex-row flex-1 justify-center gap-4 h-screen bg-custom-gray overflow-y-auto"
+    class="flex flex-row flex-1 justify-center gap-4 h-screen overflow-y-auto"
   >
     <!-- START OF LEFT CONTAINER -->
     <section class="flex-[0.42] sticky top-0 h-screen">
