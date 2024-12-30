@@ -34,3 +34,7 @@ my-vue-app/                  # Root project directory
 └── README.md                 # Project documentation (optional, for your reference)
 
 Use npm run format - to forefully make prettier format the code in an ideal way
+
+
+Gradient Syntax:
+background: radial-gradient(shape at position, color-stop1 stop%, color-stop2 stop%, ...);

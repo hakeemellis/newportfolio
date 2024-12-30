@@ -1,9 +1,33 @@
 <script setup>
+  import { ref, onMounted, onUnmounted } from 'vue';
   import Home from './views/Home.vue';
+
+  // Defining variables for mouse position
+  const mouseX = ref(0);
+  const mouseY = ref(0);
+
+  // To update mouse position
+  const updateMousePosition = (event) => {
+    mouseX.value = event.clientX;
+    mouseY.value = event.clientY;
+  };
+
+  // Event listener to update mouse position
+  onMounted(() => {
+    window.addEventListener('mousemove', updateMousePosition);
+  });
+  onUnmounted(() => {
+    window.removeEventListener('mousemove', updateMousePosition);
+  });
 </script>
 
 <template>
-  <section class="bg-custom-gray">
+  <section
+    class="bg-custom-gray"
+    :style="{
+      backgroundImage: `radial-gradient(circle at ${mouseX}px ${mouseY}px, #D6D6D6 5%, #EDEDED 15%, transparent 20%)`,
+    }"
+  >
     <Home />
   </section>
 </template>
