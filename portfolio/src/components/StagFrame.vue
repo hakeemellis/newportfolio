@@ -7,9 +7,9 @@
       <img src="../assets/images/profile.jpg" class="profile-photo" />
       <h3 class="subtitle">Junior Software Engineer</h3>
       <section class="flex flex-col inner-gap">
-        <p style="font-size: 23px">About</p>
-        <p style="font-size: 23px">Experience</p>
-        <p style="font-size: 23px">Projects</p>
+        <p style="font-size: 20px">About</p>
+        <p style="font-size: 20px">Experience</p>
+        <p style="font-size: 20px">Projects</p>
       </section>
     </section>
     <!-- End of Section for Profile -->
@@ -22,8 +22,8 @@
         <!-- LinkedIn Icon -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="65"
-          height="64"
+          width="55"
+          height="54"
           viewBox="0 0 85 84"
           fill="none"
         >
@@ -40,8 +40,8 @@
         <!-- GitHub Icon -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="49"
-          height="48"
+          width="41"
+          height="40"
           viewBox="0 0 61 60"
           fill="none"
         >
@@ -76,8 +76,8 @@
       <section>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="46"
-          height="46"
+          width="41"
+          height="41"
           viewBox="0 0 66 66"
           fill="none"
         >
@@ -123,13 +123,13 @@
   h2 {
     font-family: 'Integral CF';
     font-weight: 800;
-    font-size: 31px;
+    font-size: 30px;
   }
 
   .subtitle {
     font-family: 'Integral CF';
     font-weight: 500;
-    font-size: 23px;
+    font-size: 21px;
   }
 
   /* Roboto Font */
@@ -174,7 +174,7 @@
     border-radius: 50%; /* Keeps it a perfect circle */
     border: 3px solid #000; /* Black border */
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
-    width: 50vw; /* Makes the width 50% of the viewport width */
+    width: 19vw; /* Makes the width 50% of the viewport width */
     max-width: 200px; /* Shrinks the circle */
     height: auto; /* Maintains aspect ratio */
     margin: auto; /* Center the image */
