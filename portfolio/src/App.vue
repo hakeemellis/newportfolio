@@ -1,6 +1,5 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue';
-  import Home from './views/Home.vue';
 
   // Defining variables for mouse position
   const mouseX = ref(0);
@@ -25,10 +24,10 @@
   <section
     class="bg-custom-gray"
     :style="{
-      backgroundImage: `radial-gradient(circle at ${mouseX}px ${mouseY}px, #D6D6D6 5%, #EDEDED 15%, transparent 20%)`,
+      backgroundImage: `radial-gradient(circle at ${mouseX}px ${mouseY}px, #D6D6D6 5%, #EDEDED 45%, transparent 20%)`,
     }"
   >
-    <Home />
+    <router-view />
   </section>
 </template>
 

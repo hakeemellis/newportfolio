@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  // Importing components
+  // Importing Components
   import StagFrame from '../components/StagFrame.vue';
   import AboutSection from '../components/AboutSection.vue';
   import ExperienceSection from '../components/ExperienceSection.vue';
@@ -37,7 +37,7 @@
       ExperienceSection,
       ProjectsSection,
       FooterSection,
-    },
+    }, // End of Components
     data() {
       return {
         // Until I have something to put here

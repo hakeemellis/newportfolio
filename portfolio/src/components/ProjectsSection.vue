@@ -83,7 +83,9 @@
     <!-- End of Experience Section -->
 
     <!-- Text -->
-    <p class="roboto-condensed-medium">View Project Archive</p>
+    <router-link to="/projectarchive" class="roboto-condensed-medium">
+      <p>View Project Archive</p>
+    </router-link>
   </section>
   <!--End: Only exists to separate experience section from element -->
 </template>
