@@ -1,18 +1,26 @@
 <template>
+  <!-- START OF MASTER CONTAINER -->
   <section
     class="flex flex-row flex-1 justify-center gap-4 h-screen bg-custom-gray overflow-y-auto"
   >
+    <!-- START OF LEFT CONTAINER -->
     <section class="flex-[0.42] sticky top-0 h-screen">
       <StagFrame />
     </section>
+    <!-- END OF LEFT CONTAINER -->
+
+    <!-- START OF RIGHT CONTAINER -->
     <section class="outer-container-home flex-[0.58] mt-4 max-w-2xl">
       <AboutSection />
       <ExperienceSection />
     </section>
+    <!-- END OF RIGHT CONTAINER -->
   </section>
+  <!-- END OF MASTER CONTAINER -->
 </template>
 
 <script>
+  // Importing components
   import StagFrame from '../components/StagFrame.vue';
   import AboutSection from '../components/AboutSection.vue';
   import ExperienceSection from '../components/ExperienceSection.vue';
@@ -26,7 +34,7 @@
     },
     data() {
       return {
-        message: 'This is the Home page!',
+        // Until I have something to put here
       };
     },
   };
