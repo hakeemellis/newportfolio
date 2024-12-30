@@ -31,7 +31,7 @@
     name: 'AboutSection',
     data() {
       return {
-        // Until I have something to put here
+        // Until I have something to put
       };
     },
   };

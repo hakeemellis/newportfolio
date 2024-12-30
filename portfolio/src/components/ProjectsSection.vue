@@ -5,7 +5,10 @@
     <section class="flex flex-row flex-1 gap-4 roboto-condensed-regular">
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
-        <p>2024 - Present</p>
+        <img
+          src="../assets/images/projectphotos/coding.jpg"
+          class="projects-photo"
+        />
       </section>
       <!-- End of Section with Year -->
 
@@ -80,14 +83,14 @@
     <!-- End of Experience Section -->
 
     <!-- Text -->
-    <p class="roboto-condensed-medium">View Full Resume</p>
+    <p class="roboto-condensed-medium">View Project Archive</p>
   </section>
   <!--End: Only exists to separate experience section from element -->
 </template>
 
 <script>
   export default {
-    name: 'ExperienceSection',
+    name: 'ProjectsSection',
     data() {
       return {
         // Until I have something to put here
@@ -145,4 +148,20 @@
   }
 
   /* TAGS STYLING */
+
+  /* MEDIA STYLING */
+
+  /* Profile Photo */
+  .projects-photo {
+    border-radius: 20px; /* rounds edges */
+    box-shadow:
+      0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+      0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
+    width: 50vw; /* Makes the width 50% of the viewport width */
+    max-width: 200px; /* maxes the total width it could expand to */
+    height: 70%; /* Utilizes up to 70% of photo's height/size */
+    margin: auto; /* Center the image */
+  }
+
+  /* MEDIA STYLING */
 </style>

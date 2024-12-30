@@ -13,6 +13,8 @@
     <section class="outer-container-home flex-[0.58] mt-4 max-w-2xl">
       <AboutSection />
       <ExperienceSection />
+      <ProjectsSection />
+      <FooterSection />
     </section>
     <!-- END OF RIGHT CONTAINER -->
   </section>
@@ -24,6 +26,8 @@
   import StagFrame from '../components/StagFrame.vue';
   import AboutSection from '../components/AboutSection.vue';
   import ExperienceSection from '../components/ExperienceSection.vue';
+import ProjectsSection from '../components/ProjectsSection.vue';
+  import FooterSection from '../components/FooterSection.vue';
 
   export default {
     name: 'Home',
@@ -31,6 +35,8 @@
       StagFrame,
       AboutSection,
       ExperienceSection,
+      ProjectsSection,
+      FooterSection
     },
     data() {
       return {

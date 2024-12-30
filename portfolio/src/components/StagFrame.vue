@@ -7,7 +7,7 @@
       <img src="../assets/images/profile.jpg" class="profile-photo" />
       <h3 class="subtitle">Junior Software Engineer</h3>
       <section class="flex flex-col inner-gap">
-        <p class="text-red-600" style="font-size: 23px">About</p>
+        <p style="font-size: 23px">About</p>
         <p style="font-size: 23px">Experience</p>
         <p style="font-size: 23px">Projects</p>
       </section>
