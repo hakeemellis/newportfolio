@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <section>
     <h1>Component Title</h1>
     <p>Component description or content goes here.</p>
-  </div>
+  </section>
 </template>
 
 <script>

@@ -16,7 +16,7 @@ my-vue-app/                  # Root project directory
 │   ├── components/           # Vue components (buttons, headers, etc.)
 │   │   ├── Header.vue        # Header component
 │   │   └── Footer.vue        # Footer component
-│   ├── pages/                # Pages for the app (Home, About, etc.)
+│   ├── views/                # Pages for the app (Home, About, etc.)
 │   │   ├── Home.vue          # Home page component
 │   │   ├── About.vue         # About page component
 │   │   └── Contact.vue       # Contact page component

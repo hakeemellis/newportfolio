@@ -1,7 +1,7 @@
 <script setup>
   import Default from './components/Default.vue';
   import StagFrame from './components/StagFrame.vue';
-  import Home from './pages/Home.vue';
+  import Home from './views/Home.vue';
 </script>
 
 <template>
