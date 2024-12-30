@@ -26,7 +26,7 @@
   import StagFrame from '../components/StagFrame.vue';
   import AboutSection from '../components/AboutSection.vue';
   import ExperienceSection from '../components/ExperienceSection.vue';
-import ProjectsSection from '../components/ProjectsSection.vue';
+  import ProjectsSection from '../components/ProjectsSection.vue';
   import FooterSection from '../components/FooterSection.vue';
 
   export default {
@@ -36,7 +36,7 @@ import ProjectsSection from '../components/ProjectsSection.vue';
       AboutSection,
       ExperienceSection,
       ProjectsSection,
-      FooterSection
+      FooterSection,
     },
     data() {
       return {
