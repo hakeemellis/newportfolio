@@ -1,6 +1,6 @@
 <template>
   <!-- Start of Container for Stagnant Frame -->
-  <section class="outer-container mt-2 dark:text-white">
+  <section class="outer-container mt-2 dark:text-custom-white">
     <!-- Start of Section for Profile -->
     <section class="flex flex-col gap">
       <h2>Hakeem Ellis</h2>

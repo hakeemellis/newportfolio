@@ -1,6 +1,6 @@
 <template>
   <!--Only exists to separate experience section from element -->
-  <section class="flex flex-col gap-10 items-center dark:text-white">
+  <section class="flex flex-col gap-10 items-center dark:text-custom-white">
     <!-- Start of Experience Section -->
     <section
       class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out px-2 py-2"

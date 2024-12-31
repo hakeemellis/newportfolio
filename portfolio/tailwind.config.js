@@ -10,6 +10,9 @@ module.exports = {
       backgroundColor: {
         'custom-gray': '#EDEDED',
       },
+      textColor: {
+        'custom-white': '#F7F7F7',
+      },
     },
   },
   variants: {

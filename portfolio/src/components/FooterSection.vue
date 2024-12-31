@@ -1,6 +1,6 @@
 <template>
   <section>
-    <p class="roboto-condensed-regular gap dark:text-white">
+    <p class="roboto-condensed-regular gap dark:text-custom-white">
       Designed in <b class="dark:text-rose-500 text-cyan-800">Figma</b>. Coded
       in <b class="dark:text-rose-500 text-cyan-800">Visual Studio Code</b> by
       Me :). Built with
