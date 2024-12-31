@@ -1,8 +1,10 @@
 <template>
   <!--Only exists to separate experience section from element -->
-  <section class="flex flex-col gap-10 items-center">
+  <section class="flex flex-col gap-10 items-center dark:text-white">
     <!-- Start of Experience Section -->
-    <section class="flex flex-row flex-1 gap-4 roboto-condensed-regular">
+    <section
+      class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-2 px-2"
+    >
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
         <p>2024 - Present</p>
@@ -28,17 +30,25 @@
               efdewfefefeijqwebevwijdbvnadlne wodwqdsneqjnffedfeeqfn
             </p>
             <!-- Appropriate Tags Section -->
-            <section class="flex flex-row flex-wrap gap-2">
-              <section class="tag-icon">
+            <section class="flex flex-row flex-wrap gap-2 py-3">
+              <section
+                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+              >
                 <p>wdwjebsjdlwks</p>
               </section>
-              <section class="tag-icon">
+              <section
+                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+              >
                 <p>wdwjebsjdlwks</p>
               </section>
-              <section class="tag-icon">
+              <section
+                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+              >
                 <p>wdwjebsjdlwks</p>
               </section>
-              <section class="tag-icon">
+              <section
+                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+              >
                 <p>wdwjebsjdlwks</p>
               </section>
             </section>
@@ -138,7 +148,6 @@
     display: inline-flex; /* to make container flex inline to align with content */
     justify-content: center;
     border-radius: 30px; /* round out border edges */
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3); /* Drop shadow */
     padding: 5px 10px;
     width: auto;
     font-size: 14px;

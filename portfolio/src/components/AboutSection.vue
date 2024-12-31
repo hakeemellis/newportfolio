@@ -1,6 +1,6 @@
 <template>
   <!-- Start of Container for About Section-->
-  <section class="flex flex-col gap roboto-condensed-regular">
+  <section class="flex flex-col gap roboto-condensed-regular dark:text-white">
     <p>
       I’m a junior software engineer with hands-on experience across various
       tech stacks, driven by a curiosity for solving complex problems and

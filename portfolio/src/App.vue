@@ -1,5 +1,5 @@
 <script setup>
-  import { ref, onMounted, onUnmounted } from 'vue';
+  import { ref, computed, onMounted, onUnmounted } from 'vue';
 
   // Defining variables for mouse position
   const mouseX = ref(0);
@@ -18,14 +18,57 @@
   onUnmounted(() => {
     window.removeEventListener('mousemove', updateMousePosition);
   });
+
+  /* ORIGINAL ATTEMPT FOR DARK MODE MOUSE HOVER EFFECT
+  // Check if dark mode is enabled
+  const isDarkMode = computed(() => {
+    return document.documentElement.classList.contains('dark');
+  });
+
+  // Computed property for background image
+  const backgroundImage = computed(() => {
+    if (isDarkMode.value) {
+      return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #2D3748 5%, #1A202C 45%, transparent 20%)`;
+    } else {
+      return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #D6D6D6 5%, #EDEDED 45%, transparent 20%)`;
+    }
+  });
+  console.log(isDarkMode.value);
+  */
+
+  // Reactive variable to track dark mode state
+  const isDarkMode = ref(document.documentElement.classList.contains('dark'));
+
+  // Watch for changes in the dark mode class on the <html> element
+  const observer = new MutationObserver(() => {
+    isDarkMode.value = document.documentElement.classList.contains('dark');
+  });
+
+  onMounted(() => {
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  });
+
+  onUnmounted(() => {
+    observer.disconnect();
+  });
+
+  // Computed property for background image
+  const backgroundImage = computed(() => {
+    if (isDarkMode.value) {
+      return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #18181b 5%, #18181b 5%, transparent 20%)`;
+    } else {
+      return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #D6D6D6 5%, #EDEDED 45%, transparent 20%)`;
+    }
+  });
 </script>
 
 <template>
   <section
-    class="bg-custom-gray"
-    :style="{
-      backgroundImage: `radial-gradient(circle at ${mouseX}px ${mouseY}px, #D6D6D6 5%, #EDEDED 45%, transparent 20%)`,
-    }"
+    class="bg-custom-gray dark:bg-zinc-950 transition-all duration-500 ease-in-out"
+    :style="{ backgroundImage: backgroundImage }"
   >
     <router-view />
   </section>
