@@ -105,22 +105,22 @@
                 <!-- Appropriate Tags Section -->
                 <section class="flex flex-row flex-wrap gap-2 py-3">
                   <section
-                    class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
                   >
                     <p>wdwjebsjdlwks</p>
                   </section>
                   <section
-                    class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
                   >
                     <p>wdwjebsjdlwks</p>
                   </section>
                   <section
-                    class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
                   >
                     <p>wdwjebsjdlwks</p>
                   </section>
                   <section
-                    class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
                   >
                     <p>wdwjebsjdlwks</p>
                   </section>
@@ -229,6 +229,16 @@
 
   /* Tag Icons for Portfolio */
   .tag-icon {
+    display: inline-flex; /* to make container flex inline to align with content */
+    justify-content: center;
+    border-radius: 30px; /* round out border edges */
+    /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3); /* Drop shadow */
+    padding: 5px 10px;
+    width: auto;
+    font-size: 14px;
+  }
+
+  .tag-icon-table {
     display: inline-flex; /* to make container flex inline to align with content */
     justify-content: center;
     border-radius: 30px; /* round out border edges */
