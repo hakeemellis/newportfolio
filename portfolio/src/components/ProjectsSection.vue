@@ -94,7 +94,11 @@
 
     <!-- Text -->
     <router-link to="/projectarchive" class="roboto-condensed-medium">
-      <p>View Project Archive</p>
+      <p
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+      >
+        View Project Archive
+      </p>
     </router-link>
   </section>
   <!--End: Only exists to separate experience section from element -->

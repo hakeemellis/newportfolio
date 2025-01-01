@@ -1,5 +1,5 @@
 <template>
-  <section class="outer-container-project-archive ">
+  <section class="outer-container-project-archive">
     <ProjectArchiveComp />
   </section>
 </template>

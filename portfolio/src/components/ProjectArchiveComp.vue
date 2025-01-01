@@ -1,134 +1,170 @@
 <template>
-  <!-- Start of Container for Project Archive Section-->
+  <!-- Start of Master Container-->
   <section
-    class="flex flex-col gap-4 roboto-condensed-regular dark:text-custom-white h-screen px-10"
+    class="h-screen flex flex-col gap-7 roboto-condensed-regular dark:text-custom-white px-10"
   >
-    <!-- Menu Text -->
-    <section>
-      <router-link to="/">
-        <p style="font-size: 25px">Back to Main</p>
-      </router-link>
-      <h2 style="font-size: 40px">All Projects</h2>
-    </section>
-    <!-- End of Menu Text -->
+    <!-- Start of Container for Project Archive Section-->
+    <section class="flex flex-col gap-3">
+      <!-- Menu Text -->
+      <section>
+        <router-link to="/">
+          <p
+            class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+            style="font-size: 25px"
+          >
+            Back to Main
+          </p>
+        </router-link>
+        <h2 style="font-size: 40px">All Projects</h2>
+      </section>
+      <!-- End of Menu Text -->
 
-    <!-- Appropriate Tags Section for AI -->
-    <section class="flex flex-row flex-wrap gap-2 py-3">
-      <section
-        class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-      >
-        <p>wdwjebsjdlwks</p>
-      </section>
-      <section
-        class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-      >
-        <p>wdwjebsjdlwks</p>
-      </section>
-      <section
-        class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-      >
-        <p>wdwjebsjdlwks</p>
-      </section>
-      <section
-        class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-      >
-        <p>wdwjebsjdlwks</p>
-      </section>
-    </section>
-    <!-- End of Appropriate Tags for AI -->
-
-    <!-- Start of Table Section -->
-    <section class="py-5">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50 dark:bg-gray-700">
-          <tr>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-            >
-              Column 1
-            </th>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-            >
-              Column 2
-            </th>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-            >
-              Column 3
-            </th>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-            >
-              Column 4
-            </th>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider"
-            >
-              Column 5
-            </th>
-          </tr>
-        </thead>
-        <tbody
-          class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
+      <!-- Appropriate Tags Section for AI -->
+      <section class="flex flex-row flex-wrap gap-2 py-3">
+        <section
+          class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
         >
-          <tr>
-            <td class="px-6 py-4 break-words">Row 1, Cell 1</td>
-            <td class="px-6 py-4 break-words">Row 1, Cell 2</td>
-            <td class="px-6 py-4 break-words">
-              <p class="text-xs">
-                Row 1, Cell 3 qendkjb rwhjd bvjherwvkhrwbdvjhb
-                wehbvdhewvbhdvbhrwbbfehj bewjfhcbhewbhebvhvb erwhbvhewb
-                jneadkjbecjnnws
-              </p>
-            </td>
-            <td class="px-6 py-4 break-words">
-              <p class="text-xs">
-                Row 1, Cell 3 qendkjb rwhjd bvjherwvkhrwbdvjhb
-                wehbvdhewvbhdvbhrwbbfehj bewjfhcbhewbhebvhvb erwhbvhewb
-                jneadkjbecjnnws
-              </p>
-            </td>
-            <td class="px-6 py-4 break-words">
-              <p class="text-xs">
-                Row 1, Cell 3 qendkjb rwhjd bvjherwvkhrwbdvjhb
-                wehbvdhewvbhdvbhrwbbfehj bewjfhcbhewbhebvhvb erwhbvhewb
-                jneadkjbecjnnws
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td class="px-6 py-4 break-words">Row 2, Cell 1</td>
-            <td class="px-6 py-4 break-words">Row 2, Cell 2</td>
-            <td class="px-6 py-4 break-words">Row 2, Cell 3</td>
-            <td class="px-6 py-4 break-words">Row 2, Cell 4</td>
-            <td class="px-6 py-4 break-words">Row 2, Cell 5</td>
-          </tr>
-          <tr>
-            <td class="px-6 py-4 break-words">Row 3, Cell 1</td>
-            <td class="px-6 py-4 break-words">Row 3, Cell 2</td>
-            <td class="px-6 py-4 break-words">Row 3, Cell 3</td>
-            <td class="px-6 py-4 break-words">Row 3, Cell 4</td>
-            <td class="px-6 py-4 break-words">Row 3, Cell 5</td>
-          </tr>
-          <tr>
-            <td class="px-6 py-4 break-words">Row 4, Cell 1</td>
-            <td class="px-6 py-4 break-words">Row 4, Cell 2</td>
-            <td class="px-6 py-4 break-words">Row 4, Cell 3</td>
-            <td class="px-6 py-4 break-words">Row 4, Cell 4</td>
-            <td class="px-6 py-4 break-words">Row 4, Cell 5</td>
-          </tr>
-        </tbody>
-      </table>
+          <p>wdwjebsjdlwks</p>
+        </section>
+        <section
+          class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+        >
+          <p>wdwjebsjdlwks</p>
+        </section>
+        <section
+          class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+        >
+          <p>wdwjebsjdlwks</p>
+        </section>
+        <section
+          class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+        >
+          <p>wdwjebsjdlwks</p>
+        </section>
+      </section>
+      <!-- End of Appropriate Tags for AI -->
+
+      <!-- Start of Container for Table Section -->
+      <section class="py-5">
+        <!-- Start of Table Section -->
+        <table class="min-w-full">
+          <!-- Table Header -->
+          <thead class="dark:text-custom-white">
+            <tr>
+              <th
+                class="px-6 py-3 text-left uppercase tracking-wider"
+                style="font-size: 15px"
+              >
+                Year
+              </th>
+              <th
+                class="px-6 py-3 text-left uppercase tracking-wider"
+                style="font-size: 14px"
+              >
+                Project
+              </th>
+              <th
+                class="px-6 py-3 text-left uppercase tracking-wider"
+                style="font-size: 15px"
+              >
+                Made At
+              </th>
+              <th
+                class="px-6 py-3 text-left uppercase tracking-wider"
+                style="font-size: 15px"
+              >
+                Built With
+              </th>
+              <th
+                class="px-6 py-3 text-left uppercase tracking-wider"
+                style="font-size: 15px"
+              >
+                Link to Project
+              </th>
+            </tr>
+          </thead>
+          <!-- End of Table Header -->
+
+          <!-- Table Body -->
+          <tbody class="dark:text-custom-white">
+            <tr class="border-b border-zinc-600 dark:border-custom-white">
+              <td class="px-6 py-4 break-words">
+                <p class="text-sm">eskfne2jnfjewn ewdnjewnjef ewadn</p>
+              </td>
+              <td class="px-6 py-4 break-words">
+                <p class="text-sm">eskfne2jnfjewn ewdnjewnjef ewadn</p>
+              </td>
+              <td class="px-6 py-4 break-words">
+                <p class="text-sm">
+                  Row 1, Cell 3 qendkjb rwhjd bvjherwvkhrwbdvjhb
+                  wehbvdhewvbhdvbhrwbbfehj bewjfhcbhewbhebvhvb erwhbvhewb
+                  jneadkjbecjnnws
+                </p>
+              </td>
+              <td class="px-6 py-4 break-words">
+                <p class="text-sm">
+                  Row 1, Cell 3 qendkjb rwhjd bvjherwvkhrwbdvjhb
+                  wehbvdhewvbhdvbhrwbbfehj bewjfhcbhewbhebvhvb erwhbvhewb
+                  jneadkjbecjnnws
+                </p>
+              </td>
+              <td class="px-6 py-4 break-words">
+                <p class="text-sm">
+                  Row 1, Cell 3 qendkjb rwhjd bvjherwvkhrwbdvjhb
+                  wehbvdhewvbhdvbhrwbbfehj bewjfhcbhewbhebvhvb erwhbvhewb
+                  jneadkjbecjnnws
+                </p>
+              </td>
+            </tr>
+            <tr class="border-b border-zinc-600 dark:border-custom-white">
+              <td class="px-6 py-4 break-words">Row 2, Cell 1</td>
+              <td class="px-6 py-4 break-words">Row 2, Cell 2</td>
+              <td class="px-6 py-4 break-words">Row 2, Cell 3</td>
+              <td class="px-6 py-4 break-words">Row 2, Cell 4</td>
+              <td class="px-6 py-4 break-words">Row 2, Cell 5</td>
+            </tr>
+            <tr class="border-b border-zinc-600 dark:border-custom-white">
+              <td class="px-6 py-4 break-words">Row 3, Cell 1</td>
+              <td class="px-6 py-4 break-words">Row 3, Cell 2</td>
+              <td class="px-6 py-4 break-words">Row 3, Cell 3</td>
+              <td class="px-6 py-4 break-words">Row 3, Cell 4</td>
+              <td class="px-6 py-4 break-words">Row 3, Cell 5</td>
+            </tr>
+            <tr class="border-b border-zinc-600 dark:border-custom-white">
+              <td class="px-6 py-4 break-words">Row 4, Cell 1</td>
+              <td class="px-6 py-4 break-words">Row 4, Cell 2</td>
+              <td class="px-6 py-4 break-words">Row 4, Cell 3</td>
+              <td class="px-6 py-4 break-words">Row 4, Cell 4</td>
+              <td class="px-6 py-4 break-words">Row 4, Cell 5</td>
+            </tr>
+            <!-- Blank Row  -->
+          </tbody>
+          <!-- End of Table Body -->
+        </table>
+        <!-- End of Table Section -->
+      </section>
+      <!-- End of Container for Table Section -->
     </section>
-    <!-- End of Table Section -->
+    <!-- End of Container for Project Archive Section-->
+
+    <!-- Imported Footer Section -->
+    <section>
+      <FooterSection />
+    </section>
+    <!-- End of Imported Footer Section -->
   </section>
-  <!-- End of Container for Project Archive Section-->
+  <!-- End of Master Container -->
 </template>
 
 <script>
+  // Importing Components
+  import FooterSection from './FooterSection.vue';
+
   export default {
     name: 'ProjectArchiveComp',
+    components: {
+      FooterSection,
+    },
     data() {
       return {
         // Until I have something to put here

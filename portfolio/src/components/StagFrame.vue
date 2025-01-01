@@ -10,9 +10,24 @@
       />
       <h3 class="subtitle">Junior Software Engineer</h3>
       <section class="flex flex-col inner-gap">
-        <p style="font-size: 20px">About</p>
-        <p style="font-size: 20px">Experience</p>
-        <p style="font-size: 20px">Projects</p>
+        <p
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+          style="font-size: 20px"
+        >
+          About
+        </p>
+        <p
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+          style="font-size: 20px"
+        >
+          Experience
+        </p>
+        <p
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+          style="font-size: 20px"
+        >
+          Projects
+        </p>
       </section>
     </section>
     <!-- End of Section for Profile -->
