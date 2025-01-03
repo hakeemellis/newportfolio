@@ -44,3 +44,5 @@ In Vue, to set routes:
 npm install vue-router@next | Make router.js file defining routes | Main.js file referencing the router.js file for the respective routes and place <router-view/> in app.vue to enable global view of routes. 
 
 i.e. use <router-link> (like src="") to link route to file
+
+How to start: npm run dev/serve
