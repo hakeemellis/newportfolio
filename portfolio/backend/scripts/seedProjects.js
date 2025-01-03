@@ -1,5 +1,9 @@
 // seedProjects.js
 
+// Essentially a script to seed the database - TO BE RUN ONLY ONCE
+
+// Script to seed the database with sample projects to populate project schema
+
 const mongoose = require("mongoose");
 const Project = require("../models/Project"); // Mongoose model for projects
 const connectDB = require("../config/db"); // MongoDB connection

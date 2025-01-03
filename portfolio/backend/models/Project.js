@@ -1,5 +1,7 @@
 // models/Project.js
 
+// Establish project's schema markup for MongoDB to store project data
+
 const mongoose = require("mongoose");
 
 const projectSchema = new mongoose.Schema({

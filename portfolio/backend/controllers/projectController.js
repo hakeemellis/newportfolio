@@ -1,5 +1,8 @@
 // controllers/projectController.js
 
+/* Logic for project-related operations 
+(the business logic for the routes to essentially know what to do) */
+
 const Project = require("../models/Project");
 
 // Get all projects

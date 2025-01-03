@@ -1,5 +1,7 @@
 // Initialize Cloudinary
 
+// Handles uploading and fetching media files from Cloudinary
+
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({

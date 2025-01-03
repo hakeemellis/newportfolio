@@ -1,5 +1,7 @@
 // config/db.js
 
+// Logic for connecting to MongoDB (using Mongoose)
+
 const mongoose = require("mongoose");
 
 const connectDB = async () => {

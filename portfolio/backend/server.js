@@ -1,5 +1,14 @@
 // server.js
 
+//The app.js of backend - will be the main entry point
+
+/* Connects the backend to the frontend through:
+1. Express server
+2. MongoDB database using Mongoose
+3. Cloudinary for image storage
+4. CORS for handling cross-origin requests
+5. Routes for handling API requests */
+
 const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
