@@ -15,7 +15,14 @@ const connectDB = require("./config/db");
 const projectRoutes = require("./routes/projectRoutes");
 const cors = require("cors");
 
-dotenv.config();
+dotenv.config({
+  path:
+    process.env.NODE_ENV === "production" // Check if the environment is production
+      ? ".env.production"
+      : process.env.NODE_ENV === "staging" // Check if the environment is staging (live enivorment but developmental
+      ? ".env.staging"
+      : ".env", // Default to .env file for development
+});
 const app = express();
 
 // CONNECT TO MONGO-DB

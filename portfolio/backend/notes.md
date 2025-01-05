@@ -61,3 +61,6 @@ require("dotenv").config(); - is literally put in just to load the actual file (
 
 
 How to Start Backend: node server.js or npx nodemon server.js (nodemon auto restarts the server on changes)
+
+
+Use: NODE_ENV=production/staging/development node server.js - to establish node server environment

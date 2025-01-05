@@ -2,13 +2,7 @@
 
 // Handles fetching media files from Cloudinary
 
-const cloudinary = require('cloudinary').v2;
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+const cloudinary = require('../config/cloudinaryConfig');
 
 const fetchSpecificImage = async (publicId) => {
   try {
@@ -25,4 +19,4 @@ const fetchSpecificImage = async (publicId) => {
 };
 
 // Usage:
-fetchSpecificImage('projects/my-specific-image'); // Replace with the full public ID
+module.exports = fetchSpecificImage;
