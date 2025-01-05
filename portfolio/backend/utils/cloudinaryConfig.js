@@ -1,8 +1,8 @@
 // Initialize Cloudinary
 
-// Handles uploading and fetching media files from Cloudinary
+// Handles fetching media files from Cloudinary
 
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -10,15 +10,19 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const uploadImage = async (filePath) => {
+const fetchSpecificImage = async (publicId) => {
   try {
-    const result = await cloudinary.uploader.upload(filePath, {
-      folder: "projects", // Specify a folder in your Cloudinary
-    });
-    return result.secure_url; // Return the URL of the uploaded image
-  } catch (err) {
-    console.error(err);
+    const result = await cloudinary.api.resource(publicId); // Fetch metadata for a single image
+    console.log(result);
+    return {
+      title: publicId.split('/').pop(), // Extract title from public_id
+      photo: result.secure_url,         // Cloudinary URL
+      createdAt: result.created_at,
+    };
+  } catch (error) {
+    console.error('Error fetching specific image:', error);
   }
 };
 
-module.exports = { uploadImage };
+// Usage:
+fetchSpecificImage('projects/my-specific-image'); // Replace with the full public ID
