@@ -10,13 +10,13 @@
 5. Routes for handling API requests */
 
 // Import Application Modules Required for Server to Run
-const express = require("express");
-const dotenv = require("dotenv");
-const cors = require("cors");
+const express = require("express"); // express for handling HTTP requests
+const dotenv = require("dotenv"); // dotenv for environment variables
+const cors = require("cors"); // cors for handling cross-origin requests
 
 // Import Modular Variables: Database and Routes
-const connectDB = require("./config/db");
-const projectRoutes = require("./routes/projectRoutes");
+const connectDB = require("./config/db"); // to establish connection to MongoDB
+const photoRoutes = require("./routes/photoRoutes"); // for use in app.use, as defined in ROUTES
 const app = express(); // defining the variable "app" to allow express to establish routing
 
 // Defining Environment Configuration
@@ -33,32 +33,14 @@ dotenv.config({
 connectDB();
 
 // MIDDLEWARE
-app.use(express.json());
+app.use(express.json()); // for parsing JSON data
 app.use(cors()); // CORS for handling cross-origin requests (especially from frontend)
 
 // ROUTES
 
-// Route for projects
-app.use("/api/projects", projectRoutes); // Mount the project routes
-
-// Endpoint to generate a signed URL
-app.get("/generate-signed-url", (req, res) => {
-  const { publicId, transformations } = req.query;
-
-  // Validate input
-  if (!publicId) {
-    return res.status(400).json({ error: "Missing publicId parameter" });
-  }
-
-  const options = JSON.parse(transformations || "{}");
-  const signedUrl = cloudinary.url(publicId, {
-    ...options,
-    sign_url: true,
-  });
-
-  res.json({ signedUrl });
-});
+// Route for photo routes
+app.use("/api", photoRoutes); // Syntax: app.use(path - can be anything we want, route/middleware); - just for loading route
 
 // START SERVER
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = process.env.PORT || 5001; // Reads environment variable for PORT or default to 5001
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server
