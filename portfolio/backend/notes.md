@@ -64,3 +64,6 @@ How to Start Backend: node server.js or npx nodemon server.js (nodemon auto rest
 
 
 Use: NODE_ENV=production/staging/development node server.js - to establish node server environment
+
+
+Only use process.exit ( ) / (0) - which means success and process.exit (1) when the function is only intended to be ran once and not continually as modular data i.e. because it won't know when to end technically

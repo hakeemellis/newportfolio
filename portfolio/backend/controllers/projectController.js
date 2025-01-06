@@ -3,7 +3,7 @@
 /* Logic for project-related operations 
 (the business logic for the routes to essentially know what to do) */
 
-const Project = require("../models/Project");
+const Project = require("../models/projectModel");
 
 // Get all projects
 const getAllProjects = async (req, res) => {

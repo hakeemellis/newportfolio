@@ -9,12 +9,17 @@
 4. CORS for handling cross-origin requests
 5. Routes for handling API requests */
 
+// Import Application Modules Required for Server to Run
 const express = require("express");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db");
-const projectRoutes = require("./routes/projectRoutes");
 const cors = require("cors");
 
+// Import Modular Variables: Database and Routes
+const connectDB = require("./config/db");
+const projectRoutes = require("./routes/projectRoutes");
+const app = express(); // defining the variable "app" to allow express to establish routing
+
+// Defining Environment Configuration
 dotenv.config({
   path:
     process.env.NODE_ENV === "production" // Check if the environment is production
@@ -23,7 +28,6 @@ dotenv.config({
       ? ".env.staging"
       : ".env", // Default to .env file for development
 });
-const app = express();
 
 // CONNECT TO MONGO-DB
 connectDB();
