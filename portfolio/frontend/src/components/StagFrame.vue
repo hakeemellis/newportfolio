@@ -5,7 +5,9 @@
     <section class="flex flex-col gap">
       <h2>Hakeem Ellis</h2>
       <img
-        src="../assets/images/profile.jpg"
+        :src="profileImageUrl"
+        alt="Profile Photo"
+        v-if="profileImageUrl"
         class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
       />
       <h3 class="subtitle">Junior Software Engineer</h3>
@@ -350,6 +352,7 @@
 
 <script>
   import { ref, onMounted } from 'vue';
+  import axios from 'axios';
 
   export default {
     name: 'StagnantFrame',
@@ -393,8 +396,23 @@
     },
     data() {
       return {
-        // Until I have something to put here
+        profileImageUrl: '', // Reactive property for the image URL
       };
+    },
+    methods: {
+      async fetchProfileImage() {
+        try {
+          // Fetch the profile image URL from your backend
+          const response = await axios.get('http://localhost:5001/api/photos');
+          const firstPhoto = response.data[0]; // Use the first photo
+          this.profileImageUrl = firstPhoto.photoURL; // Update with the URL
+        } catch (error) {
+          console.error('Error fetching profile photo:', error);
+        }
+      },
+    },
+    mounted() {
+      this.fetchProfileImage(); // Call the method to fetch the photo on mount
     },
   };
 </script>

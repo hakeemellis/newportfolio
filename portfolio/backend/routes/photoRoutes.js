@@ -48,4 +48,17 @@ router.get("photo/:publicId", async (req, res) => {
   } // Sends Internal Server Error (500)
 });
 
+  // Fetch all photos
+  router.get("/photos", async (req, res) => {
+    console.log("Fetching photos...");
+    try {
+      const photos = await Photo.find({});
+      console.log("Photos fetched:", photos);
+      res.status(200).json(photos);
+    } catch (error) {
+      console.error("Error fetching photos:", error);
+      res.status(500).json({ message: "Error fetching photos" });
+    }
+  });
+
 module.exports = router; // Export for use

@@ -8,7 +8,8 @@ const mongoose = require("mongoose");
 const photoSchema = new mongoose.Schema(
   {
     // Document Structure and/or Fields
-    title: { type: String, required: true },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
     photoURL: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     publicId: { type: String, required: true, unique: true }, // Unique publicId for each photo

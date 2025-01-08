@@ -29,6 +29,10 @@ dotenv.config({
       : ".env", // Default to .env file for development
 });
 
+// Log Environment Variables
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
 // CONNECT TO MONGO-DB
 connectDB();
 
