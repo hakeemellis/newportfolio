@@ -4,6 +4,10 @@
 
 // Modular Import
 const cloudinary = require("cloudinary").v2;
+const dotenv = require("dotenv");
+
+// Configuration for Dotenv | Environment for it modified based on the .env file
+dotenv.config();
 
 // Configuration for Cloudinary | Environment for it modified based on the .env file
 cloudinary.config({

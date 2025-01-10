@@ -8,6 +8,8 @@ const express = require("express");
 // Import Modular Variables
 const fetchSpecificImage = require("../utils/cloudinary"); // Function to fetch/call specific image
 const Photo = require("../models/photoModel"); // Imported to handle photo schema
+const io = require("../config/websocket");
+const fetchCloudinaryPhotos = require("../utils/cloudinary"); // Function to fetch Cloudinary photos
 
 // Initialize Router
 const router = express.Router(); // using the express router (instance of express)
@@ -48,17 +50,34 @@ router.get("photo/:publicId", async (req, res) => {
   } // Sends Internal Server Error (500)
 });
 
-  // Fetch all photos
-  router.get("/photos", async (req, res) => {
-    console.log("Fetching photos...");
-    try {
-      const photos = await Photo.find({});
-      console.log("Photos fetched:", photos);
-      res.status(200).json(photos);
-    } catch (error) {
-      console.error("Error fetching photos:", error);
-      res.status(500).json({ message: "Error fetching photos" });
-    }
-  });
+// Webhook to sync photos automatically
+router.post("/webhook", async (req, res) => {
+  try {
+    const cloudinaryPhotos = await fetchCloudinaryPhotos();
+
+    // Sync database
+    await Photo.deleteMany();
+    await Photo.insertMany(cloudinaryPhotos);
+
+    // Notify WebSocket clients
+    io.emit("photos-updated");
+
+    res.status(200).json({ message: "Photos synced successfully!" });
+  } catch (error) {
+    console.error("Error syncing photos:", error);
+    res.status(500).json({ error: "Failed to sync photos" });
+  }
+});
+
+// Fetch all photos
+router.get("/", async (req, res) => {
+  try {
+    const photos = await Photo.find();
+    res.json(photos);
+  } catch (error) {
+    console.error("Error fetching photos:", error);
+    res.status(500).json({ error: "Failed to fetch photos" });
+  }
+});
 
 module.exports = router; // Export for use

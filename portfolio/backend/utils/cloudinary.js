@@ -3,23 +3,31 @@
 // Handles fetching media files from Cloudinary
 
 // Import the Cloudinary Module for API Calls
-const cloudinary = require('../config/cloudinaryConfig');
+const cloudinary = require("../config/cloudinaryConfig");
 
-// Function to Fetch Metadata for a Specific Image
-const fetchSpecificImage = async (publicId) => {
+const fetchCloudinaryPhotos = async () => {
   try {
-    const result = await cloudinary.api.resource(publicId); // Fetch metadata for a single image due to "resource" and not "resources"
-    console.log(result);
-    return {
-      title: publicId.split('/').pop(), // Extract title from public_id while keeping the photo name from the URL structure
-      photo: result.secure_url,         // Result variable contains FULL secure URL - versus publicID with just the folder structure
-      createdAt: result.created_at,  // Extract createdAt timestamp
-    };
+    // Fetch resources (photos) from Cloudinary
+    const result = await cloudinary.api.resources({
+      type: "upload",
+      resource_type: "image",
+      max_results: 500, // Fetch up to 500 photos at once (adjust as needed)
+    });
+
+    // Map the fetched photos to the desired format
+    const photos = result.resources.map((photo) => ({
+      name: photo.public_id.split("/").pop(), // Extract the name from the public_id
+      description: "Fetched from Cloudinary", // Add a description
+      photoURL: photo.secure_url, // Use the secure URL
+      createdAt: new Date(photo.created_at), // Use the created_at timestamp
+      publicId: photo.public_id, // Use the public_id
+    }));
+
+    return photos;
   } catch (error) {
-    console.error('Error fetching specific image:', error);
-    return null;// Log any errors
+    console.error("Error fetching photos from Cloudinary:", error);
+    return [];
   }
 };
 
-// Usage:
-module.exports = fetchSpecificImage;
+module.exports = fetchCloudinaryPhotos;

@@ -7,7 +7,6 @@
       <img
         :src="profileImageUrl"
         alt="Profile Photo"
-        v-if="profileImageUrl"
         class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
       />
       <h3 class="subtitle">Junior Software Engineer</h3>
@@ -352,6 +351,7 @@
 
 <script>
   import { ref, onMounted } from 'vue';
+  import { io } from 'socket.io-client';
   import axios from 'axios';
 
   export default {
@@ -396,23 +396,62 @@
     },
     data() {
       return {
-        profileImageUrl: '', // Reactive property for the image URL
+        profileImageUrl: '',
       };
     },
     methods: {
       async fetchProfileImage() {
         try {
-          // Fetch the profile image URL from your backend
           const response = await axios.get('http://localhost:5001/api/photos');
-          const firstPhoto = response.data[0]; // Use the first photo
-          this.profileImageUrl = firstPhoto.photoURL; // Update with the URL
+          console.log('Fetched photos:', response.data); // Add this line
+          if (response.data && response.data.length > 0) {
+            const firstPhoto = response.data[0];
+            this.profileImageUrl = firstPhoto.photoURL;
+            console.log('Profile image URL set to:', this.profileImageUrl); // Add this line
+          } else {
+            console.warn('No photos available in the response.');
+          }
         } catch (error) {
           console.error('Error fetching profile photo:', error);
         }
       },
     },
     mounted() {
-      this.fetchProfileImage(); // Call the method to fetch the photo on mount
+      const socket = io.connect('http://localhost:5001', {
+        secure: true,
+        rejectUnauthorized: false,
+        reconnection: true,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax: 5000,
+        reconnectionAttempts: Infinity,
+        transports: ['websocket'],
+        withCredentials: true,
+        extraHeaders: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
+
+      // Initial fetch of the profile image
+      this.fetchProfileImage();
+
+      // Listen for updates via WebSocket
+      socket.on('photos-updated', () => {
+        console.log('Photos updated via WebSocket!');
+        this.fetchProfileImage(); // Refetch the first photo on update
+      });
+
+      // Debugging connection
+      socket.on('connect', () => {
+        console.log('Connected to WebSocket server');
+      });
+
+      socket.on('connect_error', (error) => {
+        console.error('WebSocket connection error:', error);
+      });
+
+      socket.on('disconnect', () => {
+        console.log('Disconnected from WebSocket server');
+      });
     },
   };
 </script>

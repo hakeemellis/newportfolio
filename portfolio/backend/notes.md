@@ -67,3 +67,6 @@ Use: NODE_ENV=production/staging/development node server.js - to establish node 
 
 
 Only use process.exit ( ) / (0) - which means success and process.exit (1) when the function is only intended to be ran once and not continually as modular data i.e. because it won't know when to end technically
+
+
+Redis: redis-server - to initialize 
