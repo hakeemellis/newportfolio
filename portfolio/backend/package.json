@@ -20,7 +20,6 @@
     "ioredis": "^5.4.2",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.3",
-    "ngrok": "^5.0.0-beta.2",
     "redis": "^4.7.0",
     "socket.io": "^4.8.1"
   },
