@@ -2,11 +2,11 @@
 
 // Logic for connecting to Cloudinary
 
-// Modular Import
+// Required Import
 const cloudinary = require("cloudinary").v2;
-const dotenv = require("dotenv");
+const dotenv = require("dotenv"); // Import dotenv for environment variables - to hide sensitive information
 
-// Configuration for Dotenv | Environment for it modified based on the .env file
+// Configuration for dotenv | Environment for it modified based on the .env file
 dotenv.config();
 
 // Configuration for Cloudinary | Environment for it modified based on the .env file

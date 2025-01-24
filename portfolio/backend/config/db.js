@@ -2,8 +2,10 @@
 
 // Logic for connecting to MongoDB (using Mongoose)
 
-const mongoose = require("mongoose");
+// Required Import
+const mongoose = require("mongoose"); // Import Mongoose for MongoDB
 
+// Function to connect to MongoDB
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
@@ -16,4 +18,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB;
+module.exports = connectDB; // Export as a module

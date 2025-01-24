@@ -44,10 +44,19 @@ connectDB();
 app.use(express.json()); // for parsing JSON data
 
 // Enable CORS
-app.use(cors({
-  origin: process.env.CORS_ORIGIN, // Use the CORS origin from the environment variables
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-}));
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN, // Use the CORS origin from the environment variables
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  })
+);
+
+// PASS WEBSOCKET ("io") TO ROUTES
+app.use((req, res, next) => {
+  req.io = io; // Makes "req.io" available in routes with io being defined above - so when we use "req.io"
+  // it refers to our WebSocket Configuration - which becomes globally available due to express
+  next(); // Proceed to the next middleware
+});
 
 // ROUTES
 app.use("/api/photos", photoRoutes); // Syntax: app.use(path - can be anything we want, route/middleware); - just for loading route

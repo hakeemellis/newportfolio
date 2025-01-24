@@ -2,6 +2,7 @@
 
 // Establish photo's schema markup for MongoDB to store photo data
 
+// Required Import
 const mongoose = require("mongoose");
 
 // Schema for photos
@@ -22,4 +23,4 @@ const photoSchema = new mongoose.Schema(
 
 Photo = mongoose.model("Photo", photoSchema); // to define the model as a variable
 
-module.exports = Photo;
+module.exports = Photo; // Export as a module

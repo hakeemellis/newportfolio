@@ -1,9 +1,11 @@
 // websocket.js
 
+// Handles WebSockets Connection
+
+// Import Required Variables
 const { Server } = require("socket.io");
 
-// Initialize the WebSocket server
-
+// Function to initialize the WebSocket server
 const initializeWebSocket = (server) => {
   try {
     const io = new Server(server, {
@@ -30,7 +32,7 @@ const initializeWebSocket = (server) => {
       });
     });
 
-    return io;
+    return io; // Return the initialized WebSocket server
   } catch (error) {
     console.error("Error initializing WebSocket server:", error);
     return null;
