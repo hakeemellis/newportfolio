@@ -350,17 +350,20 @@
 </template>
 
 <script>
-  import { ref, onMounted } from 'vue';
-  import { io } from 'socket.io-client';
-  import axios from 'axios';
+  // --- Import Dependencies ---
+  import { ref, onMounted, onUnmounted } from 'vue'; // Import "ref" for reactive variables and "onMounted" for lifecycle hooks
+  import socket from '../socket.js'; // To use WebSocket on the frontend
+  import axios from 'axios'; // For API requests - tying both the backend and frontend using CORS
 
   export default {
-    name: 'StagnantFrame',
-    //Start of Dark Mode Code
-    setup() {
-      const isDarkMode = ref(false);
+    name: 'StagnantFrame', // Component Name
 
-      // To toggle value and store and store in local storage
+    setup() {
+      // --- Reactive Variables (Defining Variables Prior to DOM) ---
+      const isDarkMode = ref(false); // Reactive variable defining dark mode state
+      const profileImageUrl = ref(''); // Reactive variable defining profile image URL
+
+      // Functions
       const toggleDarkMode = () => {
         isDarkMode.value = !isDarkMode.value;
         if (isDarkMode.value) {
@@ -372,9 +375,25 @@
         }
       };
 
-      // Check the user's preference on initial load |
-      // Whether between last toggled state or system preference
+      const fetchProfileImage = async () => {
+        try {
+          const response = await axios.get('http://localhost:5001/api/photos');
+          console.log('Fetched photos:', response.data);
+          if (response.data && response.data.length > 0) {
+            const firstPhoto = response.data[22];
+            profileImageUrl.value = firstPhoto.photoURL; // Reminder: photoURL instance is from the photo model schema in the backend
+            console.log('Profile image URL set to:', profileImageUrl.value);
+          } else {
+            console.warn('No photos available in the response.');
+          }
+        } catch (error) {
+          console.error('Error fetching profile photo:', error);
+        }
+      };
+
+      // --- Lifecycle Hooks: onMounted (tracks/changes what happens while defining variables are initialized) After DOM ---
       onMounted(() => {
+        // 1. Handle Dark Mode Initialization
         if (
           localStorage.getItem('theme') === 'dark' ||
           (!localStorage.getItem('theme') &&
@@ -386,72 +405,43 @@
           isDarkMode.value = false;
           document.documentElement.classList.remove('dark');
         }
+
+        // 2. Fetch Initial Profile Image (Just Calling the Function)
+        fetchProfileImage();
+
+        // 3. Setup for WebSocket to Update Photos on the Frontend
+
+        // Listen for WebSocket events
+        socket.on('photos-updated', () => {
+          console.log('Photos updated via WebSocket!');
+          fetchProfileImage(); // Refetch the first photo on update
+        });
+
+        // OnUnmounted Cleanup
+        onUnmounted(() => {
+          socket.off('photos-updated', fetchProfileImage); // Removes the event listener on "fetchProfileImage" specifically
+        });
+
+        // Debugging connection
+        socket.on('connect', () => {
+          console.log('Connected to WebSocket server');
+        });
+
+        socket.on('connect_error', (error) => {
+          console.error('WebSocket connection error:', error);
+        });
+
+        socket.on('disconnect', () => {
+          console.log('Disconnected from WebSocket server');
+        });
       });
 
-      // Return dark mode values
+      // --- Return Variables and Functions ---
       return {
         isDarkMode,
         toggleDarkMode,
+        profileImageUrl,
       };
-    },
-    data() {
-      return {
-        profileImageUrl: '',
-      };
-    },
-    methods: {
-      async fetchProfileImage() {
-        try {
-          const response = await axios.get('http://localhost:5001/api/photos');
-          console.log('Fetched photos:', response.data); // Add this line
-          if (response.data && response.data.length > 0) {
-            const firstPhoto = response.data[0];
-            this.profileImageUrl = firstPhoto.photoURL;
-            console.log('Profile image URL set to:', this.profileImageUrl); // Add this line
-          } else {
-            console.warn('No photos available in the response.');
-          }
-        } catch (error) {
-          console.error('Error fetching profile photo:', error);
-        }
-      },
-    },
-    mounted() {
-      const socket = io.connect('http://localhost:5001', {
-        secure: true,
-        rejectUnauthorized: false,
-        reconnection: true,
-        reconnectionDelay: 1000,
-        reconnectionDelayMax: 5000,
-        reconnectionAttempts: Infinity,
-        transports: ['websocket'],
-        withCredentials: true,
-        extraHeaders: {
-          'Access-Control-Allow-Origin': '*',
-        },
-      });
-
-      // Initial fetch of the profile image
-      this.fetchProfileImage();
-
-      // Listen for updates via WebSocket
-      socket.on('photos-updated', () => {
-        console.log('Photos updated via WebSocket!');
-        this.fetchProfileImage(); // Refetch the first photo on update
-      });
-
-      // Debugging connection
-      socket.on('connect', () => {
-        console.log('Connected to WebSocket server');
-      });
-
-      socket.on('connect_error', (error) => {
-        console.error('WebSocket connection error:', error);
-      });
-
-      socket.on('disconnect', () => {
-        console.log('Disconnected from WebSocket server');
-      });
     },
   };
 </script>
