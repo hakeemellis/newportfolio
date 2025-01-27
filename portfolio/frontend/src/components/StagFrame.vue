@@ -380,7 +380,8 @@
           const response = await axios.get('http://localhost:5001/api/photos');
           console.log('Fetched photos:', response.data);
           if (response.data && response.data.length > 0) {
-            const firstPhoto = response.data[22];
+            //const firstPhoto = response.data[22]; my first approach
+            const firstPhoto = response.data.find(photo => photo.name === 'Photo');
             profileImageUrl.value = firstPhoto.photoURL; // Reminder: photoURL instance is from the photo model schema in the backend
             console.log('Profile image URL set to:', profileImageUrl.value);
           } else {
@@ -409,7 +410,7 @@
         // 2. Fetch Initial Profile Image (Just Calling the Function)
         fetchProfileImage();
 
-        // 3. Setup for WebSocket to Update Photos on the Frontend
+        // 3. Setup/Initialize WebSocket to Update Photos on the Frontend
 
         // Listen for WebSocket events
         socket.on('photos-updated', () => {
@@ -417,7 +418,7 @@
           fetchProfileImage(); // Refetch the first photo on update
         });
 
-        // OnUnmounted Cleanup
+        // Cleanup After Unmount
         onUnmounted(() => {
           socket.off('photos-updated', fetchProfileImage); // Removes the event listener on "fetchProfileImage" specifically
         });
