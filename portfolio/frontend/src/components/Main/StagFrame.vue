@@ -352,7 +352,7 @@
 <script>
   // --- Import Dependencies ---
   import { ref, onMounted, onUnmounted } from 'vue'; // Import "ref" for reactive variables and "onMounted" for lifecycle hooks
-  import socket from '../socket.js'; // To use WebSocket on the frontend
+  import socket from '../../socket.js'; // To use WebSocket on the frontend
   import axios from 'axios'; // For API requests - tying both the backend and frontend using CORS
 
   export default {

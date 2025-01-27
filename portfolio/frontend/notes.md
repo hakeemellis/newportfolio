@@ -55,3 +55,21 @@ Under Component API structure, if a reactive variable is not defined for somethi
 When it comes to websockets, io.connect.off is used when we're unmounting for a particular event (like photo syncing due to the function already being done) versus io.connect.disconnection which completely cuts off connection completely which is generally used if a user were to log out of an application and be done with it.
 
 The signleton approach with Websocket is generally preferred due to its component based modularity whereas its global structure while better with regards to global initialization - makes it harder to debug or avoid due to its global use (its better for applications that need that global tie-in like an admin dashboard or notification panel)
+
+
+Old options based approach in components:
+
+  data() {
+      return {
+        // Until I have something to put here
+      };
+    },
+
+	vs
+
+    setup() {
+      const message = ref('This is a default reusable Vue component!');
+      return {
+        message,
+      };
+    },

@@ -107,9 +107,10 @@
 <script>
   export default {
     name: 'ProjectsSection',
-    data() {
+    setup() {
+      const message = ref('This is a default reusable Vue component!');
       return {
-        // Until I have something to put here
+        message,
       };
     },
   };

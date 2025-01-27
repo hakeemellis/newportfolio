@@ -5,8 +5,28 @@
 </template>
 
 <script>
-  // Importing Components
-  import ProjectArchiveComp from '../components/ProjectArchiveComp.vue';
+  // Import Components
+  import { ref } from 'vue'; // Import "ref" for reactive variables
+  import ProjectArchiveComp from '../components/Main/ProjectArchiveComp.vue';
+
+  // -- Composition API --
+  export default {
+    name: 'ProjectArchive',
+    components: {
+      ProjectArchiveComp,
+    }, // End of Components
+    setup() {
+      // Define reactive variable
+      const message = ref('This is a default reusable Vue component!');
+
+      // Return everything that should be accessible in the template
+      return {
+        message,
+      };
+    },
+  };
+
+  /* -- Options API Approach (Old Way) --
 
   export default {
     name: 'ProjectArchive',
@@ -19,6 +39,8 @@
       };
     },
   };
+
+  */
 </script>
 
 <style scoped>

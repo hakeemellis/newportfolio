@@ -23,11 +23,12 @@
 
 <script>
   // Importing Components
-  import StagFrame from '../components/StagFrame.vue';
-  import AboutSection from '../components/AboutSection.vue';
-  import ExperienceSection from '../components/ExperienceSection.vue';
-  import ProjectsSection from '../components/ProjectsSection.vue';
-  import FooterSection from '../components/FooterSection.vue';
+  import StagFrame from '../components/Main/StagFrame.vue';
+  import AboutSection from '../components/Main/AboutSection.vue';
+  import ExperienceSection from '../components/Main/ExperienceSection.vue';
+  import ProjectsSection from '../components/Main/ProjectsSection.vue';
+  import FooterSection from '../components/Main/FooterSection.vue';
+  import { ref } from 'vue';
 
   export default {
     name: 'Home',
@@ -38,9 +39,13 @@
       ProjectsSection,
       FooterSection,
     }, // End of Components
-    data() {
+    setup() {
+      // Define reactive variable
+      const message = ref('This is a default reusable Vue component!');
+
+      // Return everything that should be accessible in the template
       return {
-        // Until I have something to put here
+        message,
       };
     },
   };

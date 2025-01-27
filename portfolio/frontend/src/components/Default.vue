@@ -8,9 +8,10 @@
 <script>
   export default {
     name: 'DefaultComponent',
-    data() {
+    setup() {
+      const message = ref('This is a default reusable Vue component!');
       return {
-        message: 'This is a default reusable Vue component!',
+        message,
       };
     },
   };
