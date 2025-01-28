@@ -176,9 +176,13 @@
 </template>
 
 <script>
-  // Importing Components
+  // Importing Modular Components
   import FooterSection from './FooterSection.vue';
 
+  // Importing Reactive Dependencies
+  import { ref } from 'vue';
+
+  // -- Composition API Approach --
   export default {
     name: 'ProjectArchiveComp',
     components: {

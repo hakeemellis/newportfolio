@@ -8,7 +8,7 @@
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
         <img
-          src="../assets/images/projectphotos/coding.jpg"
+          src="../../assets/images/projectphotos/coding.jpg"
           class="projects-photo dark:shadow-lg dark:shadow-zinc-800"
         />
       </section>
@@ -105,6 +105,10 @@
 </template>
 
 <script>
+  //Import Reactive Dependencies
+  import { ref } from 'vue';
+
+  // -- Composition API Approach --
   export default {
     name: 'ProjectsSection',
     setup() {

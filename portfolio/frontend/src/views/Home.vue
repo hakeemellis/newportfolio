@@ -22,13 +22,13 @@
 </template>
 
 <script>
-  // Importing Components
+// Importing Components
+  import { ref } from 'vue';
   import StagFrame from '../components/Main/StagFrame.vue';
   import AboutSection from '../components/Main/AboutSection.vue';
   import ExperienceSection from '../components/Main/ExperienceSection.vue';
   import ProjectsSection from '../components/Main/ProjectsSection.vue';
   import FooterSection from '../components/Main/FooterSection.vue';
-  import { ref } from 'vue';
 
   export default {
     name: 'Home',

@@ -18,6 +18,10 @@
 </template>
 
 <script>
+  // Import Reactive Dependencies
+  import { ref } from 'vue';
+
+  // -- Composition API Approach --
   export default {
     name: 'FooterSection',
     setup() {
