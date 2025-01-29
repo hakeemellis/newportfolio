@@ -14,14 +14,17 @@ const express = require("express"); // express for handling HTTP requests
 const dotenv = require("dotenv"); // dotenv for environment variables
 const cors = require("cors"); // cors for handling cross-origin requests
 const http = require("http"); // http for handling WebSockets
+const session = require("express-session");
 
 // Import Modular Variables: Database and Routes
-const connectDB = require("./config/db"); // to establish connection to MongoDB
-const photoRoutes = require("./routes/photoRoutes"); // for use in app.use, as defined in ROUTES
-const initializeWebSocket = require("./config/websocket"); // for use in app.use, as defined in ROUTES
 const app = express(); // defining the variable "app" to allow express to establish routing
+const connectDB = require("./config/db"); // to establish connection to MongoDB
+const photoRoutes = require("./routes/photoRoutes"); // to define default routes for photos (app.use)
+const initializeWebSocket = require("./config/websocket"); // to import WebSocket configuration
 const server = http.createServer(app); // defining the variable "server" to allow express to establish WebSockets
 const io = initializeWebSocket(server); // defining the variable "io" to allow express to establish WebSockets
+const authRoutes = require("./routes/authRoutes"); // to define default routes for authentication (app.use)
+const contentRoutes = require("./routes/contentRoutes"); // to define default routes for content (app.use)
 
 // Defining Environment Configuration
 dotenv.config({
@@ -42,6 +45,13 @@ connectDB();
 
 // MIDDLEWARE
 app.use(express.json()); // for parsing JSON data
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 // Enable CORS
 app.use(
@@ -59,7 +69,9 @@ app.use((req, res, next) => {
 });
 
 // ROUTES
-app.use("/api/photos", photoRoutes); // Syntax: app.use(path - can be anything we want, route/middleware); - just for loading route
+app.use("/api/photos", photoRoutes); // default route for photos
+app.use("/api/auth", authRoutes); // default route for authentication
+app.use("/api/content", contentRoutes); // default route for content
 
 // Default route for health check or root
 app.get("/", (req, res) => {

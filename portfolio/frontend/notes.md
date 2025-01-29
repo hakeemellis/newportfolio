@@ -73,3 +73,5 @@ Old options based approach in components:
         message,
       };
     },
+
+    404 Page to do, more commenting and making admin panel uniquely edit certain elements - even when added

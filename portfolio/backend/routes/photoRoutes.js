@@ -45,4 +45,4 @@ router.post("/webhook", async (req, res) => {
   }
 });
 
-module.exports = router; // Export for use
+module.exports = router; // Export all defined routes

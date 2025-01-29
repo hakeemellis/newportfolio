@@ -70,3 +70,7 @@ Only use process.exit ( ) / (0) - which means success and process.exit (1) when 
 
 
 Redis: redis-server - to initialize 
+
+Using bcrypt, we can has passwords before storing it to the database.
+
+Might be basic but know that MongoDB assigns an id by default to an element which can be accessed through ( ._id )
