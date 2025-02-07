@@ -75,3 +75,34 @@ Old options based approach in components:
     },
 
     404 Page to do, more commenting and making admin panel uniquely edit certain elements - even when added
+
+
+  
+  v-model use: best for dynamic user input that needs to be stored and/or modified
+
+  v-html use: to output html content, like a cms builder. eg. will output <b>heiedim</b> in bold
+
+  So essentially v-html could output a v-model output with the v-model being defined as a function prior
+
+
+  V-FOR in practice:
+
+  Used to dynamically render elements based on data - like an if statement
+
+  <ul>
+    <li v-for="(item, index) in items" :key="index">
+      {{ item }}
+    </li>
+  </ul>
+
+	v-for="(item, index) in items" : Loops through the items array.
+	:key="index" : Helps Vue track changes efficiently.
+	{{ item }} : Displays each array item.
+
+
+OnMounted and UnMounted
+
+- OnMounted: fancy ass way on the frontend to automatically execute a function - but it only executes when DOM is fully rendered. 
+i.e. unlike writing functionname () which I'd have manually call, onMounted executes it automatically when DOM is rendered
+
+- UnMounted: similar but the inverse is it only executes when the mounted function is being destroyed/removed (like when logging out)

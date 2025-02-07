@@ -1,4 +1,4 @@
-// Initialize Cloudinary
+// utils/cloudinary.js
 
 // Handles fetching media files from Cloudinary
 
@@ -8,27 +8,32 @@ const cloudinary = require("../config/cloudinaryConfig");
 // Function to fetch photos from Cloudinary
 const fetchCloudinaryPhotos = async () => {
   try {
-    // Fetch resources (photos) from Cloudinary
+    // Fetch photos from Cloudinary
     const result = await cloudinary.api.resources({
       type: "upload",
       resource_type: "image",
-      max_results: 500, // Fetch up to 500 photos at once 
+      max_results: 500, // Fetch up to 500 photos at once
     });
 
-    // Map the fetched photos to the desired format
+    console.log("Fetched photos from Cloudinary:", result); // Log the fetched photos
+
+    // Map each fetched photo to follow the desired format - similar to photo model schema
     const photos = result.resources.map((photo) => ({
-      name: photo.public_id.split("/").pop(), // Use the public_id as the name
+      name: photo.public_id.split("/").pop(), // "/" is used to split the public_id and pop() to get the last part
       description: "Fetched from Cloudinary", // the photo description
       photoURL: photo.secure_url, //the secure URL
-      createdAt: new Date(photo.created_at), // the created_at timestamp
-      publicId: photo.public_id, //the public_id
+      createdAt: new Date(photo.created_at), // the created_at timestamp - added, not part of cloudinary (but is in my photo model schema)
+      publicId: photo.public_id, //the public_id (unique identifier - like asset_id without the gibberish)
     }));
+    // End of map
 
-    return photos; // Return the mapped photos
+    // Return the mapped photos
+    return photos;
   } catch (error) {
     console.error("Error fetching photos from Cloudinary:", error);
-    return [];
+    return []; // Return null if there's an error
   }
 };
+// End of fetching photos from Cloudinary
 
-module.exports = fetchCloudinaryPhotos; // Export as a module
+module.exports = fetchCloudinaryPhotos; // Export as a modular variable

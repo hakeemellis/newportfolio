@@ -1,5 +1,9 @@
 // authMiddleware.js
 
+// JSON Web Token (JWT) is a standard used to create access tokens for an application.
+// It works this way: the server generates a token that certifies the user identity, and sends it to the client.
+// Kept for future use (not used in this project)
+
 /* A middleware for authentication or other functionality, 
 such as checking if the user is authorized. */
 const authMiddleware = (req, res, next) => {

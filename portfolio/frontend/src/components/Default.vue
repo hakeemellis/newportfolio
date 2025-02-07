@@ -6,6 +6,7 @@
 </template>
 
 <script>
+  // Composition API Approach
   export default {
     name: 'DefaultComponent',
     setup() {
@@ -15,6 +16,22 @@
       };
     },
   };
+
+  /* -- Options API Approach (Old Way) --
+
+  export default {
+    name: 'ProjectArchive',
+    components: {
+      ProjectArchiveComp,
+    }, // End of Components
+    data() {
+      return {
+        message: 'This is a default reusable Vue component!',
+      };
+    },
+  };
+
+  */
 </script>
 
 <style scoped>

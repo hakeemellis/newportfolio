@@ -182,18 +182,23 @@
   // Importing Reactive Dependencies
   import { ref } from 'vue';
 
-  // -- Composition API Approach --
   export default {
-    name: 'ProjectArchiveComp',
+    name: 'ProjectArchiveComp', // Component Name
+    // Imported Components
     components: {
       FooterSection,
     },
+    // Setup Function
     setup() {
+      // Define reactive variable
       const message = ref('This is a default reusable Vue component!');
+      // Return everything that should be accessible in the template
       return {
         message,
       };
+      // End of Return
     },
+    // End of Setup
   };
 </script>
 

@@ -1,4 +1,5 @@
 <template>
+  <!-- Start of Container for Footer Section -->
   <section>
     <p class="roboto-condensed-regular gap dark:text-custom-white">
       Designed in <b class="dark:text-rose-500 text-cyan-800">Figma</b>. Coded
@@ -15,21 +16,27 @@
     <br />
     <br />
   </section>
+  <!-- End of Container for Footer Section -->
 </template>
 
 <script>
   // Import Reactive Dependencies
   import { ref } from 'vue';
 
-  // -- Composition API Approach --
   export default {
-    name: 'FooterSection',
+    name: 'FooterSection', // Component Name
+    // Setup Function
     setup() {
+      // Define reactive variable
       const message = ref('This is a default reusable Vue component!');
+
+      // Return everything that should be accessible in the template
       return {
         message,
       };
+      // End of Return
     },
+    // End of Setup
   };
 </script>
 

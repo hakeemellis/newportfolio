@@ -8,9 +8,12 @@ const mongoose = require("mongoose"); // Import Mongoose for MongoDB
 // Function to connect to MongoDB
 const connectDB = async () => {
   try {
+    // Connect to the database
     await mongoose.connect(process.env.MONGO_URI, {
-      dbName: "Cluster51448",
+      dbName: process.env.MONGO_DB_NAME,
     });
+
+    // Log success
     console.log("Connected to MongoDB");
   } catch (err) {
     console.error("MongoDB connection error:", err);
@@ -18,4 +21,4 @@ const connectDB = async () => {
   }
 };
 
-module.exports = connectDB; // Export as a module
+module.exports = connectDB; // Export as a modular variable

@@ -1,5 +1,8 @@
 // socket.js (WebSocket as a singleton module)
 
+// Purpose: To allow real-time communication between the client-side (frontend) and the server (backend)
+// (intended to use but not in use right now - but is initialized in the project)
+
 // --- Import Dependencies ---
 import { io } from 'socket.io-client';
 

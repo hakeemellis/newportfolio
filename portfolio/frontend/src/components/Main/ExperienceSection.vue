@@ -4,10 +4,12 @@
     <!-- Start of Experience Section -->
     <section
       class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-4 px-2"
+      v-for="(experience, index) in experienceContent"
+      :key="index"
     >
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
-        <p>2024 - Present</p>
+        <p>{{ experience.year }}</p>
       </section>
       <!-- End of Section with Year -->
 
@@ -23,66 +25,25 @@
           <!-- Company One -->
           <section class="flex flex-col gap-2">
             <p class="roboto-condensed-bold">
-              Role for Company | Name of Company
+              {{ experience.title }}
             </p>
             <p>
-              wdwjebsjdlwkswsxlcnewdkjcbnejwnsfcjcebijvbwedafve fewwmsdnwqjb ndf
-              efdewfefefeijqwebevwijdbvnadlne wodwqdsneqjnffedfeeqfn
+              {{ experience.description }}
             </p>
             <!-- Appropriate Tags Section -->
             <section class="flex flex-row flex-wrap gap-2 py-3">
               <section
+                v-for="(tag, tagIndex) in getFilteredTags(experience.tags)"
+                :key="tagIndex"
                 class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
               >
-                <p>wdwjebsjdlwks</p>
-              </section>
-              <section
-                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-              >
-                <p>wdwjebsjdlwks</p>
-              </section>
-              <section
-                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-              >
-                <p>wdwjebsjdlwks</p>
-              </section>
-              <section
-                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-              >
-                <p>wdwjebsjdlwks</p>
+                <p>{{ tag }}</p>
               </section>
             </section>
             <!-- End of Appropriate Tags Section -->
           </section>
           <!-- End of Company One-->
-
-          <!-- Saved as template for reuse for Multi-Role in Same Company
-
-        <section class="flex flex-col gap-2">
-          <p class="roboto-condensed-bold">
-            Role for Company | Name of Company
-          </p>
-          <p>
-            wdwjebsjdlwkswsxlcnewdkjcbnejwnsfcjcebijvbwedafve fewwmsdnwqjb ndf
-            efdewfefefeijqwebevwijdbvnadlne wodwqdsneqjnffedfeeqfn
-          </p>
-          <section class="flex flex-row flex-wrap gap-2">
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-          </section>
         </section>
-
-        --></section>
         <!-- End of Inner Child Container with Company Role, Description, and Tags -->
       </section>
       <!-- End of Parent Container with Company Role, Description, and Tags -->
@@ -100,18 +61,53 @@
 </template>
 
 <script>
-  // Import Reactive Dependencies
-  import { ref } from 'vue';
+  // Import Application Dependencies
+  import axios from 'axios';
 
-  // -- Composition API Approach --
+  // Import Reactive Dependencies
+  import { ref, onMounted } from 'vue';
+
   export default {
-    name: 'ExperienceSection',
+    name: 'ExperienceSection', // Component Name
+    // Setup Function
     setup() {
-      const message = ref('This is a default reusable Vue component!');
-      return {
-        message,
+      // Define Reactive Variable
+      const experienceContent = ref([]);
+
+      // Fetch content available for Experience Section through API route - async due to axios request (backend)
+      const fetchExperienceContent = async () => {
+        try {
+          // Fetch content available for Experience Section through API route
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/experience`
+          );
+
+          // Check if response contains content - if so, assign it to experienceContent
+          if (response.data && response.data.content) {
+            experienceContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching experience content:', error);
+        }
       };
+
+      // Execute function on DOM mount i.e. when its finish rendering
+      onMounted(fetchExperienceContent);
+      // End of Fetch Function
+
+      // Function to Filter Tags - Tags are coming from adminpanel.vue (experience.tags)
+      const getFilteredTags = (tags) => {
+        return tags.filter((tag) => tag && tag.trim() !== '').slice(0, 13); // Limit tags to 13 (frontend limit)
+      };
+
+      // Return everything that should be accessible in the template
+      return {
+        experienceContent,
+        getFilteredTags,
+      };
+      // End of Return
     },
+    // End of Setup
   };
 </script>
 

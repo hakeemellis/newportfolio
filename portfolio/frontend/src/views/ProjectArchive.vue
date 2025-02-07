@@ -1,20 +1,25 @@
 <template>
+  <!-- Start of Container for Project Archive Section-->
   <section class="outer-container-project-archive">
     <ProjectArchiveComp />
   </section>
+  <!-- End of Container for Project Archive Section-->
 </template>
 
 <script>
-  // Import Components
+  // Import Reactive Dependencies
   import { ref } from 'vue'; // Import "ref" for reactive variables
+
+  // Import Modular Dependencies
   import ProjectArchiveComp from '../components/Main/ProjectArchiveComp.vue';
 
-  // -- Composition API --
   export default {
-    name: 'ProjectArchive',
+    name: 'ProjectArchive', // Component Name
+    // Imported Components
     components: {
       ProjectArchiveComp,
-    }, // End of Components
+    },
+    // Setup Function
     setup() {
       // Define reactive variable
       const message = ref('This is a default reusable Vue component!');
@@ -23,24 +28,9 @@
       return {
         message,
       };
+      // End of Return
     },
   };
-
-  /* -- Options API Approach (Old Way) --
-
-  export default {
-    name: 'ProjectArchive',
-    components: {
-      ProjectArchiveComp,
-    }, // End of Components
-    data() {
-      return {
-        message: 'This is a default reusable Vue component!',
-      };
-    },
-  };
-
-  */
 </script>
 
 <style scoped>

@@ -1,4 +1,5 @@
 // seeds/photoSeeder.js
+
 // Script to seed the database with schema setup for photos
 
 // IMPORT MODULES
@@ -23,7 +24,7 @@ const seedPhotos = async () => {
     console.log("Database Connected!");
 
     // Clear existing photos to avoid duplicates
-    await Photo.deleteMany();
+    await Photo.deleteMany(); // Delete all photos from MongoDB - as defined by Photo model with "Photo"
     console.log("Photos Deleted!");
 
     // Fetch photos from Cloudinary
@@ -31,7 +32,7 @@ const seedPhotos = async () => {
     console.log("Fetched photos from Cloudinary:", photos);
 
     // Insert fetched photos into MongoDB
-    await Photo.insertMany(photos);
+    await Photo.insertMany(photos); // used "insertMany" instead of "save" due to array versus string
     console.log("Database seeded successfully!");
     process.exit(0); // Exit the process after seeding successfully
   } catch (error) {
@@ -39,6 +40,7 @@ const seedPhotos = async () => {
     process.exit(1); // Exit the process if there's an error
   }
 };
+// End of seedPhotos function
 
 // Run the seed function
 seedPhotos();

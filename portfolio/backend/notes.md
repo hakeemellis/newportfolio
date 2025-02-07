@@ -74,3 +74,8 @@ Redis: redis-server - to initialize
 Using bcrypt, we can has passwords before storing it to the database.
 
 Might be basic but know that MongoDB assigns an id by default to an element which can be accessed through ( ._id )
+
+To log that I'm logged in for my sessions, I'm using both: cookie (tracking cookie as per browser) and connect-mongo (npm installed)
+
+
+Using "node-cron" to run schedule task

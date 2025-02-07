@@ -1,9 +1,43 @@
+<template>
+  <!-- ROUTER VIEW -->
+  <section
+    class="bg-custom-gray dark:bg-zinc-950 transition-all duration-500 ease-in-out"
+    :style="{ backgroundImage: backgroundImage }"
+  >
+    <router-view />
+  </section>
+  <!-- END OF ROUTER VIEW -->
+</template>
+
 <script setup>
+  // Import Reactive Dependencies
   import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-  // Defining variables for mouse position
-  const mouseX = ref(0);
-  const mouseY = ref(0);
+  // Define Reactive Variable: To look if "dark" class has been added to <html> element in index.html
+  const isDarkMode = ref(document.documentElement.classList.contains('dark'));
+
+  // Assigning Variable: To use MutationObserver to detect changes in <html> element
+  const observer = new MutationObserver(() => {
+    isDarkMode.value = document.documentElement.classList.contains('dark');
+  }); // MutationObserver observes changes in the DOM - allows us to add "dark" class to head when change is observed through my toggle in StagFrame.vue
+
+  // To execute observer through an instance when DOM is loaded
+  onMounted(() => {
+    observer.observe(document.documentElement, {
+      attributes: true, // To observe attribute changes in the specified element above alone - in this case, the head element
+      attributeFilter: ['class'], // To further filter, by only observing changes in the "class" section
+    });
+  });
+
+  // To disconnect observer when DOM is unmounted/destroyed - to avoid memory leaks (like on a page refresh)
+  onUnmounted(() => {
+    observer.disconnect();
+  });
+  // End of MutationObserver - to look for changes in <html> element
+
+  // Defining Variables: mouse position
+  const mouseX = ref(0); // left to right
+  const mouseY = ref(0); // top to bottom
 
   // To update mouse position
   const updateMousePosition = (event) => {
@@ -11,7 +45,7 @@
     mouseY.value = event.clientY;
   };
 
-  // Event listener to update mouse position
+  // To execute updateMousePosition function on DOM load - through event listener
   onMounted(() => {
     window.addEventListener('mousemove', updateMousePosition);
   });
@@ -19,60 +53,16 @@
     window.removeEventListener('mousemove', updateMousePosition);
   });
 
-  /* ORIGINAL ATTEMPT FOR DARK MODE MOUSE HOVER EFFECT
-  // Check if dark mode is enabled
-  const isDarkMode = computed(() => {
-    return document.documentElement.classList.contains('dark');
-  });
-
-  // Computed property for background image
-  const backgroundImage = computed(() => {
-    if (isDarkMode.value) {
-      return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #2D3748 5%, #1A202C 45%, transparent 20%)`;
-    } else {
-      return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #D6D6D6 5%, #EDEDED 45%, transparent 20%)`;
-    }
-  });
-  console.log(isDarkMode.value);
-  */
-
-  // Reactive variable to track dark mode state
-  const isDarkMode = ref(document.documentElement.classList.contains('dark'));
-
-  // Watch for changes in the dark mode class on the <html> element
-  const observer = new MutationObserver(() => {
-    isDarkMode.value = document.documentElement.classList.contains('dark');
-  });
-
-  onMounted(() => {
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class'],
-    });
-  });
-
-  onUnmounted(() => {
-    observer.disconnect();
-  });
-
-  // Computed property for background image
+  // Mouse Hover Effect: Really sets a gradient effect on the background of the page to mimic a "mouse hover" effect
   const backgroundImage = computed(() => {
     if (isDarkMode.value) {
       return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #18181b 5%, #18181b 5%, transparent 20%)`;
     } else {
       return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #D6D6D6 5%, #EDEDED 45%, transparent 20%)`;
     }
-  });
+  }); // "computed" is used to update constant change of my reactive variables - basically the function version of "onMounted" allowing for auto-updating of values when change is detected
+  // End of Mouse Hover Effect
 </script>
-
-<template>
-  <section
-    class="bg-custom-gray dark:bg-zinc-950 transition-all duration-500 ease-in-out"
-    :style="{ backgroundImage: backgroundImage }"
-  >
-    <router-view />
-  </section>
-</template>
 
 <style scoped>
   .logo {

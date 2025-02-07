@@ -9,7 +9,7 @@
         alt="Profile Photo"
         class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
       />
-      <h3 class="subtitle">Junior Software Engineer</h3>
+      <h3 class="subtitle">Full-Stack Web Developer</h3>
       <section class="flex flex-col inner-gap">
         <p
           class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
@@ -147,6 +147,7 @@
 
       <!-- Start of Child Container for Light/Dark Mode -->
       <section class="flex justify-center items-center gap-x-1">
+        <!-- Dark Mode Icon -->
         <svg
           v-if="!isDarkMode"
           @click="toggleDarkMode"
@@ -171,6 +172,7 @@
           />
         </svg>
 
+        <!-- Light Mode Icon -->
         <svg
           v-else
           @click="toggleDarkMode"
@@ -350,39 +352,56 @@
 </template>
 
 <script>
+  // --- Import Application Dependencies ---
+  import axios from 'axios'; // For API requests - tying both the backend and frontend using CORS
+
   // --- Import Reactive Dependencies ---
   import { ref, onMounted, onUnmounted } from 'vue'; // Import "ref" for reactive variables and "onMounted" for lifecycle hooks
+
+  // --- Import Modular Dependencies ---
   import socket from '../../socket.js'; // To use WebSocket on the frontend
-  import axios from 'axios'; // For API requests - tying both the backend and frontend using CORS
 
   export default {
     name: 'StagnantFrame', // Component Name
-
+    // Setup Function
     setup() {
       // --- Reactive Variables (Defining Variables Prior to DOM) ---
       const isDarkMode = ref(false); // Reactive variable defining dark mode state
       const profileImageUrl = ref(''); // Reactive variable defining profile image URL
 
-      // Functions
+      // Toggle Dark Mode Function
       const toggleDarkMode = () => {
+        // Setting isDarkMode to the opposite of its current value (true to false, false to true - initally set to false)
         isDarkMode.value = !isDarkMode.value;
         if (isDarkMode.value) {
+          //if true
           document.documentElement.classList.add('dark');
           localStorage.setItem('theme', 'dark');
         } else {
+          //if false
           document.documentElement.classList.remove('dark');
           localStorage.setItem('theme', 'light');
         }
       };
 
+      // Function to fetch profile image from Cloudinary (backend)
       const fetchProfileImage = async () => {
         try {
-          const response = await axios.get('http://localhost:5001/api/photos');
+          // Fetch photos from Cloudinary as defined in the backend
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/photos`
+          );
           console.log('Fetched photos:', response.data);
+
+          // Find photo using array method "find ()"
           if (response.data && response.data.length > 0) {
-            //const firstPhoto = response.data[22]; my first approach
-            const firstPhoto = response.data.find(photo => photo.name === 'Photo');
-            profileImageUrl.value = firstPhoto.photoURL; // Reminder: photoURL instance is from the photo model schema in the backend
+            //const firstPhoto = response.data[22]; my first approach - but failed when photos changed order or were deleted/added
+            const firstPhoto = response.data.find(
+              (photo) => photo.name === 'Photo'
+            );
+
+            // Assign photo URL to a reactive variable as "profileImageUrl"
+            profileImageUrl.value = firstPhoto.photoURL; // Reminder: photoURL is JSON instance from the loaded Cloudinary photo (gives us the photo URL)
             console.log('Profile image URL set to:', profileImageUrl.value);
           } else {
             console.warn('No photos available in the response.');
@@ -393,18 +412,23 @@
       };
 
       // --- Lifecycle Hooks: onMounted (tracks/changes what happens while defining variables are initialized) After DOM ---
+      // Did it this way to let multiple functions run "onMounted" (allowing multiple functions to be called automatically after DOM loaded) simultaneously
+      // Versus having (onMounted) for each function
       onMounted(() => {
         // 1. Handle Dark Mode Initialization
+
+        // Check if dark mode is enabled in localStorage or system preferences
         if (
           localStorage.getItem('theme') === 'dark' ||
           (!localStorage.getItem('theme') &&
             window.matchMedia('(prefers-color-scheme: dark)').matches)
         ) {
+          // execute
           isDarkMode.value = true;
-          document.documentElement.classList.add('dark');
+          document.documentElement.classList.add('dark'); // Add the "dark" class to the <html> element
         } else {
           isDarkMode.value = false;
-          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove('dark'); // Remove the "dark" class from the <html> element
         }
 
         // 2. Fetch Initial Profile Image (Just Calling the Function)
@@ -415,15 +439,15 @@
         // Listen for WebSocket events
         socket.on('photos-updated', () => {
           console.log('Photos updated via WebSocket!');
-          fetchProfileImage(); // Refetch the first photo on update
+          fetchProfileImage(); // To broadcast update to clients - for the profile image fetched through the function
         });
 
-        // Cleanup After Unmount
+        // Cleanup After Unmount - to avoid memory leaks and unexpected behavior in future
         onUnmounted(() => {
           socket.off('photos-updated', fetchProfileImage); // Removes the event listener on "fetchProfileImage" specifically
         });
 
-        // Debugging connection
+        // Debugging WebSocket connection
         socket.on('connect', () => {
           console.log('Connected to WebSocket server');
         });
@@ -436,14 +460,17 @@
           console.log('Disconnected from WebSocket server');
         });
       });
+      // End of onMounted
 
-      // --- Return Variables and Functions ---
+      // Return everything that should be accessible in the template
       return {
         isDarkMode,
         toggleDarkMode,
-        profileImageUrl,
+        profileImageUrl, // instead of "fetchProfileImage" due to it not affecting my template and I only need the image URL value
       };
+      // End of Return
     },
+    // End of Setup
   };
 </script>
 

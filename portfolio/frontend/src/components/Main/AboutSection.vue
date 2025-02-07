@@ -3,44 +3,60 @@
   <section
     class="flex flex-col gap roboto-condensed-regular dark:text-custom-white"
   >
-    <p>
-      I’m a junior software engineer with hands-on experience across various
-      tech stacks, driven by a curiosity for solving complex problems and
-      building seamless digital experiences. My journey began with a fascination
-      for how code transforms ideas into interactive solutions, and today, I’m
-      excited to apply that passion in real-world projects.
-      <br />
-      <br />
-      I’ve worked with languages and frameworks such as JavaScript, React,
-      Python, and Node.js, creating everything from dynamic front-end interfaces
-      to robust back-end services. My experience includes personal projects,
-      freelance work, and collaborative coding challenges that have strengthened
-      my skills in responsive design, API integration, and building
-      user-friendly web applications.
-      <br />
-      <br />
-      I’m particularly interested in accessibility and usability, ensuring that
-      the software I create is inclusive and optimized for all users. Whether
-      it’s debugging tricky issues or learning new technologies, I approach
-      challenges with persistence and adaptability.
-    </p>
+    <p v-html="formattedAboutContent"></p>
   </section>
   <!-- End of Container for About Section-->
 </template>
 
 <script>
-  // Import Reactive Dependencies
-  import { ref } from 'vue';
+  // Import Application Dependencies
+  import axios from 'axios';
 
-  // -- Composition API Approach --
+  // Import Reactive Dependencies
+  import { ref, onMounted, computed } from 'vue';
+
   export default {
-    name: 'AboutSection',
+    name: 'AboutSection', // Component Name
+    // Setup Function
     setup() {
-      const message = ref('This is a default reusable Vue component!');
-      return {
-        message,
+      // Define Reactive Variable
+      const aboutContent = ref('');
+
+      // Fetch content available for About Section through API route - async due to axios request (backend)
+      const fetchAboutContent = async () => {
+        try {
+          // Fetch content available for About Section through API route
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/about`
+          );
+
+          // Check if response contains content - if so, assign it to aboutContent
+          if (response.data && response.data.content) {
+            aboutContent.value = response.data.content;
+          } else {
+            console.warn('No about content available in the response.');
+          }
+        } catch (error) {
+          console.error('Error fetching about content:', error);
+        }
       };
+
+      // Execute function on DOM mount i.e. when its finish rendering
+      onMounted(fetchAboutContent);
+      // End of Fetch Function
+
+      // Using regular expressions to replace newline (\n - new line) characters with HTML line breaks (<br/>) automatically
+      const formattedAboutContent = computed(() => {
+        return aboutContent.value.replace(/\n/g, '<br/>');
+      });
+
+      // Return everything that should be accessible in the template
+      return {
+        formattedAboutContent, // sole return due to computed property - computed property is used to update constant change of my reactive variables
+      };
+      // End of Return Reactive and Functions
     },
+    // End of Setup Function
   };
 </script>
 

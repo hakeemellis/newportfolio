@@ -1,4 +1,5 @@
 // seeds/adminSeeder.js
+
 // Script to seed the database with an initial admin user
 
 // IMPORT MODULES
@@ -14,7 +15,7 @@ const connectDB = require("../config/db"); // Import the MongoDB connection
 const saltRounds = 10; // Number of salt rounds for bcrypt hashing - for security prior to storing in DB
 
 // CONFIGURE ENVIRONMENT VARIABLES
-dotenv.config(); // Configure environment variables
+dotenv.config(); // To select the environment variables based on the environment
 
 // FUNCTION TO SEED TO DATABASE
 const seedAdminUser = async () => {
@@ -31,12 +32,12 @@ const seedAdminUser = async () => {
     const hashedPassword = await bcrypt.hash(
       process.env.ADMIN_PASSWORD,
       saltRounds
-    ); // only placed in the function due to bcrypt being async
+    ); // Wanted to define beforehand, but placed code in the function due to bcrypt being async - can't allow it to execute until needed
 
-    // Create New Admin User
+    // Create New Admin User - as defined by User model schema
     const adminUser = new User({
       username: process.env.ADMIN_USERNAME,
-      password: hashedPassword, 
+      password: hashedPassword,
     });
 
     // Insert the admin user into MongoDB
@@ -48,6 +49,7 @@ const seedAdminUser = async () => {
     process.exit(1); // Exit the process if there's an error
   }
 };
+// End of seed function
 
 // Run the seed function
 seedAdminUser();

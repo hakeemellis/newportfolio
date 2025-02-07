@@ -2,12 +2,14 @@
 
 // Logic for connecting to Cloudinary
 
-// Required Import
-const cloudinary = require("cloudinary").v2;
+// Required Application Modules
+const cloudinary = require("cloudinary").v2; // Import cloudinary for image storage
+
+// Required Modular Variables
 const dotenv = require("dotenv"); // Import dotenv for environment variables - to hide sensitive information
 
-// Configuration for dotenv | Environment for it modified based on the .env file
-dotenv.config();
+// Configure Environment Variables
+dotenv.config(); // Configuration for dotenv | Environment for it modified based on the .env file
 
 // Configuration for Cloudinary | Environment for it modified based on the .env file
 cloudinary.config({
@@ -16,4 +18,4 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-module.exports = cloudinary; // Export as a module
+module.exports = cloudinary; // Export as a modular variable

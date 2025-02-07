@@ -22,8 +22,10 @@
 </template>
 
 <script>
-// Importing Components
+  // Import Reactive Dependencies
   import { ref } from 'vue';
+
+  // Import Modular Dependencies
   import StagFrame from '../components/Main/StagFrame.vue';
   import AboutSection from '../components/Main/AboutSection.vue';
   import ExperienceSection from '../components/Main/ExperienceSection.vue';
@@ -31,14 +33,16 @@
   import FooterSection from '../components/Main/FooterSection.vue';
 
   export default {
-    name: 'Home',
+    name: 'Home', // Component Name
+    // Imported Components
     components: {
       StagFrame,
       AboutSection,
       ExperienceSection,
       ProjectsSection,
       FooterSection,
-    }, // End of Components
+    },
+    // Setup Function
     setup() {
       // Define reactive variable
       const message = ref('This is a default reusable Vue component!');
@@ -47,7 +51,9 @@
       return {
         message,
       };
+      // End of Return
     },
+    // End of Setup
   };
 </script>
 

@@ -105,18 +105,22 @@
 </template>
 
 <script>
-  //Import Reactive Dependencies
+  // Import Reactive Dependencies
   import { ref } from 'vue';
 
-  // -- Composition API Approach --
   export default {
-    name: 'ProjectsSection',
+    name: 'ProjectsSection', // Component Name
+    // Setup Function
     setup() {
+      // Define reactive variable
       const message = ref('This is a default reusable Vue component!');
+      // Return everything that should be accessible in the template
       return {
         message,
       };
+      // End of Return
     },
+    // End of Setup
   };
 </script>
 
