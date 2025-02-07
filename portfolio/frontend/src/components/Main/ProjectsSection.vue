@@ -1,14 +1,16 @@
 <template>
-  <!--Only exists to separate experience section from element -->
+  <!--Only exists to separate projects section from element -->
   <section class="flex flex-col gap-10 items-center dark:text-custom-white">
-    <!-- Start of Experience Section -->
+    <!-- Start of Projects Section -->
     <section
+      v-for="(project, index) in projectsContent"
+      :key="index"
       class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out px-2 py-2"
     >
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
         <img
-          src="../../assets/images/projectphotos/coding.jpg"
+          :src="project.photoURL"
           class="projects-photo dark:shadow-lg dark:shadow-zinc-800"
         />
       </section>
@@ -23,69 +25,28 @@
 
         <!-- Inner Child Container with Company Role, Description, and Tags -->
         <section class="flex flex-col gap-10">
-          <!-- Company One -->
+          <!-- Company Section -->
           <section class="flex flex-col gap-2">
             <p class="roboto-condensed-bold">
-              Role for Company | Name of Company
+              {{ project.title }}
             </p>
             <p>
-              wdwjebsjdlwkswsxlcnewdkjcbnejwnsfcjcebijvbwedafve fewwmsdnwqjb ndf
-              efdewfefefeijqwebevwijdbvnadlne wodwqdsneqjnffedfeeqfn
+              {{ project.content }}
             </p>
             <!-- Appropriate Tags Section -->
             <section class="flex flex-row flex-wrap gap-2 py-3">
               <section
+                v-for="(tag, tagIndex) in getFilteredTags(project.tags)"
+                :key="tagIndex"
                 class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
               >
-                <p>wdwjebsjdlwks</p>
-              </section>
-              <section
-                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-              >
-                <p>wdwjebsjdlwks</p>
-              </section>
-              <section
-                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-              >
-                <p>wdwjebsjdlwks</p>
-              </section>
-              <section
-                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-              >
-                <p>wdwjebsjdlwks</p>
+                <p>{{ tag }}</p>
               </section>
             </section>
             <!-- End of Appropriate Tags Section -->
           </section>
-          <!-- End of Company One-->
-
-          <!-- Saved as template for reuse for Multi-Role in Same Company
-
-        <section class="flex flex-col gap-2">
-          <p class="roboto-condensed-bold">
-            Role for Company | Name of Company
-          </p>
-          <p>
-            wdwjebsjdlwkswsxlcnewdkjcbnejwnsfcjcebijvbwedafve fewwmsdnwqjb ndf
-            efdewfefefeijqwebevwijdbvnadlne wodwqdsneqjnffedfeeqfn
-          </p>
-          <section class="flex flex-row flex-wrap gap-2">
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-            <section class="tag-icon">
-              <p>wdwjebsjdlwks</p>
-            </section>
-          </section>
+          <!-- End of Company Section-->
         </section>
-
-        --></section>
         <!-- End of Inner Child Container with Company Role, Description, and Tags -->
       </section>
       <!-- End of Parent Container with Company Role, Description, and Tags -->
@@ -105,18 +66,44 @@
 </template>
 
 <script>
+  // Import Application Dependencies
+  import axios from 'axios';
+
   // Import Reactive Dependencies
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
 
   export default {
     name: 'ProjectsSection', // Component Name
     // Setup Function
     setup() {
       // Define reactive variable
-      const message = ref('This is a default reusable Vue component!');
+      const projectsContent = ref([]);
+
+      // Define function to fetch projects content from backend
+      const fetchProjectsContent = async () => {
+        try {
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/projects`
+          );
+          if (response.data && response.data.content) {
+            projectsContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching projects content:', error);
+        }
+      };
+
+      // Execute function on DOM load
+      onMounted(fetchProjectsContent);
+
+      // Function to Filter Tags - Tags are coming from adminpanel.vue (project.tags)
+      const getFilteredTags = (tags) => {
+        return tags.filter((tag) => tag && tag.trim() !== '').slice(0, 13); // Limit tags to 13 (frontend limit)
+      };
       // Return everything that should be accessible in the template
       return {
-        message,
+        projectsContent,
+        getFilteredTags,
       };
       // End of Return
     },

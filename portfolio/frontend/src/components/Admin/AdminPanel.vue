@@ -33,6 +33,7 @@
     <section>
       <h2>Projects Section</h2>
       <section v-for="(project, index) in projectsContent" :key="index">
+        <input type="text" v-model="project.title" placeholder="Project Title" />
         <textarea
           v-model="project.content"
           placeholder="Project Content"
@@ -78,7 +79,7 @@
       // Define Reactive Variables
       const aboutContent = ref('');
       const experienceContent = ref([{ year: '', title: '', description: '' }]);
-      const projectsContent = ref([{ content: '', photoURL: '' }]);
+      const projectsContent = ref([{ title: '', content: '', photoURL: '' }]);
       const photos = ref([]); // Photos fetched from Cloudinary - expecting array to be filled with photo objects
 
       // Router Instance for Navigation
@@ -147,6 +148,27 @@
       // Fetch experience content on component mount - when DOM is ready
       onMounted(fetchExperienceContent);
       // End of fetch experience content function
+
+      // Function to fetch content available for Projects Section
+      const fetchProjectsContent = async () => {
+        try {
+          // Fetch content available for Projects Section
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/projects`
+          );
+
+          // Check if response contains content - if so, assign it to projectsContent
+          if (response.data && response.data.content) {
+            projectsContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching projects content:', error);
+        }
+      };
+
+      // Fetch projects content on component mount - when DOM is ready
+      onMounted(fetchProjectsContent);
+      // End of fetch projects content function
 
       // To create new section for Experience Section in Admin Panel
       const addExperience = () => {
@@ -219,8 +241,12 @@
             { description }
           );
 
+          console.log(response);
+
           // To see the information the "data" property contains
           console.log(response.data);
+
+          console.log('Generated tags:', response.data.tags);
 
           // Return the generated tags
           return response.data.tags;
@@ -302,12 +328,20 @@
             return;
           }
 
+          // Generate tags for the experience section based on description
+          const projecttags = await generateTags(project.content);
+
+          // Assign "experience.tags" to "tags" variable to store the generated tags based on the function for tag generation
+          project.tags = projecttags; // made "experience.tags" take on the value of "tags" - due to "experience" holding the data for experienceContent
+
           // Mapping function within updateProject function to wrap all project content as an array (param/index)
           const updatedProjects = projectsContent.value.map((item, i) => {
             if (i === index) {
               return {
+                title: project.title || item.title,
                 content: project.content || item.content,
                 photoURL: project.photoURL || item.photoURL,
+                tags: project.tags || item.tags,
               };
             }
 
@@ -328,7 +362,7 @@
 
           // Check if update was successful
           if (data.success) {
-            fetchProjectsContent(); // run function once on each update to fetch updated project content
+            console.log('Project updated successfully');
           } else {
             alert('Failed to update project');
           }
@@ -339,34 +373,15 @@
       };
       // End of update project function
 
-      // Update about section and dynamically update other sections via updateContent function
-      const updateContent = async (section) => {
+      // Update about section function
+      const updateContent = async () => {
         try {
-          // Define variable to store all content values available as an array in a variable
-          const content = {
-            // About Content
-            about: aboutContent.value, // executed by updateContent("about") - to update about content specifically
+          // Define variable to store content available for About Section
+          const content = aboutContent.value;
 
-            // Experience Content
-            experience: experienceContent.value.map((item) => ({
-              year: item.year,
-              title: item.title,
-              description: item.description,
-            })),
-
-            // Projects Content
-            projects: projectsContent.value.map((item) => ({
-              content: item.content,
-              photoURL: item.photoURL,
-            })),
-          }[section]; // For "section", to update content for a specific section - acting as a key
-
-          console.log('Updating content for section:', section);
-          console.log('Content to update:', content);
-
-          // FINALLY - update content route through backend (depending on section)
+          // FINALLY - update content route for About Section
           const response = await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL}/api/content/${section}`, // to update content for specifed section defined by "section"
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/about`,
             {
               content,
             }
@@ -375,8 +390,10 @@
           // Assigning response.data to "data" variable (for simplicity)
           const data = response.data;
 
+          // Check if update was successful
           if (data.success) {
-            fetchExperienceContent(); // run function once on each update to fetch updated experience content
+            fetchAboutContent(); // run function once on each update to fetch updated about content
+            console.log('Content updated successfully');
           } else {
             alert('Failed to update content');
           }
