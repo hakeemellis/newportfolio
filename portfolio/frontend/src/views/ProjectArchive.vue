@@ -1,6 +1,6 @@
 <template>
   <!-- Start of Container for Project Archive Section-->
-  <section class="outer-container-project-archive">
+  <section class="flex flex-col justify-center item-center h-full">
     <ProjectArchiveComp />
   </section>
   <!-- End of Container for Project Archive Section-->

@@ -7,7 +7,11 @@ const express = require("express"); // express for handling HTTP requests (allow
 const router = express.Router(); // using the express router to define routes
 
 // Import Modular Variables
-const openAIChatModel = require("../utils/openaiChatModel"); // Import OpenAI Chat Model to assist with generating tags
+const {
+  openAIChatModel,
+  openAIChatModelForSectors,
+} = require("../utils/openaiChatModel"); // Import OpenAI Chat Model to assist with generating tags
+const SectorTags = require("../models/sectorTagsModel");
 
 // Configure Environment Variables
 require("dotenv").config();
@@ -28,5 +32,40 @@ router.post("/generate-tags", async (req, res) => {
   }
 });
 // End of generate tags route
+
+router.post("/generate-sector-tags", async (req, res) => {
+  console.log('BODY REQUEST',req.body)
+  const { description } = req.body;
+
+  // Ensure the description is not empty
+  if (!description || description.trim().length === 0) {
+    console.error("No valid description found for AI processing.");
+    return res.status(400).json({ error: "No valid description provided" });
+  }
+
+  try {
+    console.log("Sending to OpenAI:", description);
+    const sectorTags = await openAIChatModelForSectors(description);
+    console.log("Received from OpenAI:", sectorTags);
+
+    // Ensure at least one tag is generated
+    if (!sectorTags || sectorTags.length === 0) {
+      console.error("OpenAI returned empty sector tags.");
+      return res.status(500).json({ error: "Failed to generate sector tags" });
+    }
+
+    // Update the existing MongoDB document instead of creating a new one
+    await SectorTags.findOneAndUpdate(
+      {}, // Find any document
+      { tags: sectorTags }, // Update the tags field
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+
+    res.json({ sectorTags });
+  } catch (error) {
+    console.error("Error generating sector tags:", error);
+    res.status(500).json({ error: "Failed to generate sector tags" });
+  }
+});
 
 module.exports = router; // Export all defined routes to express router/server instance

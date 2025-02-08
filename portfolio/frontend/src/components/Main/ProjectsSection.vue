@@ -82,9 +82,12 @@
       // Define function to fetch projects content from backend
       const fetchProjectsContent = async () => {
         try {
+          // Fetch content available for Project Section through API route
           const response = await axios.get(
             `${import.meta.env.VITE_API_BASE_URL}/api/content/projects`
           );
+
+          // Check if response contains content - if so, assign it to experienceContent
           if (response.data && response.data.content) {
             projectsContent.value = response.data.content;
           }
@@ -95,6 +98,7 @@
 
       // Execute function on DOM load
       onMounted(fetchProjectsContent);
+      // End of function to fetch projects
 
       // Function to Filter Tags - Tags are coming from adminpanel.vue (project.tags)
       const getFilteredTags = (tags) => {

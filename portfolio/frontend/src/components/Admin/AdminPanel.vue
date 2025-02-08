@@ -33,6 +33,7 @@
     <section>
       <h2>Projects Section</h2>
       <section v-for="(project, index) in projectsContent" :key="index">
+        <input type="text" v-model="project.year" placeholder="Year" />
         <input type="text" v-model="project.title" placeholder="Project Title" />
         <textarea
           v-model="project.content"
@@ -54,6 +55,7 @@
           </option>
         </select>
         <!-- End of Handle File Upload -->
+         <input type="text" v-model="project.link" placeholder="Project Link" />
         <button @click="updateProject(index)">Update Project</button>
         <button @click="removeProject(index)">Remove</button>
       </section>
@@ -79,7 +81,7 @@
       // Define Reactive Variables
       const aboutContent = ref('');
       const experienceContent = ref([{ year: '', title: '', description: '' }]);
-      const projectsContent = ref([{ title: '', content: '', photoURL: '' }]);
+      const projectsContent = ref([{ year: '', title: '', content: '', photoURL: '' , link: ''}]);
       const photos = ref([]); // Photos fetched from Cloudinary - expecting array to be filled with photo objects
 
       // Router Instance for Navigation
@@ -328,20 +330,22 @@
             return;
           }
 
-          // Generate tags for the experience section based on description
+          // Generate tags for the project section based on project content
           const projecttags = await generateTags(project.content);
 
-          // Assign "experience.tags" to "tags" variable to store the generated tags based on the function for tag generation
-          project.tags = projecttags; // made "experience.tags" take on the value of "tags" - due to "experience" holding the data for experienceContent
+          // Assign "project.tags" to "projecttags" variable to store the generated tags based on the function for tag generation
+          project.tags = projecttags; // made "project.tags" take on the value of "tags" - due to "project" holding the data for projectContent
 
           // Mapping function within updateProject function to wrap all project content as an array (param/index)
           const updatedProjects = projectsContent.value.map((item, i) => {
             if (i === index) {
               return {
+                year: project.year || item.year,
                 title: project.title || item.title,
                 content: project.content || item.content,
                 photoURL: project.photoURL || item.photoURL,
                 tags: project.tags || item.tags,
+                link: project.link || item.link,
               };
             }
 

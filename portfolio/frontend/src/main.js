@@ -14,6 +14,17 @@ import './style.css';
 import App from './App.vue';
 import router from './router';
 
+// Check if dark mode is enabled in localStorage or system preferences
+if (
+  localStorage.getItem('theme') === 'dark' ||
+  (!localStorage.getItem('theme') &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches)
+) {
+  document.documentElement.classList.add('dark');
+} else {
+  document.documentElement.classList.remove('dark');
+}
+
 // Creating Vue Application
 const app = createApp(App); // defining the app
 app.use(router); // allowing the defined application to use routes defined in router
