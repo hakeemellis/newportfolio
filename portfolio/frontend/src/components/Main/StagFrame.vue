@@ -10,25 +10,27 @@
         class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
       />
       <h3 class="subtitle">Full-Stack Web Developer</h3>
+      <h3 class="subtitle">UX/UI Designer</h3>
+      <h3 class="subtitle">Graphic Designer</h3>
       <section class="flex flex-col inner-gap">
-        <p
-          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+        <button
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
           style="font-size: 20px"
         >
           About
-        </p>
-        <p
-          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+        </button>
+        <button
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
           style="font-size: 20px"
         >
           Experience
-        </p>
-        <p
-          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+        </button>
+        <button
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
           style="font-size: 20px"
         >
           Projects
-        </p>
+        </button>
       </section>
     </section>
     <!-- End of Section for Profile -->
@@ -494,7 +496,8 @@
 
   /* Roboto Font */
 
-  p {
+  p,
+  .robotospecial {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 23px;

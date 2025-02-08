@@ -26,7 +26,7 @@
           @click="generateSectorTagSuggestions"
         >
           &nbsp;
-          <b style="font-size: 15.5px">Generate Project Filters with AI</b>
+          <b class="dark:text-rose-500 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800" style="font-size: 15.5px">Generate Project Filters with AI</b>
           <svg
             height="25px"
             width="39px"

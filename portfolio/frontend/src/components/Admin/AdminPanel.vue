@@ -1,52 +1,104 @@
 <template>
   <!-- Admin Panel -->
-  <section class="admin-panel">
-    <h1>Admin Panel</h1>
-    <button @click="logout">Logout</button>
+  <section
+    class="flex flex-col justify-center items-center gap-10 dark:text-custom-white text-cyan-800"
+  >
+    <h1 class="roboto-condensed-bold text-5xl font-bold mt-5">Admin Panel</h1>
+    <button class="text-3xl font-semibold" @click="logout">Logout</button>
 
     <!-- About Section -->
-    <form @submit.prevent="updateContent('about')">
-      <h2>About Section</h2>
-      <textarea v-model="aboutContent" placeholder="About"></textarea>
-      <button type="submit">Update About Section</button>
+    <form
+      class="flex flex-col w-full h-full max-w-3xl gap-5"
+      @submit.prevent="updateContent('about')"
+    >
+      <h2 class="flex text-3xl font-semibold">About Section</h2>
+      <textarea
+        class="dark:bg-zinc-800 rounded-lg w-full h-full px-3 py-3 flex justify-center"
+        v-model="aboutContent"
+        placeholder="About"
+      ></textarea>
+      <button class="text-xl font-semibold" type="submit">
+        Update Section
+      </button>
     </form>
     <!-- End of About Section -->
 
     <!-- Experience Section -->
-    <section>
-      <h2>Experience Section</h2>
-      <section v-for="(experience, index) in experienceContent" :key="index">
-        <input type="text" v-model="experience.year" placeholder="Year" />
-        <input type="text" v-model="experience.title" placeholder="Title" />
+    <section class="flex flex-col w-full h-full max-w-3xl gap-5">
+      <h2 class="text-3xl font-semibold">Experience Section</h2>
+      <section
+        class="flex flex-col gap-7"
+        v-for="(experience, index) in experienceContent"
+        :key="index"
+      >
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="experience.year"
+          placeholder="Year"
+        />
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="experience.title"
+          placeholder="Title"
+        />
         <textarea
+          class="dark:bg-zinc-800 rounded-lg w-full h-full px-3 py-3 flex justify-center"
           v-model="experience.description"
           placeholder="Description"
         ></textarea>
-        <button @click="updateExperience(index)">Update Experience</button>
-        <button @click="removeExperience(index)">Remove</button>
+        <button class="text-xl font-semibold" @click="updateExperience(index)">
+          Update Section
+        </button>
+        <button class="text-xl font-regular" @click="removeExperience(index)">
+          Remove
+        </button>
       </section>
-      <button @click="addExperience">Add Experience</button>
+      <button class="text-xl font-semibold" @click="addExperience">
+        Add Experience
+      </button>
     </section>
     <!-- End of Experience Section -->
 
     <!-- Projects Section -->
-    <section>
-      <h2>Projects Section</h2>
-      <section v-for="(project, index) in projectsContent" :key="index">
-        <input type="text" v-model="project.year" placeholder="Year" />
-        <input type="text" v-model="project.title" placeholder="Project Title" />
+    <section class="flex flex-col w-full h-full max-w-3xl gap-5 mb-11">
+      <h2 class="text-3xl font-semibold">Projects Section</h2>
+      <section
+        class="flex flex-col gap-7"
+        v-for="(project, index) in projectsContent"
+        :key="index"
+      >
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="project.year"
+          placeholder="Year"
+        />
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="project.title"
+          placeholder="Project Title"
+        />
         <textarea
+          class="dark:bg-zinc-800 rounded-lg w-full h-full px-3 py-3 flex justify-center"
           v-model="project.content"
           placeholder="Project Content"
         ></textarea>
         <!-- Handle File Upload - $event only given "$" sign because it is a dynamic parameter -->
         <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
           type="file"
           @change="handleFileUpload($event, index)"
           accept="image/*"
         />
-        <select v-model="project.photoURL">
+        <select
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          v-model="project.photoURL"
+        >
           <option
+            class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
             v-for="photo in photos"
             :key="photo._id"
             :value="photo.photoURL"
@@ -55,13 +107,25 @@
           </option>
         </select>
         <!-- End of Handle File Upload -->
-         <input type="text" v-model="project.link" placeholder="Project Link" />
-        <button @click="updateProject(index)">Update Project</button>
-        <button @click="removeProject(index)">Remove</button>
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="project.link"
+          placeholder="Project Link"
+        />
+        <button class="text-xl font-semibold" @click="updateProject(index)">
+          Update Project
+        </button>
+        <button class="text-xl font-regular" @click="removeProject(index)">
+          Remove
+        </button>
       </section>
-      <button @click="addProject">Add Project</button>
+      <button class="text-xl font-semibold" @click="addProject">
+        Add Project
+      </button>
     </section>
     <!-- End of Projects Section -->
+    <FooterSection />
   </section>
   <!-- End of Admin Panel -->
 </template>
@@ -74,14 +138,23 @@
   import { ref, computed, onMounted } from 'vue'; // Import "ref" for reactive variables
   import { useRouter } from 'vue-router'; // Import "useRouter" for navigation
 
+  // Import Modular Dependencies
+  import FooterSection from '../Main/FooterSection.vue';
+
   export default {
     name: 'AdminPanel',
+    // Imported Components
+    components: {
+      FooterSection,
+    },
     // Setup Function
     setup() {
       // Define Reactive Variables
       const aboutContent = ref('');
       const experienceContent = ref([{ year: '', title: '', description: '' }]);
-      const projectsContent = ref([{ year: '', title: '', content: '', photoURL: '' , link: ''}]);
+      const projectsContent = ref([
+        { year: '', title: '', content: '', photoURL: '', link: '' },
+      ]);
       const photos = ref([]); // Photos fetched from Cloudinary - expecting array to be filled with photo objects
 
       // Router Instance for Navigation

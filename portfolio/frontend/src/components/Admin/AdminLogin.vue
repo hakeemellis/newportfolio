@@ -1,21 +1,21 @@
 <template>
   <!-- Login Section for Admin Panel -->
-  <section class="login-container">
-    <h1>Admin Login</h1>
+  <section class="flex flex-col justify-center items-center gap-7 h-screen dark:text-custom-white text-cyan-800">
+    <h1 class="roboto-condensed-bold text-5xl font-bold">Admin Login</h1>
     <!-- Login Form -->
-    <form @submit.prevent="login">
+    <form @submit.prevent="login" class="grid grid-cols-1 gap-5">
       <!-- Username Field-->
-      <section>
-        <label for="username">Username:</label>
-        <input type="text" v-model="username" required />
+      <section class="flex gap-4 text-3xl">
+        <label class="font-medium" for="username">Username:</label>
+        <input class="rounded-lg px-2 py-1 dark:bg-zinc-800 dark:text-custom-white" placeholder="Username" type="text" v-model="username" required />
       </section>
       <!-- Password Field-->
-      <section>
-        <label for="password">Password:</label>
-        <input type="password" v-model="password" required />
+      <section class="flex gap-4 text-3xl">
+        <label class="font-medium" for="password">Password:</label>
+        <input class="rounded-lg px-3 py-1 dark:bg-zinc-800 dark:text-custom-white" placeholder="Password" type="password" v-model="password" required />
       </section>
       <!-- Submit Button -->
-      <button type="submit">Login</button>
+      <button class="text-3xl font-semibold" type="submit">Login</button>
     </form>
     <!-- End of Login Button -->
   </section>

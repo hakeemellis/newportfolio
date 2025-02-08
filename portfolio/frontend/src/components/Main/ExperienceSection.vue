@@ -51,11 +51,11 @@
     <!-- End of Experience Section -->
 
     <!-- Text -->
-    <p
+    <button
       class="roboto-condensed-medium hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
     >
       View Full Resume
-    </p>
+    </button>
   </section>
   <!--End: Only exists to separate experience section from element -->
 </template>
