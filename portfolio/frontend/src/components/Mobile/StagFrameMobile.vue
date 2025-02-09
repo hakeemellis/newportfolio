@@ -9,7 +9,7 @@
         alt="Profile Photo"
         class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
       />
-      <h3 class="subtitle">Full-Stack Web Developer</h3>
+      <h3 class="subtitle">Full-Stack Web Developer MOBILELLEE FOOOLSIHNESS</h3>
       <h3 class="subtitle">UX/UI Designer</h3>
       <section class="flex flex-col inner-gap">
         <button
@@ -368,7 +368,7 @@
   import socket from '../../socket.js'; // To use WebSocket on the frontend
 
   export default {
-    name: 'StagnantFrame', // Component Name
+    name: 'StagnantFrameMobile', // Component Name
     // Setup Function
     setup() {
       // --- Reactive Variables (Defining Variables Prior to DOM) ---

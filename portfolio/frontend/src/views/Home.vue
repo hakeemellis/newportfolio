@@ -1,13 +1,21 @@
 <template>
   <!-- START OF MASTER CONTAINER -->
   <section
-    class="flex flex-row flex-1 justify-center gap-4 h-screen overflow-y-auto"
+    class="flex flex-col sm:flex-col lg:flex-row justify-center gap-4 h-screen overflow-y-auto"
   >
     <!-- START OF LEFT CONTAINER -->
-    <section class="flex-[0.42] sticky top-0 h-screen max-w-4xl">
+    <section
+      class="flex-[0.42] lg:sticky top-0 h-screen max-w-4xl hidden lg:flex flex-col"
+    >
       <StagFrame />
     </section>
     <!-- END OF LEFT CONTAINER -->
+
+    <!-- START OF MOBILE VERSION CONTAINER -->
+    <section class="flex-[0.42] lg:sticky top-0 h-screen max-w-4xl lg:hidden">
+      <StagFrameMobile />
+    </section>
+    <!-- END OF MOBILE VERSION CONTAINER -->
 
     <!-- START OF RIGHT CONTAINER -->
     <section class="outer-container-home flex-[0.58] mt-4 max-w-2xl">
@@ -32,6 +40,9 @@
   import ProjectsSection from '../components/Main/ProjectsSection.vue';
   import FooterSection from '../components/Main/FooterSection.vue';
 
+  // Import Mobile Modular Dependencies
+  import StagFrameMobile from '../components/Mobile/StagFrameMobile.vue';
+
   export default {
     name: 'Home', // Component Name
     // Imported Components
@@ -41,6 +52,7 @@
       ExperienceSection,
       ProjectsSection,
       FooterSection,
+      StagFrameMobile,
     },
     // Setup Function
     setup() {
