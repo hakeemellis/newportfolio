@@ -172,7 +172,7 @@
     border-radius: 30px; /* round out border edges */
     padding: 5px 10px;
     width: auto;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   /* TAGS STYLING */

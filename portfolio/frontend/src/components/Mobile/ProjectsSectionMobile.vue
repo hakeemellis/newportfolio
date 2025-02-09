@@ -181,7 +181,7 @@
     /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3); /* Drop shadow */
     padding: 5px 10px;
     width: auto;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   /* TAGS STYLING */
