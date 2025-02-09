@@ -22,16 +22,19 @@ const routes = [
     path: '/', // setting the path to the root/homepage of the website
     name: 'Home',
     component: Home,
+    meta: {title: 'Home - Hakeem Ellis Portfolio'},
   },
   {
     path: '/projectarchive', // setting the path to view all projects
     name: 'ProjectArchive',
     component: ProjectArchive,
+    meta: {title: 'Projects - Hakeem Ellis Portfolio'},
   },
   {
     path: '/login', // setting the path for the admin login
     name: 'AdminLogin',
     component: AdminLogin,
+    meta: {title: 'Admin Login - Hakeem Ellis Portfolio'},
   },
   {
     path: '/adminpanel', // setting the path for the admin panel
@@ -43,6 +46,7 @@ const routes = [
     path: '/:pathMatch(.*)*', // Catch-all route for undefined paths
     name: 'NotFound',
     component: NotFound,
+    meta: {title: 'Page Not Found - Hakeem Ellis Portfolio'},
   },
 ];
 
