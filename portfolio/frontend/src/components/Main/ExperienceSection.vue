@@ -1,10 +1,13 @@
 <template>
   <!--Only exists to separate experience section from element -->
-  <section class="flex flex-col gap-10 items-center dark:text-custom-white">
+  <section
+    id="experience"
+    class="flex flex-col gap-10 items-center dark:text-custom-white"
+  >
     <!-- Start of Experience Section -->
     <section
       class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-4 px-2"
-      v-for="(experience, index) in experienceContent"
+      v-for="(experience, index) in limitedExperience"
       :key="index"
     >
       <!-- Start of Section with Year-->
@@ -65,7 +68,7 @@
   import axios from 'axios';
 
   // Import Reactive Dependencies
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, computed } from 'vue';
 
   export default {
     name: 'ExperienceSection', // Component Name
@@ -100,9 +103,16 @@
         return tags.filter((tag) => tag && tag.trim() !== '').slice(0, 13); // Limit tags to 13 (frontend limit)
       };
 
+      // Function to Limit Experience Shown (forcing users to view resume)
+      const limitedExperience = computed(() => {
+        return experienceContent.value.slice(0, 2);
+      });
+      // End of Function to Limit Projects
+
       // Return everything that should be accessible in the template
       return {
         experienceContent,
+        limitedExperience,
         getFilteredTags,
       };
       // End of Return

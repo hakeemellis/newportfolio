@@ -1,9 +1,12 @@
 <template>
   <!--Only exists to separate projects section from element -->
-  <section class="flex flex-col gap-10 items-center dark:text-custom-white">
+  <section
+    id="projects"
+    class="flex flex-col gap-10 items-center dark:text-custom-white"
+  >
     <!-- Start of Projects Section -->
     <section
-      v-for="(project, index) in projectsContent"
+      v-for="(project, index) in limitedProjects"
       :key="index"
       class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out px-2 py-2"
     >
@@ -70,7 +73,7 @@
   import axios from 'axios';
 
   // Import Reactive Dependencies
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, computed } from 'vue';
 
   export default {
     name: 'ProjectsSection', // Component Name
@@ -104,9 +107,18 @@
       const getFilteredTags = (tags) => {
         return tags.filter((tag) => tag && tag.trim() !== '').slice(0, 13); // Limit tags to 13 (frontend limit)
       };
+      // End of Function to Filter Tags
+
+      // Function to Limit Projects Shown (forcing users to view archive)
+      const limitedProjects = computed(() => {
+        return projectsContent.value.slice(0, 2);
+      });
+      // End of Function to Limit Projects
+
       // Return everything that should be accessible in the template
       return {
         projectsContent,
+        limitedProjects,
         getFilteredTags,
       };
       // End of Return

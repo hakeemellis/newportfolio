@@ -14,18 +14,23 @@
       <h3 class="subtitle">Graphic Designer</h3>
       <section class="flex flex-col inner-gap">
         <button
+          @click="scrollToSection('about')"
           class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
           style="font-size: 20px"
         >
           About
         </button>
+
         <button
+          @click="scrollToSection('experience')"
           class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
           style="font-size: 20px"
         >
           Experience
         </button>
+
         <button
+          @click="scrollToSection('projects')"
           class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
           style="font-size: 20px"
         >
@@ -464,9 +469,21 @@
       });
       // End of onMounted
 
+      // Function to scroll to desired section
+      const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        console.log('Scrolling to section:', sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+      console.log('Scroll to Section Function:', scrollToSection);
+      // End of scrollToSection
+
       // Return everything that should be accessible in the template
       return {
         isDarkMode,
+        scrollToSection,
         toggleDarkMode,
         profileImageUrl, // instead of "fetchProfileImage" due to it not affecting my template and I only need the image URL value
       };

@@ -1,7 +1,7 @@
 <template>
   <!-- Start of Master Container-->
   <section
-    class="h-full flex flex-col gap-7 roboto-condensed-regular dark:text-custom-white px-10 mt-10"
+    class="flex flex-col gap-7 roboto-condensed-regular dark:text-custom-white px-10 mt-10"
   >
     <!-- Start of Container for Project Archive Section-->
     <section class="flex flex-col gap-3">

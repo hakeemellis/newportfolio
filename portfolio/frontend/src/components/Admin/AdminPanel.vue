@@ -310,21 +310,33 @@
       // Function to generate tags with AI based on description
       const generateTags = async (description) => {
         try {
-          // Define response to assist with generating tags from {description} parameter - acts as "data" in the syntax: axios.post(url, data, config)
-          const response = await axios.post(
-            `${import.meta.env.VITE_API_BASE_URL}/api/openai/generate-tags`,
-            { description }
-          );
+          let tags = [];
+          let attempts = 0;
+          const maxAttempts = 5; // Set a maximum number of attempts to avoid infinite loops
 
-          console.log(response);
+          while (tags.length <= 1 && attempts < maxAttempts) {
+            // Define response to assist with generating tags from {description} parameter - acts as "data" in the syntax: axios.post(url, data, config)
+            const response = await axios.post(
+              `${import.meta.env.VITE_API_BASE_URL}/api/openai/generate-tags`,
+              { description }
+            );
 
-          // To see the information the "data" property contains
-          console.log(response.data);
+            console.log(response);
 
-          console.log('Generated tags:', response.data.tags);
+            // To see the information the "data" property contains
+            console.log(response.data);
+
+            console.log('Generated tags:', response.data.tags);
+
+            // Assign the generated tags to the tags variable
+            tags = response.data.tags;
+
+            // Increment the attempts counter
+            attempts++;
+          }
 
           // Return the generated tags
-          return response.data.tags;
+          return tags;
         } catch (error) {
           console.error('Error generating tags:', error);
           return [];
@@ -382,6 +394,8 @@
           // Check if update was successful
           if (data.success) {
             fetchExperienceContent(); // run function once on each update to fetch updated experience content
+            console.log('Experience updated successfully');
+            alert('Experience updated successfully');
           } else {
             alert('Failed to update experience');
           }
@@ -440,6 +454,7 @@
           // Check if update was successful
           if (data.success) {
             console.log('Project updated successfully');
+            alert('Project updated successfully');
           } else {
             alert('Failed to update project');
           }
@@ -470,7 +485,8 @@
           // Check if update was successful
           if (data.success) {
             fetchAboutContent(); // run function once on each update to fetch updated about content
-            console.log('Content updated successfully');
+            console.log('About Content updated successfully');
+            alert('About Content updated successfully');
           } else {
             alert('Failed to update content');
           }

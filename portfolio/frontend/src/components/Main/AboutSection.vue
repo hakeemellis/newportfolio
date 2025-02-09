@@ -1,6 +1,6 @@
 <template>
   <!-- Start of Container for About Section-->
-  <section
+  <section id="about"
     class="flex flex-col gap roboto-condensed-regular dark:text-custom-white"
   >
     <p v-html="formattedAboutContent"></p>
