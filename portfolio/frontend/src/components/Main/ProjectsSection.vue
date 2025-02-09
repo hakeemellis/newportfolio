@@ -41,7 +41,7 @@
               <section
                 v-for="(tag, tagIndex) in getFilteredTags(project.tags)"
                 :key="tagIndex"
-                class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
               >
                 <p>{{ tag }}</p>
               </section>

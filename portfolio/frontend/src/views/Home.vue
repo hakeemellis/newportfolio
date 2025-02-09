@@ -4,7 +4,7 @@
     class="flex flex-row flex-1 justify-center gap-4 h-screen overflow-y-auto"
   >
     <!-- START OF LEFT CONTAINER -->
-    <section class="flex-[0.42] sticky top-0 h-screen">
+    <section class="flex-[0.42] sticky top-0 h-screen max-w-4xl">
       <StagFrame />
     </section>
     <!-- END OF LEFT CONTAINER -->

@@ -22,7 +22,7 @@
       <!-- Project Filters with AI -->
       <section class="flex flex-row flex-wrap gap-2 py-3">
         <button
-          class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+          class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
           @click="generateSectorTagSuggestions"
         >
           &nbsp;
@@ -148,7 +148,7 @@
         <section
           v-for="(sectorTag, sectorTagIndex) in sectorTags"
           :key="sectorTagIndex"
-          class="tag-icon dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+          class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
         >
           <button class="px-2" @click="selectTag(sectorTag)">
             {{ sectorTag }}
@@ -226,7 +226,7 @@
                 <!-- Appropriate Tags Section -->
                 <section class="flex flex-row flex-wrap gap-2 py-3">
                   <section
-                    class="tag-icon-table dark:bg-white dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
                     v-for="(tag, tagIndex) in project.tags"
                     :key="tagIndex"
                   >
