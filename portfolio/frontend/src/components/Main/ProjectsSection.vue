@@ -109,15 +109,22 @@
       };
       // End of Function to Filter Tags
 
+      // Function to sort project based on year (entered from backend)
+      const sortedProjectsContent = computed(() => {
+        return [...projectsContent.value].sort((a, b) => b.year - a.year);
+      });
+      // End of function to sort projects
+
       // Function to Limit Projects Shown (forcing users to view archive)
       const limitedProjects = computed(() => {
-        return projectsContent.value.slice(0, 2);
+        return sortedProjectsContent.value.slice(0, 2);
       });
       // End of Function to Limit Projects
 
       // Return everything that should be accessible in the template
       return {
         projectsContent,
+        sortedProjectsContent,
         limitedProjects,
         getFilteredTags,
       };

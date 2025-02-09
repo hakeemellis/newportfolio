@@ -1,7 +1,7 @@
 <template>
   <!-- Start of Master Container-->
   <section
-    class="flex flex-col gap-7 roboto-condensed-regular dark:text-custom-white px-10 mt-10"
+    class="flex flex-col gap-7 roboto-condensed-regular dark:text-custom-white px-10 py-10 h-screen"
   >
     <!-- Start of Container for Project Archive Section-->
     <section class="flex flex-col gap-3">
@@ -26,7 +26,11 @@
           @click="generateSectorTagSuggestions"
         >
           &nbsp;
-          <b class="dark:text-rose-500 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800" style="font-size: 15.5px">Generate Project Filters with AI</b>
+          <b
+            class="dark:text-rose-500 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800"
+            style="font-size: 15.5px"
+            >Generate Project Filters with AI</b
+          >
           <svg
             height="25px"
             width="39px"
@@ -234,7 +238,7 @@
               <td class="px-6 py-4 break-words">
                 <a
                   :href="project.link"
-                  class="text-sm hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+                  class="text-sm font-small hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
                 >
                   {{ project.link }}
                 </a>
@@ -306,9 +310,10 @@
         }
       };
 
+      // Define function to generate sector tags
       const generateSectorTagSuggestions = async () => {
         try {
-          // Ensure projectsContent is populated
+          // Ensure projectsContent is populated with a value
           if (projectsContent.value.length === 0) {
             await fetchProjectsContent();
             console.log('Fetched projects content');
@@ -357,7 +362,7 @@
       };
       // End of function to filter tags
 
-      // Function to Filter Tags based on Projects (for the AI to generate sector tags)
+      // Function to filter projects based on tag selection (just captures selection, it does not filter) - if no tag is selected, show all projects (or if we click on "All", show all projects)
       const selectTag = async (tag) => {
         // If projectsContent is empty, fetch it
         if (projectsContent.value.length === 0) {
@@ -371,15 +376,21 @@
       };
       // End of function to filter tags function (for projects)
 
-      // Filter projects based on selected tag - if no tag is selected, show all projects (filter based on content from projectsContent)
+      // Function to sort projects based on year (entered from backend)
+      const sortedProjectsContent = computed(() => {
+        return [...projectsContent.value].sort((a, b) => b.year - a.year);
+      });
+      // End of function to sort projects
+
+      // Filter projects based on selected tag (to execute when a tag is selected from selectTag function, this filters the projects) - if no tag is selected, show all projects (filter based on content from sortedProjectsContent)
       const filteredProjects = computed(() => {
         // If no tag is selected, show all projects
         if (!selectedTag.value) {
-          return projectsContent.value;
+          return sortedProjectsContent.value;
         }
 
         // If a tag is selected, filter projects based on the selected tag
-        return projectsContent.value.filter((project) => {
+        return sortedProjectsContent.value.filter((project) => {
           return (
             Array.isArray(project.tags) &&
             project.tags.some((tag) => isSimilarTag(tag, selectedTag.value))
@@ -449,6 +460,7 @@
         sectorTags,
         filteredProjects,
         selectedTag,
+        sortedProjectsContent,
         getFilteredTags,
         generateSectorTagSuggestions,
         selectTag,

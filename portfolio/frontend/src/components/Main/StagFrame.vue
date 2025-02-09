@@ -11,7 +11,6 @@
       />
       <h3 class="subtitle">Full-Stack Web Developer</h3>
       <h3 class="subtitle">UX/UI Designer</h3>
-      <h3 class="subtitle">Graphic Designer</h3>
       <section class="flex flex-col inner-gap">
         <button
           @click="scrollToSection('about')"

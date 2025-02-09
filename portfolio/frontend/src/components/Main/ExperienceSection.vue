@@ -103,16 +103,23 @@
         return tags.filter((tag) => tag && tag.trim() !== '').slice(0, 13); // Limit tags to 13 (frontend limit)
       };
 
-      // Function to Limit Experience Shown (forcing users to view resume)
-      const limitedExperience = computed(() => {
-        return experienceContent.value.slice(0, 2);
+      // Function to sort experience based on year (entered from backend)
+      const sortedExperienceContent = computed(() => {
+        return [...experienceContent.value].sort((a, b) => b.year - a.year);
       });
-      // End of Function to Limit Projects
+      // End of function to sort experience
+
+      // Function to limit experience shown (forcing users to view resume)
+      const limitedExperience = computed(() => {
+        return sortedExperienceContent.value.slice(0, 2); // OG was: return experienceContent.value.slice(0, 2);
+      });
+      // End of function to limit experience
 
       // Return everything that should be accessible in the template
       return {
         experienceContent,
         limitedExperience,
+        sortedExperienceContent,
         getFilteredTags,
       };
       // End of Return
