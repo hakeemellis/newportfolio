@@ -1,32 +1,56 @@
 <template>
   <!-- Start of Container for Project Archive Section-->
   <section class="flex flex-col h-screen overflow-y-auto">
-    <ProjectArchiveComp />
+    <section v-if="isDesktop">
+    <ProjectArchiveComp  />
+    </section>
+
+    <section v-if="!isDesktop">
+    <ProjectArchiveCompMobile  />
+    </section>
   </section>
   <!-- End of Container for Project Archive Section-->
+
 </template>
 
 <script>
   // Import Reactive Dependencies
-  import { ref } from 'vue'; // Import "ref" for reactive variables
+  import { ref, onMounted, onUnmounted } from 'vue';
 
   // Import Modular Dependencies
-  import ProjectArchiveComp from '../components/Main/ProjectArchiveComp.vue';
+import ProjectArchiveComp from '../components/Main/ProjectArchiveComp.vue';
+  import ProjectArchiveCompMobile from '../components/Mobile/ProjectArchiveCompMobile.vue';
 
   export default {
     name: 'ProjectArchive', // Component Name
     // Imported Components
     components: {
       ProjectArchiveComp,
+      ProjectArchiveCompMobile
     },
     // Setup Function
     setup() {
       // Define reactive variable
-      const message = ref('This is a default reusable Vue component!');
+      const isDesktop = ref(window.innerWidth >= 1024); // Check if the window width is greater than or equal to 1024
+
+      // Function to update screen size based on window width
+      const updateScreenSize = () => {
+        isDesktop.value = window.innerWidth >= 1024;
+      };
+
+      // To listen for changes in window width automatically
+      onMounted(() => {
+        window.addEventListener('resize', updateScreenSize);
+      });
+
+      onUnmounted(() => {
+        window.removeEventListener('resize', updateScreenSize);
+      });
+      // End of function to update screen size
 
       // Return everything that should be accessible in the template
       return {
-        message,
+        isDesktop,
       };
       // End of Return
     },

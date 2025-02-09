@@ -1,7 +1,7 @@
 <template>
   <!-- ROUTER VIEW -->
   <section
-    class="bg-custom-gray dark:bg-zinc-950 transition-all duration-500 ease-in-out"
+    class="bg-custom-gray dark:bg-zinc-950 transition-all duration-500 ease-in-out antialiased"
     :style="{ backgroundImage: backgroundImage }"
   >
     <LoadingScreen v-if="isLoading" />

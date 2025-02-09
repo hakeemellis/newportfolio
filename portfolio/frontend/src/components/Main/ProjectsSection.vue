@@ -147,7 +147,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 16px;
+    font-size: 14px;
     font-style: normal;
   }
 
@@ -194,7 +194,7 @@
       0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
     width: 50vw; /* Makes the width 50% of the viewport width */
     max-width: 200px; /* maxes the total width it could expand to */
-    height: 61%; /* Utilizes up to 70% of photo's height/size */
+    height: 80%; /* Utilizes up to 70% of photo's height/size */
     margin: auto; /* Center the image */
   }
 

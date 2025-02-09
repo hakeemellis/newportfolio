@@ -24,7 +24,7 @@
   import { ref } from 'vue';
 
   export default {
-    name: 'FooterSection', // Component Name
+    name: 'FooterSectionMobile', // Component Name
     // Setup Function
     setup() {
       // Define reactive variable
@@ -53,7 +53,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
   }
 

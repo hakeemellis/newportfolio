@@ -6,7 +6,7 @@
   >
     <!-- Start of Experience Section -->
     <section
-      class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-4 px-2"
+      class="flex flex-col flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-4 px-2"
       v-for="(experience, index) in limitedExperience"
       :key="index"
     >
@@ -71,7 +71,7 @@
   import { ref, onMounted, computed } from 'vue';
 
   export default {
-    name: 'ExperienceSection', // Component Name
+    name: 'ExperienceSectionMobile', // Component Name
     // Setup Function
     setup() {
       // Define Reactive Variable
@@ -141,7 +141,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 14px;
+    font-size: 16px;
     font-style: normal;
   }
 

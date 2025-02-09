@@ -27,7 +27,7 @@
         >
           &nbsp;
           <b
-            class="dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800"
+            class="dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-700"
             style="font-size: 15.5px"
             >Generate Project Filters with AI</b
           >
@@ -158,7 +158,7 @@
       <!-- End of Project Filters with AI -->
 
       <!-- Start of Container for Table Section -->
-      <section class="py-5">
+      <section class="flex mx-auto py-5">
         <!-- Start of Table Section -->
         <table class="min-w-full">
           <!-- Table Header -->
@@ -188,18 +188,7 @@
               >
                 Built With
               </th>
-              <th
-                class="px-6 py-3 text-left uppercase tracking-wider"
-                style="font-size: 15px"
-              >
-                Link to Project
-              </th>
-              <th
-                class="px-6 py-3 text-left uppercase tracking-wider"
-                style="font-size: 15px"
-              >
-                Project Photo
-              </th>
+
             </tr>
           </thead>
           <!-- End of Table Header -->
@@ -215,7 +204,10 @@
                 <p class="text-sm">{{ project.year }}</p>
               </td>
               <td class="px-6 py-4 break-words">
+                <a :href="project.link"
+                  class=" font-medium dark:text-rose-600 text-cyan-600 hover:transition-all hover:duration-500 hover:ease-in-out">
                 <p class="text-sm">{{ project.title }}</p>
+                </a>   
               </td>
               <td class="px-6 py-4 break-words">
                 <p class="text-sm">
@@ -224,9 +216,9 @@
               </td>
               <td class="px-6 py-4 break-words">
                 <!-- Appropriate Tags Section -->
-                <section class="flex flex-row flex-wrap gap-2 py-3">
+                <section class="flex flex-col md:flex-row flex-wrap gap-2 py-3">
                   <section
-                    class="tag-icon-table dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table text-center dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
                     v-for="(tag, tagIndex) in project.tags"
                     :key="tagIndex"
                   >
@@ -235,22 +227,7 @@
                 </section>
                 <!-- End of Appropriate Tags Section -->
               </td>
-              <td class="px-6 py-4 break-words">
-                <a
-                  :href="project.link"
-                  class="text-sm font-small hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
-                >
-                  {{ project.link }}
-                </a>
-              </td>
-              <td class="px-6 py-4 break-words">
-                <section>
-                  <img
-                    :src="project.photoURL"
-                    class="projects-photo-table dark:shadow-lg dark:shadow-zinc-800 shadow-md shadow-zinc-400"
-                  />
-                </section>
-              </td>
+
             </tr>
           </tbody>
           <!-- End of Table Body -->
@@ -272,7 +249,7 @@
 
 <script>
   // Importing Modular Components
-  import FooterSection from './FooterSection.vue';
+  import FooterSection from './FooterSectionMobile.vue';
 
   // Import Application Dependencies
   import axios from 'axios';
@@ -281,7 +258,7 @@
   import { ref, onMounted, computed } from 'vue';
 
   export default {
-    name: 'ProjectArchiveComp', // Component Name
+    name: 'ProjectArchiveCompMobile', // Component Name
     // Imported Components
     components: {
       FooterSection,
@@ -534,7 +511,7 @@
     justify-content: center;
     border-radius: 30px; /* round out border edges */
     /*box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.3); /* Drop shadow */
-    padding: 5px 5px;
+    padding: 4px 5px;
     width: auto;
     font-size: 11px;
   }
