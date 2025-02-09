@@ -4,9 +4,15 @@
     <p class="roboto-condensed-regular gap dark:text-custom-white">
       Designed in <b class="dark:text-rose-500 text-cyan-800">Figma</b>. Coded
       in <b class="dark:text-rose-500 text-cyan-800">Visual Studio Code</b> by
-      Me :). Built with
-      <b class="dark:text-rose-500 text-cyan-800">Vue.js </b>and styled using
-      <b class="dark:text-rose-500 text-cyan-800">TailwindCSS</b>. Deployed with
+      Me :). Built using
+      <b class="dark:text-rose-500 text-cyan-800"
+        >MEVN (MongoDB, Express, Vue, Node) Stack </b
+      >and styled using
+      <b class="dark:text-rose-500 text-cyan-800">TailwindCSS</b>. Also
+      integrated with
+      <b class="dark:text-rose-500 text-cyan-800">Open AI API </b> for AI usage.
+      <br />
+      <br />Deployed with
       <b class="dark:text-rose-500 text-cyan-800">Netlify</b>.
       <br />
       <br />
