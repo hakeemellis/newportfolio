@@ -68,12 +68,24 @@ app.use((req, res, next) => {
 });
 
 // Enable CORS for cross-origin requests (allows the frontend to make requests to the backend)
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN, // Origin for Frontend
-    credentials: true, // Allows the session cookie to be sent back and forth between frontend and backend - for authentication
-  })
-);
+const allowedOrigins = process.env.CORS_ORIGIN // Origin for Frontend
+  ? process.env.CORS_ORIGIN.split(",") // Multiple origins for Frontend separated by comma
+  : [];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // If origin matches an allowed one
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // Allow request
+    } else {
+      callback(new Error("Not allowed by CORS")); // Deny request
+    }
+  },
+  credentials: true, // Allows the session cookie to be sent back and forth between frontend and backend - for authentication
+};
+
+// Use the CORS middleware
+app.use(cors(corsOptions));
 
 // PASS WEBSOCKET ("io") TO ROUTES
 app.use((req, res, next) => {
