@@ -10,7 +10,7 @@
       >and styled using
       <b class="dark:text-rose-500 text-cyan-800">TailwindCSS</b>. Also
       integrated with
-      <b class="dark:text-rose-500 text-cyan-800">Open AI API </b> for AI usage.
+      Open AI API for <b class="dark:text-rose-500 text-cyan-800">AI deployment</b>.
       <br />
       <br />Deployed with
       <b class="dark:text-rose-500 text-cyan-800">Netlify</b>.
