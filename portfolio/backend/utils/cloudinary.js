@@ -15,8 +15,6 @@ const fetchCloudinaryPhotos = async () => {
       max_results: 500, // Fetch up to 500 photos at once
     });
 
-    console.log("Fetched photos from Cloudinary:", result); // Log the fetched photos
-
     // Map each fetched photo to follow the desired format - similar to photo model schema
     const photos = result.resources.map((photo) => ({
       name: photo.public_id.split("/").pop(), // "/" is used to split the public_id and pop() to get the last part
@@ -30,7 +28,6 @@ const fetchCloudinaryPhotos = async () => {
     // Return the mapped photos
     return photos;
   } catch (error) {
-    console.error("Error fetching photos from Cloudinary:", error);
     return []; // Return null if there's an error
   }
 };

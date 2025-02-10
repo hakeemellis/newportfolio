@@ -22,11 +22,9 @@ const seedAdminUser = async () => {
   try {
     // Connect to the database
     await connectDB();
-    console.log("Database Connected!");
 
     // Clear existing users to avoid duplicates
     await User.deleteMany();
-    console.log("Users Deleted!");
 
     // Hash the admin password
     const hashedPassword = await bcrypt.hash(
@@ -42,10 +40,9 @@ const seedAdminUser = async () => {
 
     // Insert the admin user into MongoDB
     await adminUser.save();
-    console.log("Admin user seeded successfully!");
+
     process.exit(0); // Exit the process after seeding successfully
   } catch (error) {
-    console.error("Error seeding admin user:", error);
     process.exit(1); // Exit the process if there's an error
   }
 };

@@ -30,7 +30,7 @@ router.post("/login", async (req, res) => {
       res.json({ success: false }); // Send a failure response
     }
   } catch (error) {
-    console.error("Error during login:", error);
+    
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
@@ -41,7 +41,7 @@ router.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     // Assign error to parameter if failed to destroy the session
     if (err) {
-      console.error("Error during logout:", err);
+      
       res
         .status(500)
         .json({ success: false, message: "Internal server error" }); // Send a failure response
@@ -49,7 +49,7 @@ router.post("/logout", (req, res) => {
     // If session destroyed successfully
     else {
       res.json({ success: true }); // Send a success response
-      console.log("Logout successful");
+      
     }
   });
 });
