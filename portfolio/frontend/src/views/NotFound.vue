@@ -3,7 +3,7 @@
   <section
     class="flex flex-col text-center justify-center gap-4 h-screen overflow-y-auto"
   >
-    <h1 class="roboto-condensed-bold text-6xl font-bold">
+    <h1 class="roboto-condensed-bold text-6xl font-bold dark:text-slate-100">
       404 - Page Not Found
     </h1>
     <img
@@ -12,12 +12,12 @@
       src="https://media.giphy.com/media/26tn8cc5IQjkWpJhm/giphy.gif?cid=790b7611fh6mgr5df0bfxo4hyfdw5hj75sz38dly6ucbyu2v&ep=v1_gifs_search&rid=giphy.gif&ct=g"
       alt="404"
     />
-    <p class="roboto-condensed-regular">
+    <p class="roboto-condensed-regular dark:text-slate-100">
       The page you are looking for does not exist.
     </p>
     <router-link
       to="/"
-      class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out text-3xl font-bold"
+      class="dark:text-zinc-100 hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out text-3xl font-bold"
       >Back to Home</router-link
     >
   </section>
