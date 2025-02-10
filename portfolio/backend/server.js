@@ -12,6 +12,17 @@
 // Import Application Modules Required for Server to Run
 const express = require("express"); // express for handling HTTP requests
 const dotenv = require("dotenv"); // dotenv for environment variables
+// Defining Environment Configuration
+dotenv.config({
+  path:
+    process.env.NODE_ENV === "production"
+      ? ".env.production"
+      : process.env.NODE_ENV === "staging"
+      ? ".env.staging"
+      : ".env",
+});
+
+console.log("Using CORS Origin:", process.env.CORS_ORIGIN); // Check which CORS origin is loaded
 const cors = require("cors"); // cors for handling cross-origin requests
 const http = require("http"); // http for handling WebSockets
 const session = require("express-session"); // to assist with session management (for authentication and security) i.e. server-side security
@@ -26,16 +37,6 @@ const io = initializeWebSocket(server); // defining the variable "io" to allow e
 const authRoutes = require("./routes/authRoutes"); // to define default routes for authentication (app.use)
 const contentRoutes = require("./routes/contentRoutes"); // to define default routes for content (app.use)
 const openaiRoutes = require("./routes/openaiRoutes"); // to define default routes for AI use (app.use)
-
-// Defining Environment Configuration
-dotenv.config({
-  path:
-    process.env.NODE_ENV === "production" // Check if the environment is production
-      ? ".env.production"
-      : process.env.NODE_ENV === "staging" // Check if the environment is staging (live environment but developmental version)
-      ? ".env.staging"
-      : ".env", // Default to .env file for development
-});
 
 // Log Environment Variables
 console.log("NODE_ENV:", process.env.NODE_ENV);
@@ -67,21 +68,29 @@ app.use((req, res, next) => {
   next();
 });
 
-// Enable CORS for cross-origin requests (allows the frontend to make requests to the backend)
-const allowedOrigins = process.env.CORS_ORIGIN // Origin for Frontend
-  ? process.env.CORS_ORIGIN.split(",") // Multiple origins for Frontend separated by comma
+// CORS Implementation - to accept cross-origin requests from multiple origins
+const allowedOrigins = process.env.CORS_ORIGIN // Check which CORS origin is loaded
+  ? process.env.CORS_ORIGIN.split(",").map((origin) =>
+      origin.replace(/\/$/, "")
+    )
   : [];
 
+console.log("Allowed origins:", allowedOrigins); // Verify which origins are allowed
+
+// CORS Configuration Function - to handle cross-origin requests
 const corsOptions = {
   origin: (origin, callback) => {
-    // If origin matches an allowed one
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Normalize the incoming origin by removing trailing slashes (if any)
+    const normalizedOrigin = origin ? origin.replace(/\/$/, "") : "";
+
+    // Check if the origin is allowed
+    if (!origin || allowedOrigins.includes(normalizedOrigin)) {
       callback(null, true); // Allow request
     } else {
       callback(new Error("Not allowed by CORS")); // Deny request
     }
   },
-  credentials: true, // Allows the session cookie to be sent back and forth between frontend and backend - for authentication
+  credentials: true, // Allows the session cookie to be sent back and forth between frontend and backend
 };
 
 // Use the CORS middleware

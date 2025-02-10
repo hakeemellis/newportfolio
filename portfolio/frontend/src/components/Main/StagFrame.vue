@@ -395,7 +395,10 @@
         try {
           // Fetch photos from Cloudinary as defined in the backend
           const response = await axios.get(
-            `${import.meta.env.VITE_API_BASE_URL}/api/photos`
+            `${import.meta.env.VITE_API_BASE_URL}/api/photos`,
+            {
+              withCredentials: true,
+            }
           );
           console.log('Fetched photos:', response.data);
 
