@@ -6,7 +6,7 @@
     <!-- Start of Container for Project Archive Section-->
     <section class="flex flex-col gap-3">
       <!-- Menu Text -->
-      <section>
+      <section class="flex gap-2 flex-col">
         <router-link to="/">
           <p
             class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
@@ -15,7 +15,7 @@
             Back to Main
           </p>
         </router-link>
-        <h2 style="font-size: 40px">All Projects</h2>
+        <h2  class="font-extrabold text-5xl">ALL PROJECTS</h2>
       </section>
       <!-- End of Menu Text -->
 
@@ -490,7 +490,7 @@
   }
 
   /*Integral CF Font*/
-  h2 {
+  .h2 {
     font-family: 'Integral CF';
     font-weight: 800;
     font-size: 30px;

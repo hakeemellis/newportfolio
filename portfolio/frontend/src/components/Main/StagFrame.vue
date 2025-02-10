@@ -3,18 +3,18 @@
   <section class="outer-container mt-2 dark:text-custom-white">
     <!-- Start of Section for Profile -->
     <section class="flex flex-col gap ">
-      <h2>Hakeem Ellis</h2>
+      <h2 class="text-4xl font-bold font-sans">Hakeem Ellis</h2>
       <img
         :src="profileImageUrl"
         alt="Profile Photo"
         class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
       />
-      <h3 class="subtitle">Full-Stack Web Developer</h3>
-      <h3 class="subtitle">UX/UI Designer</h3>
+      <h3 class="font-bold text-2xl ">Full-Stack Web Developer</h3>
+      <h3 class="font-bold text-2xl">UX/UI Designer</h3>
       <section class="flex flex-col inner-gap">
         <button
           @click="scrollToSection('about')"
-          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out font-medium"
           style="font-size: 20px"
         >
           About
@@ -501,7 +501,7 @@
   /* TEXT STYLING */
 
   /*Integral CF Font*/
-  h2 {
+  .h2 {
     font-family: 'Integral CF';
     font-weight: 800;
     font-size: 30px;

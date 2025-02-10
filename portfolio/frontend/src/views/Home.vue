@@ -32,7 +32,7 @@
     <!-- Mobile Nav Frame -->
     <section
       v-if="!isDesktop"
-      class="sticky top-5 flex flex-row inner-gap mx-auto p-2 px-8 portfolio-button dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+      class="sticky top-5 flex flex-row inner-gap mx-auto p-2 px-8 portfolio-button dark:bg-zinc-950 bg-zinc-100 dark:text-slate-100 dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400 transition-all duration-500 ease-in-out"
     >
       <button
         @click="scrollToSection('about')"

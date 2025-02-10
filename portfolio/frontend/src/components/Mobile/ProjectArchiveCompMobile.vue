@@ -6,7 +6,7 @@
     <!-- Start of Container for Project Archive Section-->
     <section class="flex flex-col gap-3">
       <!-- Menu Text -->
-      <section>
+      <section class="flex gap-2 flex-col">
         <router-link to="/">
           <p
             class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
@@ -15,7 +15,7 @@
             Back to Main
           </p>
         </router-link>
-        <h2 style="font-size: 40px">All Projects</h2>
+        <h2 class="font-extrabold text-5xl">ALL PROJECTS</h2>
       </section>
       <!-- End of Menu Text -->
 
@@ -188,7 +188,6 @@
               >
                 Built With
               </th>
-
             </tr>
           </thead>
           <!-- End of Table Header -->
@@ -204,10 +203,12 @@
                 <p class="text-sm">{{ project.year }}</p>
               </td>
               <td class="px-6 py-4 break-words">
-                <a :href="project.link"
-                  class=" font-medium dark:text-rose-600 text-cyan-600 hover:transition-all hover:duration-500 hover:ease-in-out">
-                <p class="text-sm">{{ project.title }}</p>
-                </a>   
+                <a
+                  :href="project.link"
+                  class="font-medium dark:text-rose-600 text-cyan-600 hover:transition-all hover:duration-500 hover:ease-in-out"
+                >
+                  <p class="text-sm">{{ project.title }}</p>
+                </a>
               </td>
               <td class="px-6 py-4 break-words">
                 <p class="text-sm">
@@ -227,7 +228,6 @@
                 </section>
                 <!-- End of Appropriate Tags Section -->
               </td>
-
             </tr>
           </tbody>
           <!-- End of Table Body -->
@@ -464,13 +464,6 @@
     font-optical-sizing: auto;
     font-size: 18px;
     font-style: normal;
-  }
-
-  /*Integral CF Font*/
-  h2 {
-    font-family: 'Integral CF';
-    font-weight: 800;
-    font-size: 30px;
   }
 
   .subtitle {

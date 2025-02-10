@@ -7,12 +7,12 @@
       <section class="flex-[0.70]">
         <!-- Start of Section for Info -->
         <section class="flex flex-col gap-4 align-items-left text-left">
-          <h2>Hakeem Ellis</h2>
+          <h2 class="text-5xl font-black font-sans">Hakeem Ellis</h2>
 
-          <h3 class="subtitle">
+          <h3 class="text-3xl font-semibold font-sans">
             Full-Stack Web Developer
           </h3>
-          <h3 class="subtitle">UX/UI Designer</h3>
+          <h3 class="text-3xl font-semibold font-sans">UX/UI Designer</h3>
         </section>
 
         <!-- End of Section for Info -->
@@ -490,12 +490,6 @@
   /* TEXT STYLING */
 
   /*Integral CF Font*/
-  h2 {
-    font-family: 'Integral CF';
-    font-weight: 800;
-    font-size: 30px;
-  }
-
   .subtitle {
     font-family: 'Integral CF';
     font-weight: 500;
@@ -569,11 +563,6 @@
       font-size: 14px;
     }
 
-    h2 {
-      font-family: 'Integral CF';
-      font-weight: 800;
-      font-size: 28px;
-    }
   }
 
   /* MOBILE MEDIA QUERIES */
