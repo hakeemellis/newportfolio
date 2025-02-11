@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=staging node server.js"
+    "start": "NODE_ENV=production node server.js"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
     "express": "^4.21.2",
     "express-session": "^1.18.1",
     "ioredis": "^5.4.2",
+    "mongo-connect": "^0.0.6",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.3",
     "node-fetch": "^3.3.2",
