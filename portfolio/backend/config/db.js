@@ -13,8 +13,12 @@ const connectDB = async () => {
       dbName: process.env.MONGO_DB_NAME,
     });
 
-    // Log success
+    // Log success - Debugging for Render
+    console.log("Connected to MongoDB");
   } catch (err) {
+    // Log error - Debugging for Render
+    console.log(err);
+    console.error("Error connecting to MongoDB");
     process.exit(1);
   }
 };
