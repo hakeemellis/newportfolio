@@ -8,12 +8,14 @@
       <b class="dark:text-rose-500 text-cyan-800"
         >MEVN (MongoDB, Express, Vue, Node) Stack </b
       >and styled using
-      <b class="dark:text-rose-500 text-cyan-800">TailwindCSS</b>. Also
-      integrated with
-      Open AI API for <b class="dark:text-rose-500 text-cyan-800">AI deployment</b>.
+      <b class="dark:text-rose-500 text-cyan-800">TailwindCSS</b>.
       <br />
-      <br />Deployed with
-      <b class="dark:text-rose-500 text-cyan-800">Netlify</b>.
+      <br />
+      Also integrated with Open AI API for
+      <b class="dark:text-rose-500 text-cyan-800">AI deployment</b>.
+      <br />Frontend Deployed with
+      <b class="dark:text-rose-500 text-cyan-800">Netlify</b>. Backend Deployed
+      with <b class="dark:text-rose-500 text-cyan-800">Render</b>.
       <br />
       <br />
       All Rights Reserved © | Hakeem Romario Ellis
@@ -59,7 +61,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 15px;
+    font-size: 14px;
     font-style: normal;
   }
 

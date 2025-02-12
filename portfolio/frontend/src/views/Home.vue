@@ -32,28 +32,28 @@
     <!-- Mobile Nav Frame -->
     <section
       v-if="!isDesktop"
-      class="sticky top-5 flex flex-row inner-gap mx-auto p-2 px-8 portfolio-button dark:bg-zinc-950 bg-zinc-100 dark:text-slate-100 dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400 transition-all duration-500 ease-in-out"
+      class="sticky top-5 flex flex-row inner-gap mx-auto p-2 px-8 portfolio-button dark:bg-zinc-950 bg-zinc-100 dark:text-slate-100 dark:shadow-md dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-500 ease-in-out"
     >
       <button
         @click="scrollToSection('about')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
-        style="font-size: 20px"
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
+        style="font-size: 21px"
       >
         About
       </button>
 
       <button
         @click="scrollToSection('experience')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
-        style="font-size: 20px"
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
+        style="font-size: 21px"
       >
         Experience
       </button>
 
       <button
         @click="scrollToSection('projects')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
-        style="font-size: 20px"
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
+        style="font-size: 21px"
       >
         Projects
       </button>
@@ -78,6 +78,18 @@
 </template>
 
 <script>
+  // --- Import Font Families ---
+  import '@fontsource/inter';
+  import '@fontsource/poppins';
+  import '@fontsource/roboto';
+  import '@fontsource/roboto-condensed';
+  import '@fontsource/roboto-mono';
+  import '@fontsource/inter';
+  import '@fontsource/playfair-display';
+  import '@fontsource/source-sans-3';
+  import '@fontsource/source-serif-4';
+  import '@fontsource/space-grotesk';
+
   // Import Reactive Dependencies
   import { ref, onMounted, onUnmounted } from 'vue';
 
@@ -202,6 +214,27 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 23px;
+  }
+
+  /*Integral CF Font*/
+  .subtitle {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  /* Lora Font */
+  .lora-font {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+  }
+
+  /* Playfair Font */
+
+  .playfair-title {
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
   }
 
   /* TEXT STYLING */

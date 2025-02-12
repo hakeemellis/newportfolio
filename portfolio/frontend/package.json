@@ -13,6 +13,16 @@
     "build:css": "postcss src/styles/tailwind.css -o src/styles/output.css"
   },
   "dependencies": {
+    "@fontsource/inter": "^5.1.1",
+    "@fontsource/lora": "^5.1.1",
+    "@fontsource/playfair-display": "^5.1.1",
+    "@fontsource/poppins": "^5.1.1",
+    "@fontsource/roboto": "^5.1.1",
+    "@fontsource/roboto-condensed": "^5.1.1",
+    "@fontsource/roboto-mono": "^5.1.1",
+    "@fontsource/source-sans-3": "^5.1.1",
+    "@fontsource/source-serif-4": "^5.1.1",
+    "@fontsource/space-grotesk": "^5.1.1",
     "axios": "^1.7.9",
     "cloudinary": "^2.5.1",
     "cors": "^2.8.5",

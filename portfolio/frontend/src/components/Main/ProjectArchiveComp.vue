@@ -9,13 +9,12 @@
       <section class="flex gap-2 flex-col">
         <router-link to="/">
           <p
-            class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
-            style="font-size: 25px"
+            class="roboto-condensed-medium hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
           >
             Back to Main
           </p>
         </router-link>
-        <h2  class="font-extrabold text-5xl">ALL PROJECTS</h2>
+        <h2 class="font-extrabold text-5xl">ALL PROJECTS</h2>
       </section>
       <!-- End of Menu Text -->
 
@@ -27,8 +26,8 @@
         >
           &nbsp;
           <b
-            class="dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800"
-            style="font-size: 15.5px"
+            class="roboto-condensed-medium dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800"
+            style="font-size: 16px"
             >Generate Project Filters with AI</b
           >
           <svg
@@ -212,13 +211,13 @@
               class="border-b border-zinc-600 dark:border-custom-white"
             >
               <td class="px-6 py-4 break-words">
-                <p class="text-sm">{{ project.year }}</p>
+                <p class="text-sm roboto-condensed-medium-table">{{ project.year }}</p>
               </td>
               <td class="px-6 py-4 break-words">
                 <p class="text-sm">{{ project.title }}</p>
               </td>
               <td class="px-6 py-4 break-words">
-                <p class="text-sm">
+                <p class="text-sm roboto-condensed-regular-table">
                   {{ project.content }}
                 </p>
               </td>
@@ -230,7 +229,7 @@
                     v-for="(tag, tagIndex) in project.tags"
                     :key="tagIndex"
                   >
-                    <p class="px-2">{{ tag }}</p>
+                    <p class="px-2 roboto-condensed-table-tag">{{ tag }}</p>
                   </section>
                 </section>
                 <!-- End of Appropriate Tags Section -->
@@ -238,7 +237,7 @@
               <td class="px-6 py-4 break-words">
                 <a
                   :href="project.link"
-                  class="text-sm font-small hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+                  class="text-sm roboto-condensed-medium-table hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
                 >
                   {{ project.link }}
                 </a>
@@ -477,7 +476,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 16px;
+    font-size: 13px;
     font-style: normal;
   }
 
@@ -489,11 +488,45 @@
     font-style: normal;
   }
 
-  /*Integral CF Font*/
-  .h2 {
-    font-family: 'Integral CF';
-    font-weight: 800;
+  .roboto-condensed-medium {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 470;
+    font-optical-sizing: auto;
     font-size: 30px;
+    font-style: normal;
+  }
+
+  /* Roboto Condensed Font Table */
+  .roboto-condensed-regular-table {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 370;
+    font-optical-sizing: auto;
+    font-size: 13px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-table-tag {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 370;
+    font-optical-sizing: auto;
+    font-size: 10px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-bold-table {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 670;
+    font-optical-sizing: auto;
+    font-size: 13px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-medium-table {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 470;
+    font-optical-sizing: auto;
+    font-size: 13px;
+    font-style: normal;
   }
 
   .subtitle {

@@ -11,7 +11,7 @@
       :key="index"
     >
       <!-- Start of Section with Year-->
-      <section class="flex-[0.20]">
+      <section class="flex-[0.20] roboto-condensed-medium">
         <p>{{ experience.year }}</p>
       </section>
       <!-- End of Section with Year -->
@@ -40,7 +40,7 @@
                 :key="tagIndex"
                 class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
               >
-                <p>{{ tag }}</p>
+                <p class="roboto-condensed-regular-tag">{{ tag }}</p>
               </section>
             </section>
             <!-- End of Appropriate Tags Section -->
@@ -141,7 +141,15 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 14px;
+    font-size: 13.5px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-regular-tag {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 370;
+    font-optical-sizing: auto;
+    font-size: 11px;
     font-style: normal;
   }
 
@@ -157,7 +165,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 470;
     font-optical-sizing: auto;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
   }
 

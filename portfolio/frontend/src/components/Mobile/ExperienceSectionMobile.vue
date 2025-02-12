@@ -6,13 +6,13 @@
   >
     <!-- Start of Experience Section -->
     <section
-      class="flex flex-col flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-4 px-2"
+      class="flex flex-col flex-1 gap-4 px-6 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-4"
       v-for="(experience, index) in limitedExperience"
       :key="index"
     >
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
-        <p>{{ experience.year }}</p>
+        <p class="roboto-condensed-medium">{{ experience.year }}</p>
       </section>
       <!-- End of Section with Year -->
 
@@ -40,7 +40,7 @@
                 :key="tagIndex"
                 class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
               >
-                <p>{{ tag }}</p>
+                <p style="font-size: 10px;">{{ tag }}</p>
               </section>
             </section>
             <!-- End of Appropriate Tags Section -->
@@ -141,7 +141,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 16px;
+    font-size: 13px;
     font-style: normal;
   }
 
@@ -157,7 +157,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 470;
     font-optical-sizing: auto;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
   }
 
