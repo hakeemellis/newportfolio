@@ -85,7 +85,7 @@
       onMounted(() => {
         setTimeout(() => {
           isLoading.value = false;
-        }, 1000);
+        }, 2500);
       });
       // End of Loading Screen
 

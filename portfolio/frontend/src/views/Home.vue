@@ -32,31 +32,42 @@
     <!-- Mobile Nav Frame -->
     <section
       v-if="!isDesktop"
-      class="sticky top-5 flex flex-row inner-gap mx-auto p-2 px-8 portfolio-button dark:bg-zinc-950 bg-zinc-100 dark:text-slate-100 dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400 transition-all duration-500 ease-in-out"
+      class="sticky top-5 flex flex-row inner-gap mx-auto p-2 px-4 py-3 portfolio-button dark:bg-zinc-950 bg-zinc-100 dark:text-slate-100 dark:shadow-md dark:shadow-rose-900 shadow-md shadow-cyan-600 transition-all duration-500 ease-in-out"
     >
       <button
         @click="scrollToSection('about')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
-        style="font-size: 20px"
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
+        style="font-size: 18px"
       >
         About
       </button>
 
       <button
         @click="scrollToSection('experience')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
-        style="font-size: 20px"
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
+        style="font-size: 18px"
       >
         Experience
       </button>
 
       <button
         @click="scrollToSection('projects')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
-        style="font-size: 20px"
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
+        style="font-size: 18px"
       >
         Projects
       </button>
+
+      <a
+        v-for="(random, index) in randomContent"
+        :key="index"
+        :href="random.contactMe"
+        target="_blank"
+        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font break-words tracking-tight"
+        style="font-size: 18px"
+      >
+        Contact Me
+      </a>
     </section>
     <!-- End of Mobile Nav Frame -->
 
@@ -78,8 +89,24 @@
 </template>
 
 <script>
+  // --- Import Font Families ---
+  import '@fontsource/inter';
+  import '@fontsource/poppins';
+  import '@fontsource/roboto';
+  import '@fontsource/roboto-condensed';
+  import '@fontsource/roboto-mono';
+  import '@fontsource/inter';
+  import '@fontsource/playfair-display';
+  import '@fontsource/source-sans-3';
+  import '@fontsource/source-serif-4';
+  import '@fontsource/space-grotesk';
+
+  // --- Import Application Dependencies ---
+  import axios from 'axios';
+
   // Import Reactive Dependencies
   import { ref, onMounted, onUnmounted } from 'vue';
+  import { useHead } from '@vueuse/head';
 
   // Import Modular Dependencies
   import StagFrame from '../components/Main/StagFrame.vue';
@@ -112,6 +139,31 @@
     },
     // Setup Function
     setup() {
+      // Meta Tag Setup - For SEO
+      useHead({
+        title: `${import.meta.env.VITE_APP_NAME}`,
+        meta: [
+          {
+            name: 'description',
+            content: `${import.meta.env.VITE_APP_DESCRIPTION}`,
+          },
+          { property: 'og:title', content: `${import.meta.env.VITE_APP_NAME}` },
+          {
+            property: 'og:description',
+            content: `${import.meta.env.VITE_APP_DESCRIPTION}`,
+          },
+          {
+            property: 'og:image',
+            content: `${import.meta.env.VITE_APP_OG_HOME_IMAGE}`,
+          },
+          {
+            property: 'og:url',
+            content: `${import.meta.env.VITE_APP_OG_HOME_URL}`,
+          },
+          { name: 'twitter:card', content: 'summary_large_image' },
+        ],
+      });
+
       // Define reactive variable
       const isDesktop = ref(window.innerWidth >= 1024); // Check if the window width is greater than or equal to 1024
 
@@ -141,10 +193,36 @@
       console.log('Scroll to Section Function:', scrollToSection);
       // End of scrollToSection
 
+      // Define reactive variable
+      const randomContent = ref([]);
+
+      // Function to fetch content available for Random Section
+      const fetchRandomContent = async () => {
+        try {
+          // Fetch content available for Random Section
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/random`
+          );
+
+          // Check if response contains content - if so, assign it to randomContent
+          if (response.data && response.data.content) {
+            randomContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching random content:', error);
+        }
+      };
+
+      onMounted(() => {
+        fetchRandomContent();
+      });
+      // End of onMounted
+
       // Return everything that should be accessible in the template
       return {
         isDesktop,
         scrollToSection,
+        randomContent,
       };
       // End of Return
     },
@@ -177,7 +255,7 @@
 
   /* Inner Frame Gap for Stagnant Frame Elements */
   .inner-gap {
-    gap: 20px;
+    gap: 10.5px;
   }
 
   /* Roboto Condensed Font */
@@ -202,6 +280,27 @@
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 23px;
+  }
+
+  /*Integral CF Font*/
+  .subtitle {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  /* Lora Font */
+  .lora-font {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+  }
+
+  /* Playfair Font */
+
+  .playfair-title {
+    font-family: 'Playfair Display', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
   }
 
   /* TEXT STYLING */

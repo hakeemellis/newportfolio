@@ -1,7 +1,7 @@
 <template>
   <!-- Start of Master Container-->
   <section
-    class="flex flex-col gap-7 roboto-condensed-regular dark:text-custom-white px-10 py-10 h-screen"
+    class="flex flex-col gap-7 roboto-condensed-regular dark:text-custom-white px-5 py-8"
   >
     <!-- Start of Container for Project Archive Section-->
     <section class="flex flex-col gap-3">
@@ -9,8 +9,7 @@
       <section class="flex gap-2 flex-col">
         <router-link to="/">
           <p
-            class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
-            style="font-size: 25px"
+            class="roboto-condensed-medium hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
           >
             Back to Main
           </p>
@@ -27,8 +26,8 @@
         >
           &nbsp;
           <b
-            class="dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-700"
-            style="font-size: 15.5px"
+            class="roboto-condensed-medium dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-700"
+            style="font-size: 16.5px"
             >Generate Project Filters with AI</b
           >
           <svg
@@ -158,32 +157,27 @@
       <!-- End of Project Filters with AI -->
 
       <!-- Start of Container for Table Section -->
-      <section class="flex mx-auto py-5">
+      <section class="flex mx-auto px-3 py-5">
         <!-- Start of Table Section -->
-        <table class="min-w-full">
+        <table class="w-full table-fixed">
           <!-- Table Header -->
           <thead class="dark:text-custom-white">
             <tr>
               <th
-                class="px-6 py-3 text-left uppercase tracking-wider"
+                class="text-left uppercase tracking-wider"
                 style="font-size: 15px"
               >
                 Year
               </th>
               <th
-                class="px-6 py-3 text-left uppercase tracking-wider"
+                class="text-left uppercase tracking-wider"
                 style="font-size: 14px"
               >
                 Project
               </th>
+
               <th
-                class="px-6 py-3 text-left uppercase tracking-wider"
-                style="font-size: 15px"
-              >
-                Summary
-              </th>
-              <th
-                class="px-6 py-3 text-left uppercase tracking-wider"
+                class="px-2 text-left uppercase tracking-wider"
                 style="font-size: 15px"
               >
                 Built With
@@ -199,23 +193,23 @@
               :key="index"
               class="border-b border-zinc-600 dark:border-custom-white"
             >
-              <td class="px-6 py-4 break-words">
-                <p class="text-sm">{{ project.year }}</p>
+              <td class="break-words">
+                <p class="text-sm roboto-condensed-medium-table">
+                  {{ project.year }}
+                </p>
               </td>
-              <td class="px-6 py-4 break-words">
+              <td class="break-words">
                 <a
                   :href="project.link"
                   class="font-medium dark:text-rose-600 text-cyan-600 hover:transition-all hover:duration-500 hover:ease-in-out"
                 >
-                  <p class="text-sm">{{ project.title }}</p>
+                  <p class="text-sm roboto-condensed-medium-table">
+                    {{ project.title }}
+                  </p>
                 </a>
               </td>
-              <td class="px-6 py-4 break-words">
-                <p class="text-sm">
-                  {{ project.content }}
-                </p>
-              </td>
-              <td class="px-6 py-4 break-words">
+
+              <td class="break-words">
                 <!-- Appropriate Tags Section -->
                 <section class="flex flex-col md:flex-row flex-wrap gap-2 py-3">
                   <section
@@ -223,7 +217,7 @@
                     v-for="(tag, tagIndex) in project.tags"
                     :key="tagIndex"
                   >
-                    <p class="px-2">{{ tag }}</p>
+                    <p class="roboto-condensed-table-tag">{{ tag }}</p>
                   </section>
                 </section>
                 <!-- End of Appropriate Tags Section -->
@@ -454,7 +448,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 16px;
+    font-size: 13px;
     font-style: normal;
   }
 
@@ -463,6 +457,47 @@
     font-weight: 670;
     font-optical-sizing: auto;
     font-size: 18px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-medium {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 470;
+    font-optical-sizing: auto;
+    font-size: 30px;
+    font-style: normal;
+  }
+
+  /* Roboto Condensed Font Table */
+  .roboto-condensed-regular-table {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 370;
+    font-optical-sizing: auto;
+    font-size: 13px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-table-tag {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 370;
+    font-optical-sizing: auto;
+    font-size: 7px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-bold-table {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 670;
+    font-optical-sizing: auto;
+    font-size: 13px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-medium-table {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 470;
+    font-optical-sizing: auto;
+    font-size: 13px;
     font-style: normal;
   }
 

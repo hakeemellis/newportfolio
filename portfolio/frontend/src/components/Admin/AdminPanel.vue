@@ -125,6 +125,38 @@
       </button>
     </section>
     <!-- End of Projects Section -->
+
+    <!-- Random Content Section -->
+    <section class="flex flex-col w-full h-full max-w-3xl gap-5">
+      <h2 class="text-3xl font-semibold">Random Section</h2>
+      <section
+        class="flex flex-col gap-7"
+        v-for="(random, index) in randomContent"
+        :key="index"
+      >
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="random.resume"
+          placeholder="Resume"
+        />
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="random.contactMe"
+          placeholder="Contact Me"
+        />
+
+        <button
+          class="text-xl font-semibold"
+          @click="updateRandomSection(index)"
+        >
+          Update Section
+        </button>
+      </section>
+    </section>
+    <!-- End of Experience Section -->
+
     <FooterSection />
   </section>
   <!-- End of Admin Panel -->
@@ -155,6 +187,7 @@
       const projectsContent = ref([
         { year: '', title: '', content: '', photoURL: '', link: '' },
       ]);
+      const randomContent = ref([{ resume: '', contactMe: '' }]);
       const photos = ref([]); // Photos fetched from Cloudinary - expecting array to be filled with photo objects
 
       // Router Instance for Navigation
@@ -244,6 +277,27 @@
       // Fetch projects content on component mount - when DOM is ready
       onMounted(fetchProjectsContent);
       // End of fetch projects content function
+
+      // Function to fetch content available for Random Section
+      const fetchRandomContent = async () => {
+        try {
+          // Fetch content available for Random Section
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/random`
+          );
+
+          // Check if response contains content - if so, assign it to randomContent
+          if (response.data && response.data.content) {
+            randomContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching random content:', error);
+        }
+      };
+
+      // Fetch random content on component mount - when DOM is ready
+      onMounted(fetchRandomContent);
+      // End of fetch random content function
 
       // To create new section for Experience Section in Admin Panel
       const addExperience = () => {
@@ -497,6 +551,55 @@
       };
       // End of update content function
 
+      // Update Random Section function
+      const updateRandomSection = async (index) => {
+        try {
+          // Define variable to store content available for Random Section
+          const random = randomContent.value[index];
+
+          // Prevent updating with blank data
+          if (!random.resume && !random.contactMe) {
+            return;
+          }
+
+          // Mapping function within updateRandomSection function to wrap all random content as an array (param/index)
+          const updatedContent = randomContent.value.map((item, i) => {
+            if (i === index) {
+              return {
+                resume: random.resume || item.resume,
+                contactMe: random.contactMe || item.contactMe,
+              };
+            }
+
+            // Return mapped (array) random content
+            return item;
+          });
+
+          // FINALLY - update content route for Random Section
+          const response = await axios.post(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/random`,
+            {
+              content: updatedContent,
+            }
+          );
+
+          // Assigning response.data to "data" variable (for simplicity)
+          const data = response.data;
+
+          // Check if update was successful
+          if (data.success) {
+            console.log('Random Content updated successfully');
+            alert('Random Content updated successfully');
+          } else {
+            alert('Failed to update content');
+          }
+        } catch (error) {
+          console.error('Error updating content:', error);
+          alert('An error occurred while updating random content');
+        }
+      };
+      // End of update random section function
+
       // Logout function
       const logout = async () => {
         try {
@@ -533,6 +636,7 @@
         aboutContent,
         experienceContent,
         projectsContent,
+        randomContent,
         photos,
         addExperience,
         removeExperience,
@@ -542,6 +646,7 @@
         updateExperience,
         updateProject,
         updateContent,
+        updateRandomSection,
         logout,
         formattedAboutContent,
       };

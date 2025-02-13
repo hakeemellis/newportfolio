@@ -2,19 +2,19 @@
   <!-- Start of Container for Stagnant Frame -->
   <section class="outer-container mt-2 dark:text-custom-white">
     <!-- Start of Section for Profile -->
-    <section class="flex flex-col gap ">
-      <h2 class="text-4xl font-bold font-sans">Hakeem Ellis</h2>
+    <section class="flex flex-col gap">
+      <h2 class="roboto-condensed-bold tracking-wide">Hakeem Ellis</h2>
       <img
         :src="profileImageUrl"
         alt="Profile Photo"
-        class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
+        class="profile-photo profile-photo-light shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
       />
-      <h3 class="font-bold text-2xl ">Full-Stack Web Developer</h3>
-      <h3 class="font-bold text-2xl">UX/UI Designer</h3>
+      <h3 class="subtitle">Full-Stack Web Developer</h3>
+      <h3 class="subtitle">UX/UI Designer</h3>
       <section class="flex flex-col inner-gap">
         <button
           @click="scrollToSection('about')"
-          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out font-medium"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
           style="font-size: 20px"
         >
           About
@@ -22,7 +22,7 @@
 
         <button
           @click="scrollToSection('experience')"
-          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
           style="font-size: 20px"
         >
           Experience
@@ -30,11 +30,22 @@
 
         <button
           @click="scrollToSection('projects')"
-          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out robotospecial"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
           style="font-size: 20px"
         >
           Projects
         </button>
+
+        <a
+          v-for="(random, index) in randomContent"
+          :key="index"
+          :href="random.contactMe"
+          target="_blank"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
+          style="font-size: 20px"
+        >
+          Contact Me
+        </a>
       </section>
     </section>
     <!-- End of Section for Profile -->
@@ -374,6 +385,7 @@
       // --- Reactive Variables (Defining Variables Prior to DOM) ---
       const isDarkMode = ref(false); // Reactive variable defining dark mode state
       const profileImageUrl = ref(''); // Reactive variable defining profile image URL
+      const randomContent = ref([]); // Reactive variable defining content for Random Section
 
       // Toggle Dark Mode Function
       const toggleDarkMode = () => {
@@ -387,6 +399,23 @@
           //if false
           document.documentElement.classList.remove('dark');
           localStorage.setItem('theme', 'light');
+        }
+      };
+
+      // Function to fetch content available for Random Section
+      const fetchRandomContent = async () => {
+        try {
+          // Fetch content available for Random Section
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/random`
+          );
+
+          // Check if response contains content - if so, assign it to randomContent
+          if (response.data && response.data.content) {
+            randomContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching random content:', error);
         }
       };
 
@@ -443,7 +472,10 @@
         // 2. Fetch Initial Profile Image (Just Calling the Function)
         fetchProfileImage();
 
-        // 3. Setup/Initialize WebSocket to Update Photos on the Frontend
+        // 3. Fetch Random Content (Just Calling the Function)
+        fetchRandomContent();
+
+        // 4. Setup/Initialize WebSocket to Update Photos on the Frontend
 
         // Listen for WebSocket events
         socket.on('photos-updated', () => {
@@ -488,6 +520,7 @@
         scrollToSection,
         toggleDarkMode,
         profileImageUrl, // instead of "fetchProfileImage" due to it not affecting my template and I only need the image URL value
+        randomContent,
       };
       // End of Return
     },
@@ -500,26 +533,27 @@
 
   /* TEXT STYLING */
 
-  /*Integral CF Font*/
-  .h2 {
-    font-family: 'Integral CF';
-    font-weight: 800;
-    font-size: 30px;
-  }
+  /*Roboto Mono Font*/
 
   .subtitle {
-    font-family: 'Integral CF';
+    font-family: 'Roboto Mono', monospace;
     font-weight: 500;
     font-size: 21px;
   }
 
-  /* Roboto Font */
+  /* Roboto Condensed Bold Font */
+  .roboto-condensed-bold {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 670;
+    font-optical-sizing: auto;
+    font-size: 36px;
+    font-style: normal;
+  }
 
-  p,
-  .robotospecial {
-    font-family: 'Roboto', sans-serif;
+  /* Lora Font */
+  .lora-font {
+    font-family: 'Lora', serif;
     font-weight: 500;
-    font-size: 23px;
   }
 
   /* TEXT STYLING */
@@ -555,6 +589,16 @@
   .profile-photo {
     border-radius: 50%; /* Keeps it a perfect circle */
     border: 3px solid #000; /* Black border */
+    /*box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
+    width: 19vw; /* Makes the width 50% of the viewport width */
+    max-width: 200px; /* Shrinks the circle */
+    height: auto; /* Maintains aspect ratio */
+    margin: auto; /* Center the image */
+  }
+
+  .dark .profile-photo-light {
+    border-radius: 50%; /* Keeps it a perfect circle */
+    border: 3px solid #3e3e3e; /* Black border */
     /*box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
     width: 19vw; /* Makes the width 50% of the viewport width */
     max-width: 200px; /* Shrinks the circle */

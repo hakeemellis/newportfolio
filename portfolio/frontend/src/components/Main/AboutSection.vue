@@ -1,9 +1,9 @@
 <template>
   <!-- Start of Container for About Section-->
   <section id="about"
-    class="flex flex-col gap roboto-condensed-regular dark:text-custom-white"
+    class="flex flex-col gap dark:text-custom-white"
   >
-    <p v-html="formattedAboutContent"></p>
+    <p class="roboto-condensed-regular" v-html="formattedAboutContent"></p>
   </section>
   <!-- End of Container for About Section-->
 </template>
@@ -68,20 +68,29 @@
     gap: 4px;
   }
 
+  /* Lora Font */
+  .lora-font-body {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 15px;
+    font-kerning: auto;
+  }
+
   /* Roboto Condensed Font */
   .roboto-condensed-regular {
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 16px;
+    font-size: 15px;
     font-style: normal;
   }
 
+  /* Roboto Condensed Bold Font */
   .roboto-condensed-bold {
     font-family: 'Roboto Condensed', serif;
     font-weight: 670;
     font-optical-sizing: auto;
-    font-size: 18px;
+    font-size: 17px;
     font-style: normal;
   }
 
