@@ -2,34 +2,35 @@
   <!-- Start of Container for Stagnant Frame -->
   <section class="outer-container mt-2 dark:text-custom-white">
     <!-- Start of Section for Profile Image and Profile Info -->
-    <section class="flex flex-row gap-x-3 flex-1">
+    <section class="flex flex-row gap-x-3 flex-1 px-2">
       <!-- Start of Section for Profile Info and Icons -->
       <section class="flex-[0.70]">
         <!-- Start of Section for Info -->
-        <section class="flex flex-col gap-4 align-items-left text-left">
-          <h2 class="text-5xl font-black font-sans">Hakeem Ellis</h2>
-
-          <h3 class="text-3xl font-semibold font-sans">
-            Full-Stack Web Developer
-          </h3>
-          <h3 class="text-3xl font-semibold font-sans">UX/UI Designer</h3>
+        <section class="flex flex-col gap-1 align-items-left text-left">
+          <h2 class="roboto-condensed-bold tracking-wide">Hakeem Ellis</h2>
+          <section class="flex flex-col mt-1 mb-1 gap-1">
+            <h3 class="subtitle tracking-tighter">
+              Full-Stack Web Developer
+            </h3>
+            <h3 class="subtitle tracking-tighter">UX/UI Designer</h3>
+          </section>
         </section>
 
         <!-- End of Section for Info -->
 
         <!-- Start of Section for Icons -->
-        <section class="flex flex-1 justify-left items-center gap-x-4 mt-2">
+        <section class="flex flex-1 justify-left gap-x-2 mt-2">
           <!-- Start of Child Container for Socials: LinkedIn and GitHub-->
 
           <section
-            class="flex justify-center items-center gap-x-1 transition-all duration-1000 ease-in-out"
+            class="flex justify-center items-center gap-x-0 transition-all duration-1000 ease-in-out"
           >
             <!-- LinkedIn Icon -->
             <svg
               v-if="!isDarkMode"
               xmlns="http://www.w3.org/2000/svg"
-              width="55"
-              height="54"
+              width="45"
+              height="44"
               viewBox="0 0 85 84"
               fill="none"
             >
@@ -46,8 +47,8 @@
             <svg
               v-else
               xmlns="http://www.w3.org/2000/svg"
-              width="55"
-              height="54"
+              width="45"
+              height="44"
               viewBox="0 0 85 84"
               fill="none"
             >
@@ -65,8 +66,8 @@
             <svg
               v-if="!isDarkMode"
               xmlns="http://www.w3.org/2000/svg"
-              width="41"
-              height="40"
+              width="35"
+              height="34"
               viewBox="0 0 61 60"
               fill="none"
             >
@@ -97,8 +98,8 @@
             <svg
               v-else
               xmlns="http://www.w3.org/2000/svg"
-              width="41"
-              height="40"
+              width="35"
+              height="34"
               viewBox="0 0 61 60"
               fill="none"
             >
@@ -130,14 +131,14 @@
           <!-- End of Child Container for Socials: LinkedIn and GitHub -->
 
           <!-- Start of Child Container for Light/Dark Mode -->
-          <section class="flex justify-center items-center gap-x-1">
+          <section class="flex justify-center items-center">
             <!-- Dark Mode Icon -->
             <svg
               v-if="!isDarkMode"
               @click="toggleDarkMode"
               xmlns="http://www.w3.org/2000/svg"
-              width="41"
-              height="41"
+              width="36"
+              height="36"
               viewBox="0 0 66 66"
               fill="none"
             >
@@ -161,8 +162,8 @@
               v-else
               @click="toggleDarkMode"
               xmlns="http://www.w3.org/2000/svg"
-              width="46"
-              height="46"
+              width="36"
+              height="36"
               viewBox="0 0 66 66"
               fill="none"
             >
@@ -339,7 +340,7 @@
         <img
           :src="profileImageUrl"
           alt="Profile Photo"
-          class="profile-photo shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
+          class="profile-photo profile-photo-light shadow-lg shadow-zinc-500 dark:shadow-lg dark:shadow-zinc-800 dark:border-zinc-300"
         />
       </section>
       <!-- End of Profile Image Section -->
@@ -489,20 +490,21 @@
 
   /* TEXT STYLING */
 
-  /*Integral CF Font*/
+  /*Roboto Mono Font*/
+
   .subtitle {
-    font-family: 'Integral CF';
+    font-family: 'Roboto Mono', monospace;
     font-weight: 500;
-    font-size: 21px;
+    font-size: 17px;
   }
 
-  /* Roboto Font */
-
-  p,
-  .robotospecial {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 23px;
+  /* Roboto Condensed Bold Font */
+  .roboto-condensed-bold {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 670;
+    font-optical-sizing: auto;
+    font-size: 30px;
+    font-style: normal;
   }
 
   /* TEXT STYLING */
@@ -546,7 +548,17 @@
     border-radius: 50%; /* Keeps it a perfect circle */
     border: 3px solid #000; /* Black border */
     /*box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
-    width: 40vw; /* Makes the width 50% of the viewport width */
+    width: 35vw; /* Makes the width 50% of the viewport width */
+    max-width: 200px; /* Shrinks the circle */
+    height: auto; /* Maintains aspect ratio */
+    margin: auto; /* Center the image */
+  }
+
+  .dark .profile-photo-light {
+    border-radius: 50%; /* Keeps it a perfect circle */
+    border: 3px solid #3e3e3e; /* Black border */
+    /*box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
+    width: 35vw; /* Makes the width 50% of the viewport width */
     max-width: 200px; /* Shrinks the circle */
     height: auto; /* Maintains aspect ratio */
     margin: auto; /* Center the image */
@@ -557,12 +569,6 @@
   /* MOBILE MEDIA QUERIES */
 
   @media screen and (max-width: 1024px) {
-    .subtitle {
-      font-family: 'Integral CF';
-      font-weight: 500;
-      font-size: 14px;
-    }
-
   }
 
   /* MOBILE MEDIA QUERIES */

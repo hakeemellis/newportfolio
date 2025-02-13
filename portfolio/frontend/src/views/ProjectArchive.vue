@@ -2,23 +2,23 @@
   <!-- Start of Container for Project Archive Section-->
   <section class="flex flex-col h-screen overflow-y-auto">
     <section v-if="isDesktop">
-    <ProjectArchiveComp  />
+      <ProjectArchiveComp />
     </section>
 
     <section v-if="!isDesktop">
-    <ProjectArchiveCompMobile  />
+      <ProjectArchiveCompMobile />
     </section>
   </section>
   <!-- End of Container for Project Archive Section-->
-
 </template>
 
 <script>
   // Import Reactive Dependencies
   import { ref, onMounted, onUnmounted } from 'vue';
+  import { useHead } from '@vueuse/head';
 
   // Import Modular Dependencies
-import ProjectArchiveComp from '../components/Main/ProjectArchiveComp.vue';
+  import ProjectArchiveComp from '../components/Main/ProjectArchiveComp.vue';
   import ProjectArchiveCompMobile from '../components/Mobile/ProjectArchiveCompMobile.vue';
 
   export default {
@@ -26,10 +26,38 @@ import ProjectArchiveComp from '../components/Main/ProjectArchiveComp.vue';
     // Imported Components
     components: {
       ProjectArchiveComp,
-      ProjectArchiveCompMobile
+      ProjectArchiveCompMobile,
     },
     // Setup Function
     setup() {
+      // Meta Tag Setup - For SEO
+      useHead({
+        title: `${import.meta.env.VITE_APP_PROJECT_ARCHIVE_NAME}`,
+        meta: [
+          {
+            name: 'description',
+            content: `${import.meta.env.VITE_APP_PROJECT_ARCHIVE_DESCRIPTION}`,
+          },
+          {
+            property: 'og:title',
+            content: `${import.meta.env.VITE_APP_PROJECT_ARCHIVE_NAME}`,
+          },
+          {
+            property: 'og:description',
+            content: `${import.meta.env.VITE_APP_PROJECT_ARCHIVE_DESCRIPTION}`,
+          },
+          {
+            property: 'og:image',
+            content: `${import.meta.env.VITE_APP_OG_PROJECT_ARCHIVE_IMAGE}`,
+          },
+          {
+            property: 'og:url',
+            content: `${import.meta.env.VITE_APP_OG_PROJECT_ARCHIVE_URL}`,
+          },
+          { name: 'twitter:card', content: 'summary_large_image' },
+        ],
+      });
+
       // Define reactive variable
       const isDesktop = ref(window.innerWidth >= 1024); // Check if the window width is greater than or equal to 1024
 

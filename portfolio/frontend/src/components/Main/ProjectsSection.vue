@@ -8,7 +8,7 @@
     <section
       v-for="(project, index) in limitedProjects"
       :key="index"
-      class="flex flex-row flex-1 gap-4 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out px-2 py-2"
+      class="flex flex-row flex-1 gap-5 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out px-2 py-2"
     >
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
@@ -33,7 +33,7 @@
             <p class="roboto-condensed-bold">
               {{ project.title }}
             </p>
-            <p>
+            <p class="roboto-condensed-regular">
               {{ project.content }}
             </p>
             <!-- Appropriate Tags Section -->
@@ -43,7 +43,7 @@
                 :key="tagIndex"
                 class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
               >
-                <p>{{ tag }}</p>
+                <p class="roboto-condensed-regular-tag">{{ tag }}</p>
               </section>
             </section>
             <!-- End of Appropriate Tags Section -->
@@ -147,7 +147,15 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 14px;
+    font-size: 13.5px;
+    font-style: normal;
+  }
+
+  .roboto-condensed-regular-tag {
+    font-family: 'Roboto Condensed', serif;
+    font-weight: 370;
+    font-optical-sizing: auto;
+    font-size: 11px;
     font-style: normal;
   }
 
@@ -163,7 +171,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 470;
     font-optical-sizing: auto;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
   }
 
@@ -192,7 +200,7 @@
     /*box-shadow:
       0px 4px 4px 0px rgba(0, 0, 0, 0.25),
       0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
-    width: 50vw; /* Makes the width 50% of the viewport width */
+    width: 18vw; /* Makes the width 50% of the viewport width */
     max-width: 200px; /* maxes the total width it could expand to */
     height: 80%; /* Utilizes up to 70% of photo's height/size */
     margin: auto; /* Center the image */
