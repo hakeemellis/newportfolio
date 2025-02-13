@@ -35,6 +35,17 @@
         >
           Projects
         </button>
+
+        <a
+          v-for="(random, index) in randomContent"
+          :key="index"
+          :href="random.contactMe"
+          target="_blank"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font"
+          style="font-size: 20px"
+        >
+          Contact Me
+        </a>
       </section>
     </section>
     <!-- End of Section for Profile -->
@@ -374,6 +385,7 @@
       // --- Reactive Variables (Defining Variables Prior to DOM) ---
       const isDarkMode = ref(false); // Reactive variable defining dark mode state
       const profileImageUrl = ref(''); // Reactive variable defining profile image URL
+      const randomContent = ref([]); // Reactive variable defining content for Random Section
 
       // Toggle Dark Mode Function
       const toggleDarkMode = () => {
@@ -387,6 +399,23 @@
           //if false
           document.documentElement.classList.remove('dark');
           localStorage.setItem('theme', 'light');
+        }
+      };
+
+      // Function to fetch content available for Random Section
+      const fetchRandomContent = async () => {
+        try {
+          // Fetch content available for Random Section
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/random`
+          );
+
+          // Check if response contains content - if so, assign it to randomContent
+          if (response.data && response.data.content) {
+            randomContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching random content:', error);
         }
       };
 
@@ -443,7 +472,10 @@
         // 2. Fetch Initial Profile Image (Just Calling the Function)
         fetchProfileImage();
 
-        // 3. Setup/Initialize WebSocket to Update Photos on the Frontend
+        // 3. Fetch Random Content (Just Calling the Function)
+        fetchRandomContent();
+
+        // 4. Setup/Initialize WebSocket to Update Photos on the Frontend
 
         // Listen for WebSocket events
         socket.on('photos-updated', () => {
@@ -488,6 +520,7 @@
         scrollToSection,
         toggleDarkMode,
         profileImageUrl, // instead of "fetchProfileImage" due to it not affecting my template and I only need the image URL value
+        randomContent,
       };
       // End of Return
     },
@@ -562,7 +595,7 @@
     height: auto; /* Maintains aspect ratio */
     margin: auto; /* Center the image */
   }
-  
+
   .dark .profile-photo-light {
     border-radius: 50%; /* Keeps it a perfect circle */
     border: 3px solid #3e3e3e; /* Black border */

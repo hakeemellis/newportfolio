@@ -54,11 +54,15 @@
     <!-- End of Experience Section -->
 
     <!-- Text -->
-    <button
+    <a
+      v-for="(random, index) in randomContent"
+      :key="index"
+      :href="random.resume"
+      target="_blank"
       class="roboto-condensed-medium hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
     >
       View Full Resume
-    </button>
+    </a>
   </section>
   <!--End: Only exists to separate experience section from element -->
 </template>
@@ -76,6 +80,7 @@
     setup() {
       // Define Reactive Variable
       const experienceContent = ref([]);
+      const randomContent = ref([]);
 
       // Fetch content available for Experience Section through API route - async due to axios request (backend)
       const fetchExperienceContent = async () => {
@@ -115,11 +120,33 @@
       });
       // End of function to limit experience
 
+      // Function to fetch content available for Random Section
+      const fetchRandomContent = async () => {
+        try {
+          // Fetch content available for Random Section
+          const response = await axios.get(
+            `${import.meta.env.VITE_API_BASE_URL}/api/content/random`
+          );
+
+          // Check if response contains content - if so, assign it to randomContent
+          if (response.data && response.data.content) {
+            randomContent.value = response.data.content;
+          }
+        } catch (error) {
+          console.error('Error fetching random content:', error);
+        }
+      };
+
+      // Execute function on DOM mount i.e. when its finish rendering
+      onMounted(fetchRandomContent);
+      // End of Fetch Function
+
       // Return everything that should be accessible in the template
       return {
         experienceContent,
         limitedExperience,
         sortedExperienceContent,
+        randomContent,
         getFilteredTags,
       };
       // End of Return
