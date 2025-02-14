@@ -487,19 +487,6 @@
         onUnmounted(() => {
           socket.off('photos-updated', fetchProfileImage); // Removes the event listener on "fetchProfileImage" specifically
         });
-
-        // Debugging WebSocket connection
-        socket.on('connect', () => {
-          console.log('Connected to WebSocket server');
-        });
-
-        socket.on('connect_error', (error) => {
-          console.error('WebSocket connection error:', error);
-        });
-
-        socket.on('disconnect', () => {
-          console.log('Disconnected from WebSocket server');
-        });
       });
       // End of onMounted
 
