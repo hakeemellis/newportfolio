@@ -9,9 +9,7 @@
         <section class="flex flex-col gap-1 align-items-left text-left">
           <h2 class="roboto-condensed-bold tracking-wide">Hakeem Ellis</h2>
           <section class="flex flex-col mt-1 mb-1 gap-1">
-            <h3 class="subtitle tracking-tighter">
-              Full-Stack Web Developer
-            </h3>
+            <h3 class="subtitle tracking-tighter">Full-Stack Web Developer</h3>
             <h3 class="subtitle tracking-tighter">UX/UI Designer</h3>
           </section>
         </section>
@@ -444,19 +442,6 @@
         // Cleanup After Unmount - to avoid memory leaks and unexpected behavior in future
         onUnmounted(() => {
           socket.off('photos-updated', fetchProfileImage); // Removes the event listener on "fetchProfileImage" specifically
-        });
-
-        // Debugging WebSocket connection
-        socket.on('connect', () => {
-          console.log('Connected to WebSocket server');
-        });
-
-        socket.on('connect_error', (error) => {
-          console.error('WebSocket connection error:', error);
-        });
-
-        socket.on('disconnect', () => {
-          console.log('Disconnected from WebSocket server');
         });
       });
       // End of onMounted
