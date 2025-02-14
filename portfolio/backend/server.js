@@ -69,8 +69,11 @@ app.use(
     // "false" is better for performance and security - because it forces the user to be authenticated before a session is created
     store: store,
     genid: (req) => {
-      // If the user is authenticated, use their unique ID for the session ID
-      return req.user ? req.user.id : (Math.random() * 1e6).toString(); // Fallback to random ID if not authenticated
+      return req.user
+        ? req.session.user
+          ? req.session.user
+          : req.user.id // If authenticated, use session user or user ID
+        : (Math.random() * 1e6).toString(); // Fallback to random ID if not authenticated
     },
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
