@@ -22,6 +22,7 @@ dotenv.config({
       : ".env",
 });
 
+console.log("Using CORS Origin:", process.env.CORS_ORIGIN); // Check which CORS origin is loaded
 
 const cors = require("cors"); // cors for handling cross-origin requests
 const http = require("http"); // http for handling WebSockets
@@ -39,7 +40,9 @@ const authRoutes = require("./routes/authRoutes"); // to define default routes f
 const contentRoutes = require("./routes/contentRoutes"); // to define default routes for content (app.use)
 const openaiRoutes = require("./routes/openaiRoutes"); // to define default routes for AI use (app.use)
 
-
+// Log Environment Variables
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
 // CONNECT TO MONGO-DB
 connectDB();
@@ -68,9 +71,10 @@ app.use(
 
 // Logging middleware to check session data - for debugging
 app.use((req, res, next) => {
-  
   next();
 });
+
+console.log("Session data:", req.session);
 
 // CORS Implementation - to accept cross-origin requests from multiple origins
 const allowedOrigins = process.env.CORS_ORIGIN // Check which CORS origin is loaded
@@ -79,7 +83,7 @@ const allowedOrigins = process.env.CORS_ORIGIN // Check which CORS origin is loa
     )
   : [];
 
-
+console.log("Allowed origins:", allowedOrigins); // Verify which origins are allowed
 
 // CORS Configuration Function - to handle cross-origin requests
 const corsOptions = {
@@ -122,10 +126,10 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5001; // Reads environment variable for PORT or default to 5001
 //app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server
 server.listen(PORT, () => {
-
+  console.log(`Server is running on port ${PORT}`);
   if (io) {
-
+    console.log("WebSocket server initialized successfully");
   } else {
-
+    console.error("WebSocket server failed to initialize");
   }
 });

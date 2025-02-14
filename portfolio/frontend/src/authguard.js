@@ -10,6 +10,9 @@ axios.defaults.withCredentials = true; // Ensure cookies are sent with requests 
 
 // Define the authGuard function
 const authGuard = async (to, from, next) => {
+  console.log('authGuard called');
+  console.log('Navigating to:', to.name); // "to" represents the route being navigated to | "matched" property lives in its array
+
   // Check if route requires authentication | "record" param becomes the route being navigated to via "to" with "matched" checking alongside array method if the route requires authentication
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     // "some ()" checks if any element (imported through meta) in the array matches the condition - this is an array method not an instance
@@ -19,6 +22,7 @@ const authGuard = async (to, from, next) => {
         `${import.meta.env.VITE_API_BASE_URL}/api/auth/check-auth`
       );
       const isAuthenticated = response.data.authenticated;
+      console.log('isAuthenticated:', isAuthenticated); // Verifies if user is authenticated
 
       // If user is not authenticated, redirect to login page
       if (!isAuthenticated) {
@@ -27,6 +31,7 @@ const authGuard = async (to, from, next) => {
         next(); // Proceed to route if authenticated (as per original intent)
       }
     } catch (error) {
+      console.error('Error checking authentication:', error);
       next({ name: 'AdminLogin' }); // Redirect to login page on error
     }
   }
@@ -38,6 +43,7 @@ const authGuard = async (to, from, next) => {
         `${import.meta.env.VITE_API_BASE_URL}/api/auth/check-auth`
       );
       const isAuthenticated = response.data.authenticated;
+      console.log('isAuthenticated:', isAuthenticated); // Verifies if user is authenticated
 
       // If user is already authenticated, redirect to admin panel
       if (isAuthenticated) {
@@ -46,6 +52,7 @@ const authGuard = async (to, from, next) => {
         next(); // Proceed to login page if not authenticated (as per original intent)
       }
     } catch (error) {
+      console.error('Error checking authentication:', error);
       next(); // Proceed to login page on error
     }
   } else {
