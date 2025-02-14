@@ -1,6 +1,6 @@
 <template>
   <!-- Start of Container for Footer Section -->
-  <section class="flex mx-auto px-5">
+  <section class="flex mx-auto px-5 p-7">
     <p class="roboto-condensed-regular gap dark:text-custom-white">
       Designed in <b class="dark:text-rose-500 text-cyan-800">Figma</b>. Coded
       in <b class="dark:text-rose-500 text-cyan-800">Visual Studio Code</b> by
