@@ -61,6 +61,7 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie - for security
+      sameSite: "none", // Allows the cookie to be sent with cross-site requests
       maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds - for session duration
     },
   })
