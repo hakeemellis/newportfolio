@@ -29,8 +29,8 @@ if (
   document.documentElement.classList.remove('dark');
 }
 
-// Set Axios Globally
-axios.defaults.withCredentials = true;
+// Configure axios to send cookies with requests
+axios.defaults.withCredentials = true; // Ensure cookies are sent with requests (for session management) - this was important for the backend login to work
 
 // Creating Vue Application
 const app = createApp(App); // defining the app
