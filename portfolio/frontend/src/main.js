@@ -7,6 +7,7 @@ import { createApp } from 'vue';
 import { createHead } from '@vueuse/head'; // to create meta data
 import { registerSW } from 'virtual:pwa-register'; // for PWA
 import VueGtag from 'vue-gtag'; // Google Analytics
+import axios from 'axios';
 
 // Import Tailwind CSS
 import './styles/tailwind.css';
@@ -27,6 +28,9 @@ if (
 } else {
   document.documentElement.classList.remove('dark');
 }
+
+// Set Axios Globally
+axios.defaults.withCredentials = true;
 
 // Creating Vue Application
 const app = createApp(App); // defining the app
