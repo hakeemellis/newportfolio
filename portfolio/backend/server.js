@@ -22,6 +22,7 @@ dotenv.config({
       : ".env",
 });
 
+console.log("Using CORS Origin:", process.env.CORS_ORIGIN); // Check which CORS origin is loaded
 
 const cors = require("cors"); // cors for handling cross-origin requests
 const http = require("http"); // http for handling WebSockets
@@ -39,7 +40,9 @@ const authRoutes = require("./routes/authRoutes"); // to define default routes f
 const contentRoutes = require("./routes/contentRoutes"); // to define default routes for content (app.use)
 const openaiRoutes = require("./routes/openaiRoutes"); // to define default routes for AI use (app.use)
 
-
+// Log Environment Variables
+console.log("NODE_ENV:", process.env.NODE_ENV);
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
 // CONNECT TO MONGO-DB
 connectDB();
@@ -47,28 +50,60 @@ connectDB();
 // MIDDLEWARE
 app.use(express.json()); // for parsing JSON data
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
+
+// Session Management within Middleware (will reorganize this code later)
+
+// Defining MongoStore as a variable to use within session management configuration
+const store = MongoStore.create({
+  // To allow MongoDB to store secure session data versus storing in memory i.e. MemoryStore/Browser
+  mongoUrl: process.env.MONGO_URI,
+  dbName: process.env.MONGO_DB_NAME,
+  ttl: 14 * 24 * 60 * 60, // To expire sessions after 14 days
+  autoRemove: "native", // To automatically remove expired sessions
+  collection: process.env.SESSION_COLLECTION,
+  crypto: {
+    secret: process.env.SESSION_SECRET,
+  },
+});
+
+// Session Management Configuration
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false, // Prevents unnecessary session updates in database - for performance eg. if user logged in and clicked to upload a photo, it will create data for the session - even if user does not upload a thing
     saveUninitialized: false, // Prevents unneccessary sessions from being stored to database - for performance eg. if true, and user only visits the site an empty session will be created within my database and stored
     // "false" is better for performance and security - because it forces the user to be authenticated before a session is created
-    store: MongoStore.create({
-      // To allow MongoDB to store secure session data versus storing in memory i.e. MemoryStore/Browser
-      mongoUrl: process.env.MONGO_URI,
-      ttl: 14 * 24 * 60 * 60, // To expire sessions after 14 days
-    }),
+    store: store,
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie - for security
       maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds - for session duration
+      sameSite: "lax",
     },
   })
 ); // for initializing session management i.e. server-side security in express server
 
+// Debugging route for session data
+app.get("/debug-session", async (req, res) => {
+  console.log("Current session data:", req.session);
+
+  try {
+    // Directly query the sessions collection in MongoDB
+    const mongoose = require("mongoose"); // Import mongoose
+    const db = mongoose.connection.db; // Get the database connection
+    const sessions = await db.collection("sessions").find({}).toArray(); // Fetch stored sessions
+
+    console.log("Stored sessions in MongoDB:", sessions);
+    res.send({ session: req.session, storedSessions: sessions });
+  } catch (error) {
+    console.error("Error fetching sessions:", error);
+    res.status(500).send({ error: "Failed to fetch session data" });
+  }
+});
+
 // Logging middleware to check session data - for debugging
 app.use((req, res, next) => {
-  
+  console.log("Session data:", req.session);
   next();
 });
 
@@ -79,7 +114,7 @@ const allowedOrigins = process.env.CORS_ORIGIN // Check which CORS origin is loa
     )
   : [];
 
-
+console.log("Allowed origins:", allowedOrigins); // Verify which origins are allowed
 
 // CORS Configuration Function - to handle cross-origin requests
 const corsOptions = {
@@ -122,10 +157,10 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 5001; // Reads environment variable for PORT or default to 5001
 //app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server
 server.listen(PORT, () => {
-
+  console.log(`Server is running on port ${PORT}`);
   if (io) {
-
+    console.log("WebSocket server initialized successfully");
   } else {
-
+    console.error("WebSocket server failed to initialize");
   }
 });

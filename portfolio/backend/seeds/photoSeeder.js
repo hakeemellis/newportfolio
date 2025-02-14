@@ -21,18 +21,23 @@ const seedPhotos = async () => {
   try {
     // Connect to the database
     await connectDB();
+    console.log("Database Connected!");
 
     // Clear existing photos to avoid duplicates
     await Photo.deleteMany(); // Delete all photos from MongoDB - as defined by Photo model with "Photo"
+    console.log("Database Connected!");
 
     // Fetch photos from Cloudinary
     const photos = await fetchCloudinaryPhotos();
+    console.log("Fetched photos from Cloudinary:", photos);
 
     // Insert fetched photos into MongoDB
     await Photo.insertMany(photos); // used "insertMany" instead of "save" due to array versus string
+    console.log("Database seeded successfully!");
 
     process.exit(0); // Exit the process after seeding successfully
   } catch (error) {
+    console.error("Error seeding photos:", error);
     process.exit(1); // Exit the process if there's an error
   }
 };

@@ -18,9 +18,11 @@ const seedContent = async () => {
   try {
     // Connect to the database
     await connectDB();
+    console.log("Database Connected!");
 
     // Clear existing content to avoid duplicates
     await Content.deleteMany(); // Delete all content from MongoDB - as defined by Content model with "Content"
+    console.log("Existing content deleted!");
 
     // Predefined content - to seed into MongoDB (just copying user model structure)
     const contentData = [
@@ -40,9 +42,11 @@ const seedContent = async () => {
 
     // Insert predefined content into MongoDB
     await Content.insertMany(contentData); // used "insertMany" instead of "save" due to array versus string
+    console.log("Content seeded successfully!");
 
     process.exit(0); // Exit the process after seeding successfully
   } catch (error) {
+    console.error("Error seeding content:", error);
     process.exit(1); // Exit the process if there's an error
   }
 };
