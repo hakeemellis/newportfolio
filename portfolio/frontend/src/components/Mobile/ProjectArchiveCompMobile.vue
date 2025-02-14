@@ -287,31 +287,18 @@
           // Ensure projectsContent is populated with a value
           if (projectsContent.value.length === 0) {
             await fetchProjectsContent();
-            console.log('Fetched projects content');
           }
-          console.log('Projects Content:', projectsContent.value);
 
           // Amalgamate all project descriptions into one parameter for AI to generate sector tags
           const description = projectsContent.value
             .map((project) => project.content)
             .join(', ');
 
-          // Log the aggregated descriptions
-          console.log('Aggregated Descriptions:', description);
-
           // Define response to assist with generating tags from {description} parameter - acts as "data" in the syntax: axios.post(url, data, config)
           const response = await axios.post(
             `${import.meta.env.VITE_API_BASE_URL}/api/openai/generate-sector-tags`,
             { description }
           );
-
-          // Log the response
-          console.log('Response:', response);
-
-          // To see the information the "data" property contains
-          console.log('Response Data:', response.data);
-
-          console.log('Generated sector tags:', response.data.sectorTags);
 
           // Return the generated sector tags
           const generatedTags = response.data.sectorTags || [];
@@ -338,12 +325,10 @@
         // If projectsContent is empty, fetch it
         if (projectsContent.value.length === 0) {
           await fetchProjectsContent();
-          console.log('Fetched projects content');
         }
 
         // To allow for the "All" tag to be selected or unselected
         selectedTag.value = tag === 'All' ? null : tag;
-        console.log('Selected Tag:', selectedTag.value);
       };
       // End of function to filter tags function (for projects)
 

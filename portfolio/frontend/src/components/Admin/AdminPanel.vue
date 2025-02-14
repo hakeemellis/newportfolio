@@ -205,7 +205,6 @@
 
           // Assign value to photos reactive variable based on route response
           photos.value = response.data;
-          console.log('Fetched photos:', photos.value);
         } catch (error) {
           console.error('Error fetching photos:', error);
         }
@@ -322,11 +321,6 @@
 
       // Function to Handle File Upload to Cloudinary
       const handleFileUpload = async (event, index) => {
-        console.log(event); // to see the information the defined parameter "event" contains
-        console.log(event.target); // "target" because an instance due to the input tag - with it triggering our "event" parameter
-        console.log(event.target.files); // to see the information the "files" property contains
-        console.log(event.target.files[0]); // to select the first file in entirety (to load the file itself)
-
         // Define variable for parameter path for file upload
         const file = event.target.files[0];
         if (!file) return console.log('No file selected'); // if false/not true due to "file" not existing, return message
@@ -339,8 +333,6 @@
           `${import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET}` // Setting Cloudinary upload preset - to assist with uploading to Cloudinary (used append to not reassign variable)
         );
 
-        console.log('Uploading photo...', formData); // storing keys and values as a variable
-
         try {
           // Define response to assist with uploading to Cloudinary - syntax: axios.post(url, data, config)
           const response = await axios.post(
@@ -348,13 +340,10 @@
             formData,
             { withCredentials: false } // set to false to avoid CORS issues (as credentials/authentication is not required to upload files to Cloudinary)
           ); // axios request - syntax: axios.post(url, data, config) - to upload to Cloudinary
-          console.log('Cloudinary response:', response); // to see the information the "response" property contains
-          console.log('Cloudinary response with data instance:', response.data); // to see the information the "data" property contains
 
           // Define variable to store the secure URL of the uploaded photo
           const photoURL = response.data.secure_url; // to store the secure URL of the uploaded photo
           projectsContent.value[index].photoURL = photoURL; // to update specific project with the uploaded photo - "index" would be the key for the specific project that the file belongs to
-          console.log('Photo uploaded:', photoURL);
         } catch (error) {
           console.error('Error uploading photo:', error);
         }
@@ -374,13 +363,6 @@
               `${import.meta.env.VITE_API_BASE_URL}/api/openai/generate-tags`,
               { description }
             );
-
-            console.log(response);
-
-            // To see the information the "data" property contains
-            console.log(response.data);
-
-            console.log('Generated tags:', response.data.tags);
 
             // Assign the generated tags to the tags variable
             tags = response.data.tags;
@@ -448,7 +430,7 @@
           // Check if update was successful
           if (data.success) {
             fetchExperienceContent(); // run function once on each update to fetch updated experience content
-            console.log('Experience updated successfully');
+
             alert('Experience updated successfully');
           } else {
             alert('Failed to update experience');
@@ -507,7 +489,6 @@
 
           // Check if update was successful
           if (data.success) {
-            console.log('Project updated successfully');
             alert('Project updated successfully');
           } else {
             alert('Failed to update project');
@@ -539,7 +520,7 @@
           // Check if update was successful
           if (data.success) {
             fetchAboutContent(); // run function once on each update to fetch updated about content
-            console.log('About Content updated successfully');
+
             alert('About Content updated successfully');
           } else {
             alert('Failed to update content');
@@ -588,7 +569,6 @@
 
           // Check if update was successful
           if (data.success) {
-            console.log('Random Content updated successfully');
             alert('Random Content updated successfully');
           } else {
             alert('Failed to update content');

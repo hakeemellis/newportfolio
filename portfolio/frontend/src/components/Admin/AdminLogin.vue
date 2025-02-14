@@ -1,18 +1,32 @@
 <template>
   <!-- Login Section for Admin Panel -->
-  <section class="flex flex-col justify-center items-center gap-7 h-screen dark:text-custom-white text-cyan-800">
+  <section
+    class="flex flex-col justify-center items-center gap-7 h-screen dark:text-custom-white text-cyan-800"
+  >
     <h1 class="roboto-condensed-bold text-5xl font-bold">Admin Login</h1>
     <!-- Login Form -->
     <form @submit.prevent="login" class="grid grid-cols-1 gap-5">
       <!-- Username Field-->
       <section class="flex gap-4 text-3xl">
         <label class="font-medium" for="username">Username:</label>
-        <input class="rounded-lg px-2 py-1 dark:bg-zinc-800 dark:text-custom-white" placeholder="Username" type="text" v-model="username" required />
+        <input
+          class="rounded-lg px-2 py-1 dark:bg-zinc-800 dark:text-custom-white"
+          placeholder="Username"
+          type="text"
+          v-model="username"
+          required
+        />
       </section>
       <!-- Password Field-->
       <section class="flex gap-4 text-3xl">
         <label class="font-medium" for="password">Password:</label>
-        <input class="rounded-lg px-3 py-1 dark:bg-zinc-800 dark:text-custom-white" placeholder="Password" type="password" v-model="password" required />
+        <input
+          class="rounded-lg px-3 py-1 dark:bg-zinc-800 dark:text-custom-white"
+          placeholder="Password"
+          type="password"
+          v-model="password"
+          required
+        />
       </section>
       <!-- Submit Button -->
       <button class="text-3xl font-semibold" type="submit">Login</button>
@@ -43,7 +57,6 @@
 
       // Login Function - async due to "await" being used for DB operations via Axios (to check backend route for login)
       const login = async () => {
-        console.log('Logging in...');
         try {
           // Check if credentials are valid alongside username and password from input fields
           const response = await axios.post(

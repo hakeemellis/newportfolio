@@ -1,8 +1,6 @@
 <template>
   <!-- Start of Container for About Section-->
-  <section id="about"
-    class="flex flex-col gap dark:text-custom-white"
-  >
+  <section id="about" class="flex flex-col gap dark:text-custom-white">
     <p class="roboto-condensed-regular" v-html="formattedAboutContent"></p>
   </section>
   <!-- End of Container for About Section-->

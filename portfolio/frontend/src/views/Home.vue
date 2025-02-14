@@ -185,12 +185,12 @@
       // Function to scroll to desired section
       const scrollToSection = (sectionId) => {
         const section = document.getElementById(sectionId);
-        console.log('Scrolling to section:', sectionId);
+
         if (section) {
           section.scrollIntoView({ behavior: 'smooth' });
         }
       };
-      console.log('Scroll to Section Function:', scrollToSection);
+
       // End of scrollToSection
 
       // Define reactive variable

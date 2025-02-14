@@ -429,7 +429,6 @@
               withCredentials: true,
             }
           );
-          console.log('Fetched photos:', response.data);
 
           // Find photo using array method "find ()"
           if (response.data && response.data.length > 0) {
@@ -440,7 +439,6 @@
 
             // Assign photo URL to a reactive variable as "profileImageUrl"
             profileImageUrl.value = firstPhoto.photoURL; // Reminder: photoURL is JSON instance from the loaded Cloudinary photo (gives us the photo URL)
-            console.log('Profile image URL set to:', profileImageUrl.value);
           } else {
             console.warn('No photos available in the response.');
           }
@@ -479,7 +477,6 @@
 
         // Listen for WebSocket events
         socket.on('photos-updated', () => {
-          console.log('Photos updated via WebSocket!');
           fetchProfileImage(); // To broadcast update to clients - for the profile image fetched through the function
         });
 
@@ -493,12 +490,12 @@
       // Function to scroll to desired section
       const scrollToSection = (sectionId) => {
         const section = document.getElementById(sectionId);
-        console.log('Scrolling to section:', sectionId);
+
         if (section) {
           section.scrollIntoView({ behavior: 'smooth' });
         }
       };
-      console.log('Scroll to Section Function:', scrollToSection);
+
       // End of scrollToSection
 
       // Return everything that should be accessible in the template
