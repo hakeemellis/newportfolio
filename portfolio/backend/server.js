@@ -28,6 +28,7 @@ const cors = require("cors"); // cors for handling cross-origin requests
 const http = require("http"); // http for handling WebSockets
 const session = require("express-session"); // to assist with session management (for authentication and security) i.e. server-side security
 const MongoStore = require("connect-mongo");
+const crypto = require("crypto");
 
 // Import Modular Variables: Database and Routes
 const app = express(); // defining the variable "app" to allow express to establish routing
@@ -74,6 +75,7 @@ app.use(
     saveUninitialized: false, // Prevents unneccessary sessions from being stored to database - for performance eg. if true, and user only visits the site an empty session will be created within my database and stored
     // "false" is better for performance and security - because it forces the user to be authenticated before a session is created
     store: store,
+    genid: () => crypto.randomUUID(), // Always generate a new random unique ID for the session ID
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie - for security
