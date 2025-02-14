@@ -68,6 +68,10 @@ app.use(
     saveUninitialized: false, // Prevents unneccessary sessions from being stored to database - for performance eg. if true, and user only visits the site an empty session will be created within my database and stored
     // "false" is better for performance and security - because it forces the user to be authenticated before a session is created
     store: store,
+    genid: (req) => {
+      // If the user is authenticated, use their unique ID for the session ID
+      return req.user ? req.user.id : (Math.random() * 1e6).toString(); // Fallback to random ID if not authenticated
+    },
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie - for security
