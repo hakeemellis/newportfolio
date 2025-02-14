@@ -19,41 +19,42 @@
       <!-- End of Section with Year -->
 
       <!-- Start of Parent Container with Company Role, Description, and Tags -->
-
-      <section class="flex-[0.80] break-words">
-        <!-- While flex[0.XX] is enabled, the section becomes its own container
+      <a :href="project.link" target="_blank">
+        <section class="flex-[0.80] break-words">
+          <!-- While flex[0.XX] is enabled, the section becomes its own container
             as such, it becomes better to establish a flex container within it to achieve desired result
             as I have below. Using "flex" in it is not recommended -->
 
-        <!-- Inner Child Container with Company Role, Description, and Tags -->
-        <section class="flex flex-col gap-10">
-          <!-- Company Section -->
-          <section class="flex flex-col gap-4">
-            <section>
-              <img
-                :src="project.photoURL"
-                class="projects-photo dark:shadow-lg dark:shadow-zinc-800"
-              />
-            </section>
-            <p>
-              {{ project.content }}
-            </p>
-            <!-- Appropriate Tags Section -->
-            <section class="flex flex-row flex-wrap gap-2 py-3">
-              <section
-                v-for="(tag, tagIndex) in getFilteredTags(project.tags)"
-                :key="tagIndex"
-                class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
-              >
-                <p style="font-size: 10px;">{{ tag }}</p>
+          <!-- Inner Child Container with Company Role, Description, and Tags -->
+          <section class="flex flex-col gap-10">
+            <!-- Company Section -->
+            <section class="flex flex-col gap-4">
+              <section>
+                <img
+                  :src="project.photoURL"
+                  class="projects-photo dark:shadow-lg dark:shadow-zinc-800"
+                />
               </section>
+              <p>
+                {{ project.content }}
+              </p>
+              <!-- Appropriate Tags Section -->
+              <section class="flex flex-row flex-wrap gap-2 py-3">
+                <section
+                  v-for="(tag, tagIndex) in getFilteredTags(project.tags)"
+                  :key="tagIndex"
+                  class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                >
+                  <p style="font-size: 10px">{{ tag }}</p>
+                </section>
+              </section>
+              <!-- End of Appropriate Tags Section -->
             </section>
-            <!-- End of Appropriate Tags Section -->
+            <!-- End of Company Section-->
           </section>
-          <!-- End of Company Section-->
+          <!-- End of Inner Child Container with Company Role, Description, and Tags -->
         </section>
-        <!-- End of Inner Child Container with Company Role, Description, and Tags -->
-      </section>
+      </a>
       <!-- End of Parent Container with Company Role, Description, and Tags -->
     </section>
     <!-- End of Experience Section -->
