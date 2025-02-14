@@ -23,7 +23,6 @@
       LoadingScreen,
     },
     setup() {
-
       // Define Reactive Variable: To look if "dark" class has been added to <html> element in index.html
       const isDarkMode = ref(
         document.documentElement.classList.contains('dark')
@@ -68,6 +67,12 @@
 
       // Mouse Hover Effect: Really sets a gradient effect on the background of the page to mimic a "mouse hover" effect
       const backgroundImage = computed(() => {
+        // If the window width is less than 1024, return nothing
+        if (!isDesktop.value) {
+          return '';
+        }
+
+        // If the window width is greater than 1024, return a gradient effect
         if (isDarkMode.value) {
           return `radial-gradient(circle at ${mouseX.value}px ${mouseY.value}px, #18181b 5%, #18181b 5%, transparent 20%)`;
         } else {
@@ -88,6 +93,24 @@
         }, 2500);
       });
       // End of Loading Screen
+
+      // Define Reactive Variable - To look if the window width is greater than or equal to 1024
+      const isDesktop = ref(window.innerWidth >= 1024); // Check if the window width is greater than or equal to 1024
+
+      // Function to update screen size based on window width
+      const updateScreenSize = () => {
+        isDesktop.value = window.innerWidth >= 1024;
+      };
+
+      // To listen for changes in window width automatically
+      onMounted(() => {
+        window.addEventListener('resize', updateScreenSize);
+      });
+
+      onUnmounted(() => {
+        window.removeEventListener('resize', updateScreenSize);
+      });
+      // End of function to update screen size
 
       return {
         isLoading,
@@ -111,5 +134,4 @@
   .logo.vue:hover {
     filter: drop-shadow(0 0 2em #42b883aa);
   }
-
 </style>
