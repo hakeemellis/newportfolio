@@ -117,7 +117,7 @@
 
       // Function to Limit Projects Shown (forcing users to view archive)
       const limitedProjects = computed(() => {
-        return sortedProjectsContent.value.slice(0, 2);
+        return sortedProjectsContent.value.slice(0, 3);
       });
       // End of Function to Limit Projects
 
