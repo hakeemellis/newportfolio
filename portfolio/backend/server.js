@@ -66,7 +66,7 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false, // Prevents unnecessary session updates in database - for performance eg. if user logged in and clicked to upload a photo, it will create data for the session - even if user does not upload a thing
-    saveUninitialized: false, // Prevents unneccessary sessions from being stored to database - for performance eg. if true, and user only visits the site an empty session will be created within my database and stored
+    saveUninitialized: true, // Prevents unneccessary sessions from being stored to database - for performance eg. if true, and user only visits the site an empty session will be created within my database and stored
     // "false" is better for performance and security - because it forces the user to be authenticated before a session is created
     store: store,
     genid: () => crypto.randomUUID(), // Always generate a new random unique ID for the session ID
@@ -75,7 +75,6 @@ app.use(
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie - for security
       sameSite: "none", // Allows the cookie to be sent with cross-site requests
       maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds - for session duration
-      sameSite: "lax",
     },
   })
 ); // for initializing session management i.e. server-side security in express server
