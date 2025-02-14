@@ -24,7 +24,6 @@ const initializeWebSocket = (server) => {
     io.on("connection", (socket) => {
       // To listen for a connection event - when a client connects to the server. "socket" is a parameter within
       // Server (rebranded as io) defined as a callback function to handle the connection event
-      console.log("A user connected");
 
       // Broadcast photo sync updates (commented out for now)
       /*
@@ -34,14 +33,11 @@ const initializeWebSocket = (server) => {
         console.log("photos-updated event broadcasted");
       });*/
 
-      socket.on("disconnect", () => {
-        console.log("A user disconnected");
-      });
+      socket.on("disconnect", () => {});
     });
 
     return io; // Return the initialized WebSocket server
   } catch (error) {
-    console.error("Error initializing WebSocket server:", error);
     return null;
   }
 };

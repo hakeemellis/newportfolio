@@ -15,7 +15,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated"); // Middleware
 // Update content route
 router.post("/:section", isAuthenticated, async (req, res) => {
   //"/:section" is a dynamic route parameter
-  console.log("Updating content...");
+
   // Extract section and content from request body
   const { section } = req.params; // Extract section from request params - defined with curly braces due to its dynamic nature
   const { content } = req.body; // Extract content from request body - defined with curly braces due to its dynamic nature
@@ -29,8 +29,6 @@ router.post("/:section", isAuthenticated, async (req, res) => {
     // and updates it if it does, or creates it if it doesn't, which eliminates the need to seed data - short for insert or update
     res.json({ success: true, result }); // if successful, shows content in a JSON format
   } catch (error) {
-    console.error("Error updating content:", error);
-    console.log("Content Failed Badly:", content);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
 });
@@ -51,7 +49,6 @@ router.get("/:section", async (req, res) => {
       res.status(404).json({ success: false, message: "Content not found" }); // if content not found, shows failure - but only because it's empty
     }
   } catch (error) {
-    console.error("Error fetching content:", error);
     res.status(500).json({ success: false, message: "Internal server error" }); // shows failure due to internal server error (not defined in contentModel.js)
   }
 });
