@@ -17,7 +17,6 @@ router.get("/", async (req, res) => {
     const photos = await Photo.find(); // Fetch all photos from MongoDB - as assigned through photo model with "Photo" using the "find" array method
     res.json(photos); // Return assigned variable in "photos" as JSON data
   } catch (error) {
-    console.log("Syncing photos...");
     res.status(500).json({ error: "Failed to fetch photos" });
   }
 });
@@ -38,15 +37,10 @@ router.post("/webhook", async (req, res) => {
 
     // Success message
     res.status(200).json({ message: "Photos synced successfully!" });
-    console.log("Photos synced successfully!");
   } catch (error) {
-    console.error("Error syncing photos:", error);
-    console.log("Error syncing photos:", error);
     res.status(500).json({ error: "Failed to sync photos" });
   }
 });
 // End of sync photos route
-
-console.log("Photo routes loaded SUCCESSFULLY"); // only keeping because it was hell to get this route working too | debugging purposes
 
 module.exports = router; // Export all defined routes to express router/server instance

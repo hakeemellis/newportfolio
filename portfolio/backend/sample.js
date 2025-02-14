@@ -26,7 +26,7 @@ const utilityFunctionName = async (inputParameter) => {
     return processedResult;
   } catch (error) {
     // Handle errors gracefully
-    console.error("Error occurred:", error);
+
     throw new Error("Custom error message for debugging or user feedback");
   }
 };

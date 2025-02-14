@@ -22,8 +22,6 @@ dotenv.config({
       : ".env",
 });
 
-console.log("Using CORS Origin:", process.env.CORS_ORIGIN); // Check which CORS origin is loaded
-
 const cors = require("cors"); // cors for handling cross-origin requests
 const http = require("http"); // http for handling WebSockets
 const session = require("express-session"); // to assist with session management (for authentication and security) i.e. server-side security
@@ -33,16 +31,12 @@ const MongoStore = require("connect-mongo");
 const app = express(); // defining the variable "app" to allow express to establish routing
 const connectDB = require("./config/db"); // to establish connection to MongoDB
 const photoRoutes = require("./routes/photoRoutes"); // to define default routes for photos (app.use)
-const initializeWebSocket = require("./config/websocket"); // to import WebSocket configuration
+//const initializeWebSocket = require("./config/websocket"); // to import WebSocket configuration
 const server = http.createServer(app); // defining the variable "server" to allow express to establish WebSockets
-const io = initializeWebSocket(server); // defining the variable "io" to allow express to establish WebSockets
+//const io = initializeWebSocket(server); // defining the variable "io" to allow express to establish WebSockets
 const authRoutes = require("./routes/authRoutes"); // to define default routes for authentication (app.use)
 const contentRoutes = require("./routes/contentRoutes"); // to define default routes for content (app.use)
 const openaiRoutes = require("./routes/openaiRoutes"); // to define default routes for AI use (app.use)
-
-// Log Environment Variables
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("MONGO_URI:", process.env.MONGO_URI);
 
 // CONNECT TO MONGO-DB
 connectDB();
@@ -85,25 +79,20 @@ app.use(
 
 // Debugging route for session data
 app.get("/debug-session", async (req, res) => {
-  console.log("Current session data:", req.session);
-
   try {
     // Directly query the sessions collection in MongoDB
     const mongoose = require("mongoose"); // Import mongoose
     const db = mongoose.connection.db; // Get the database connection
     const sessions = await db.collection("sessions").find({}).toArray(); // Fetch stored sessions
 
-    console.log("Stored sessions in MongoDB:", sessions);
     res.send({ session: req.session, storedSessions: sessions });
   } catch (error) {
-    console.error("Error fetching sessions:", error);
     res.status(500).send({ error: "Failed to fetch session data" });
   }
 });
 
 // Logging middleware to check session data - for debugging
 app.use((req, res, next) => {
-  console.log("Session data:", req.session);
   next();
 });
 
@@ -113,8 +102,6 @@ const allowedOrigins = process.env.CORS_ORIGIN // Check which CORS origin is loa
       origin.replace(/\/$/, "")
     )
   : [];
-
-console.log("Allowed origins:", allowedOrigins); // Verify which origins are allowed
 
 // CORS Configuration Function - to handle cross-origin requests
 const corsOptions = {
@@ -136,11 +123,13 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // PASS WEBSOCKET ("io") TO ROUTES
+/*
 app.use((req, res, next) => {
   req.io = io; // Makes "req.io" available in routes with io being defined above - so when we use "req.io"
   // it refers to our WebSocket Configuration - which becomes globally available due to express
   next(); // Proceed to the next middleware
 });
+*/
 
 // ROUTES
 app.use("/api/photos", photoRoutes); // default route for photos
@@ -156,11 +145,4 @@ app.get("/", (req, res) => {
 // START SERVER
 const PORT = process.env.PORT || 5001; // Reads environment variable for PORT or default to 5001
 //app.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // Start the server
-server.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-  if (io) {
-    console.log("WebSocket server initialized successfully");
-  } else {
-    console.error("WebSocket server failed to initialize");
-  }
-});
+server.listen(PORT);
