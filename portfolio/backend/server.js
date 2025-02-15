@@ -72,6 +72,7 @@ app.use(
     genid: () => crypto.randomUUID(), // Always generate a new random unique ID for the session ID
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
+      domain: process.env.DOMAIN_NAME, // Setting domain name for cookies
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie - for security
       sameSite: "none", // Allows the cookie to be sent with cross-site requests
       maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds - for session duration
