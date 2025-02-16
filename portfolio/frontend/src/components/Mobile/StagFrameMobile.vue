@@ -356,7 +356,7 @@
   import { ref, onMounted, onUnmounted } from 'vue'; // Import "ref" for reactive variables and "onMounted" for lifecycle hooks
 
   // --- Import Modular Dependencies ---
-  import socket from '../../socket.js'; // To use WebSocket on the frontend
+  //import socket from '../../socket.js'; // To use WebSocket on the frontend
 
   export default {
     name: 'StagnantFrameMobile', // Component Name
@@ -433,7 +433,7 @@
 
         // 3. Setup/Initialize WebSocket to Update Photos on the Frontend
 
-        // Listen for WebSocket events
+        /* // Listen for WebSocket events
         socket.on('photos-updated', () => {
 
           fetchProfileImage(); // To broadcast update to clients - for the profile image fetched through the function
@@ -442,7 +442,7 @@
         // Cleanup After Unmount - to avoid memory leaks and unexpected behavior in future
         onUnmounted(() => {
           socket.off('photos-updated', fetchProfileImage); // Removes the event listener on "fetchProfileImage" specifically
-        });
+        }); */
       });
       // End of onMounted
 
