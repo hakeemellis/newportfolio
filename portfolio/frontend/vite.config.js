@@ -56,11 +56,7 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           // Remove '/api' from the path
           rewrite: (path) => path.replace(/^\/api/, ''),
-<<<<<<< HEAD
-          secure: true,
-=======
           secure: env.VITE_ENV === 'production' ? true : false,
->>>>>>> b3459f9305240fc3ed94d9e90d343cb9e99cb200
         },
       },
     },
