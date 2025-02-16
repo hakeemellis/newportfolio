@@ -2,20 +2,20 @@
   <!-- Start of Container for Footer Section -->
   <section>
     <p class="roboto-condensed-regular gap dark:text-custom-white">
-      Designed in <b class="dark:text-rose-500 text-cyan-800">Figma</b>. Coded
-      in <b class="dark:text-rose-500 text-cyan-800">Visual Studio Code</b> by
+      Designed in <b class="dark:text-rose-400 text-cyan-800">Figma</b>. Coded
+      in <b class="dark:text-rose-400 text-cyan-800">Visual Studio Code</b> by
       Me :). Built using
-      <b class="dark:text-rose-500 text-cyan-800"
+      <b class="dark:text-rose-400 text-cyan-800"
         >MEVN (MongoDB, Express, Vue, Node) Stack </b
       >and styled using
-      <b class="dark:text-rose-500 text-cyan-800">TailwindCSS</b>.
+      <b class="dark:text-rose-400 text-cyan-800">TailwindCSS</b>.
       <br />
       <br />
       Also integrated with Open AI API for
-      <b class="dark:text-rose-500 text-cyan-800">AI deployment</b>.
+      <b class="dark:text-rose-400 text-cyan-800">AI deployment</b>.
       <br />Frontend Deployed with
-      <b class="dark:text-rose-500 text-cyan-800">Netlify</b>. Backend Deployed
-      with <b class="dark:text-rose-500 text-cyan-800">Render</b>.
+      <b class="dark:text-rose-400 text-cyan-800">Netlify</b>. Backend Deployed
+      with <b class="dark:text-rose-400 text-cyan-800">Render</b>.
       <br />
       <br />
       All Rights Reserved © | Hakeem Romario Ellis

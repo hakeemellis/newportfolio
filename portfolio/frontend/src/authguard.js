@@ -5,9 +5,6 @@
 // Import Application Dependencies
 import axios from 'axios';
 
-// Configure axios to send cookies with requests
-axios.defaults.withCredentials = true; // Ensure cookies are sent with requests (for session management) - this was important for the backend login to work
-
 // Define the authGuard function
 const authGuard = async (to, from, next) => {
   console.log('authGuard called');
@@ -19,7 +16,10 @@ const authGuard = async (to, from, next) => {
     try {
       // Check if user is authenticated
       const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/api/auth/check-auth`
+        `${import.meta.env.VITE_API_BASE_URL}/api/auth/check-auth`,
+        {
+          withCredentials: true, // Trying to access cookies in the request
+        }
       );
       const isAuthenticated = response.data.authenticated;
       console.log('isAuthenticated:', isAuthenticated); // Verifies if user is authenticated

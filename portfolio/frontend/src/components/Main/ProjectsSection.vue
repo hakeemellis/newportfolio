@@ -11,7 +11,7 @@
       class="flex flex-row flex-1 gap-5 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out px-2 py-2"
     >
       <!-- Start of Section with Year-->
-      <section class="flex-[0.20]">
+      <section class="flex-[0.20] px-1">
         <img
           :src="project.photoURL"
           class="projects-photo dark:shadow-lg dark:shadow-zinc-800"
@@ -30,7 +30,7 @@
           <section class="flex flex-col gap-10">
             <!-- Company Section -->
             <section class="flex flex-col gap-2">
-              <p class="roboto-condensed-bold">
+              <p class="roboto-condensed-bold dark:text-rose-400">
                 {{ project.title }}
               </p>
               <p class="roboto-condensed-regular">
@@ -41,7 +41,7 @@
                 <section
                   v-for="(tag, tagIndex) in getFilteredTags(project.tags)"
                   :key="tagIndex"
-                  class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                  class="tag-icon dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
                 >
                   <p class="roboto-condensed-regular-tag">{{ tag }}</p>
                 </section>
@@ -203,7 +203,7 @@
       0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
     width: 18vw; /* Makes the width 50% of the viewport width */
     max-width: 200px; /* maxes the total width it could expand to */
-    height: 80%; /* Utilizes up to 70% of photo's height/size */
+    height: auto; /* Utilizes up to 70% of photo's height/size */
     margin: auto; /* Center the image */
   }
 

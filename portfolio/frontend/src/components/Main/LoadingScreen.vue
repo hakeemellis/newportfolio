@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col justify-center items-center h-screen">
-    <p class="roboto-condensed-bold dark:text-custom-white text-cyan-800 font-medium">Loading...</p>
+    <p class="roboto-condensed-bold dark:text-rose-500 text-cyan-800 font-medium">Loading...</p>
   </section>
 </template>
 

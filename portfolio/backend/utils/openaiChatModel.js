@@ -39,9 +39,10 @@ const openAIChatModel = async (description) => {
 
     // From response (AI), extract tags from response
     const tags = (response.choices[0]?.message?.content || "") // used this syntax to extract content from JSON response as defined by { response }
+      .replace(/\r\n/g, "\n") // uses regex to replace \r\n (with \r being carriage return and \n being new line) with \n
       .trim() // uses trim method to remove any whitespace from the tags
-      .split("\n") // uses split method to split the tags by new line
-      .map((tag) => tag.replace(/^- /, "").trim()) // uses regex to remove the "-" (using replace method) and any whitespace left from deleting the "-" (using trim method)
+      .split(/\n|,\s*/) // uses split method to split the tags by new line
+      .map((tag) => tag.replace(/^\s*-\s*/, "").trim()) // uses regex to remove the "-" (using replace method) and any whitespace left from deleting the "-" (using trim method)
       .filter((tag) => tag.toLowerCase() !== "undefined")
       .slice(0, 13); // Limits answers/tags to 13 (but this only relates to showing on the backend - basically our JSON response)
 
@@ -83,9 +84,10 @@ const openAIChatModelForSectors = async (description) => {
 
     // From response (AI), extract sector tags from response
     const sectorTags = (response.choices[0]?.message?.content || "")
-      .trim()
-      .split("\n")
-      .map((tag) => tag.replace(/^- /, "").trim())
+      .replace(/\r\n/g, "\n") // uses regex to replace \r\n (with \r being carriage return and \n being new line) with \n
+      .trim() // uses trim method to remove any whitespace from the tags
+      .split(/\n|,\s*/) // uses split method to split the tags by new line
+      .map((tag) => tag.replace(/^\s*-\s*/, "").trim()) // uses regex to remove the "-" (using replace method) and any whitespace left from deleting the "-" (using trim method)
       .filter((tag) => tag.toLowerCase() !== "undefined")
       .slice(0, 13); // Limits answers/tags to 13 (but this only relates to showing on the backend - basically our JSON response)
 

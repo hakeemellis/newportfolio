@@ -4,7 +4,7 @@
 // (intended to use but not in use right now - but is initialized in the project)
 
 // --- Import Dependencies ---
-import { io } from 'socket.io-client';
+/*import { io } from 'socket.io-client';
 
 // --- Initialize/Setup WebSocket ---
 const socket = io.connect('http://localhost:5001', {
@@ -21,4 +21,4 @@ const socket = io.connect('http://localhost:5001', {
   },
 });
 
-export default socket; // Export WebSocket
+export default socket; // Export WebSocket*/
