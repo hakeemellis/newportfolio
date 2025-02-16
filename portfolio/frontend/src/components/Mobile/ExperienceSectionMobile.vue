@@ -27,7 +27,7 @@
         <section class="flex flex-col gap-10">
           <!-- Company One -->
           <section class="flex flex-col gap-2">
-            <p class="roboto-condensed-bold">
+            <p class="roboto-condensed-bold dark:text-rose-400">
               {{ experience.title }}
             </p>
             <p>
@@ -38,7 +38,7 @@
               <section
                 v-for="(tag, tagIndex) in getFilteredTags(experience.tags)"
                 :key="tagIndex"
-                class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                class="tag-icon dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
               >
                 <p style="font-size: 10px;">{{ tag }}</p>
               </section>

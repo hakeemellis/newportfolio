@@ -7,10 +7,16 @@
     <!-- Login Form -->
     <form @submit.prevent="login" class="grid grid-cols-1 gap-5">
       <!-- Username Field-->
+<<<<<<< HEAD
       <section class="flex gap-4 text-3xl">
         <label class="font-medium" for="username">Username:</label>
         <input
           class="rounded-lg px-2 py-1 dark:bg-zinc-800 dark:text-custom-white"
+=======
+      <section class="flex flex-col lg:flex-row gap-4 text-3xl">
+        <input
+          class="rounded-lg px-3 py-1 dark:bg-zinc-800 dark:text-custom-white"
+>>>>>>> 1fb55abff0a93cfb05944308e22620f6f17457db
           placeholder="Username"
           type="text"
           v-model="username"
@@ -18,8 +24,12 @@
         />
       </section>
       <!-- Password Field-->
+<<<<<<< HEAD
       <section class="flex gap-4 text-3xl">
         <label class="font-medium" for="password">Password:</label>
+=======
+      <section class="flex flex-col lg:flex-row gap-4 text-3xl">
+>>>>>>> 1fb55abff0a93cfb05944308e22620f6f17457db
         <input
           class="rounded-lg px-3 py-1 dark:bg-zinc-800 dark:text-custom-white"
           placeholder="Password"
