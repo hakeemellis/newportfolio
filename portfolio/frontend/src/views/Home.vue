@@ -30,44 +30,45 @@
     </section>
 
     <!-- Mobile Nav Frame -->
-    <section
-      v-if="!isDesktop"
-      class="sticky top-5 flex flex-row inner-gap mx-auto p-2 px-4 py-3 portfolio-button dark:bg-zinc-950 bg-zinc-100 dark:text-slate-100 dark:shadow-md dark:shadow-rose-900 shadow-md shadow-cyan-600 transition-all duration-500 ease-in-out"
-    >
-      <button
-        @click="scrollToSection('about')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
-        style="font-size: 18px"
-      >
-        About
-      </button>
+    <section class="flex max-w-2xl mx-auto sticky top-5 flex-row inner-gap p-2 px-4 py-3 portfolio-button dark:bg-zinc-950 bg-zinc-100 dark:text-slate-100 dark:shadow-md dark:shadow-rose-900 shadow-md shadow-cyan-600 transition-all duration-500 ease-in-out"
+      v-if="!isDesktop">
+      
 
-      <button
-        @click="scrollToSection('experience')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
-        style="font-size: 18px"
-      >
-        Experience
-      </button>
+        <button
+          @click="scrollToSection('about')"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
+          style="font-size: 18px"
+        >
+          About
+        </button>
 
-      <button
-        @click="scrollToSection('projects')"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
-        style="font-size: 18px"
-      >
-        Projects
-      </button>
+        <button
+          @click="scrollToSection('experience')"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
+          style="font-size: 18px"
+        >
+          Experience
+        </button>
 
-      <a
-        v-for="(random, index) in randomContent"
-        :key="index"
-        :href="random.contactMe"
-        target="_blank"
-        class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font break-words tracking-tight"
-        style="font-size: 18px"
-      >
-        Contact Me
-      </a>
+        <button
+          @click="scrollToSection('projects')"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font tracking-tight"
+          style="font-size: 18px"
+        >
+          Projects
+        </button>
+
+        <a
+          v-for="(random, index) in randomContent"
+          :key="index"
+          :href="random.contactMe"
+          target="_blank"
+          class="hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out lora-font break-words tracking-tight"
+          style="font-size: 18px"
+        >
+          Contact Me
+        </a>
+      
     </section>
     <!-- End of Mobile Nav Frame -->
 

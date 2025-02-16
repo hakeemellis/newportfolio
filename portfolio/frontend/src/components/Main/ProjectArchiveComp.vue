@@ -215,7 +215,7 @@
                   {{ project.year }}
                 </p>
               </td>
-              <td class="px-6 py-4 break-words dark:text-rose-300">
+              <td class="px-6 py-4 break-words dark:text-rose-300 text-cyan-950 font-medium">
                 <p class="text-sm">{{ project.title }}</p>
               </td>
               <td class="px-6 py-4 break-words">
@@ -553,6 +553,7 @@
     width: 10vw; /* Makes the width 50% of the viewport width */
     max-width: 200px; /* maxes the total width it could expand to */
     height: auto;
+    width: auto;
     margin: auto; /* Center the image */
   }
 

@@ -2,7 +2,7 @@
   <!-- Start of Container for About Section-->
   <section
     id="about"
-    class="flex flex-col gap dark:text-custom-white px-4"
+    class="flex flex-col gap dark:text-custom-white px-4 max-w-3xl"
   >
     <p class="roboto-condensed-regular" v-html="formattedAboutContent"></p>
   </section>
