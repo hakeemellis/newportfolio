@@ -171,7 +171,7 @@
               </th>
               <th
                 class="text-left uppercase tracking-wider"
-                style="font-size: 14px"
+                style="font-size: 15px"
               >
                 Project
               </th>
@@ -180,7 +180,7 @@
                 class="px-2 text-left uppercase tracking-wider"
                 style="font-size: 15px"
               >
-                Built With
+                Photo
               </th>
             </tr>
           </thead>
@@ -209,18 +209,13 @@
                 </a>
               </td>
 
-              <td class="break-words">
-                <!-- Appropriate Tags Section -->
-                <section class="flex flex-row md:flex-row flex-wrap gap-2 py-3">
-                  <section
-                    class="tag-icon-table  dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
-                    v-for="(tag, tagIndex) in project.tags"
-                    :key="tagIndex"
-                  >
-                    <p class="roboto-condensed-table-tag">{{ tag }}</p>
-                  </section>
+              <td class="px-6 py-4 break-words">
+                <section>
+                  <img
+                    :src="project.photoURL"
+                    class="projects-photo-table dark:shadow-lg dark:shadow-zinc-800 shadow-md shadow-zinc-400"
+                  />
                 </section>
-                <!-- End of Appropriate Tags Section -->
               </td>
             </tr>
           </tbody>
@@ -481,7 +476,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 7px;
+    font-size: 10px;
     font-style: normal;
   }
 
@@ -513,12 +508,12 @@
 
   /* Profile Photo */
   .projects-photo-table {
-    border-radius: 20px; /* rounds edges */
+    border-radius: 5px; /* rounds edges */
     /*box-shadow:
       0px 4px 4px 0px rgba(0, 0, 0, 0.25),
       0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
-    width: 10vw; /* Makes the width 50% of the viewport width */
-    max-width: 200px; /* maxes the total width it could expand to */
+    width: auto; /* Makes the width 50% of the viewport width */
+    max-width: auto; /* maxes the total width it could expand to */
     height: auto;
     margin: auto; /* Center the image */
   }

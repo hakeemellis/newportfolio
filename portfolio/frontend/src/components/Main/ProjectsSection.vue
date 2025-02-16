@@ -156,7 +156,7 @@
     font-family: 'Roboto Condensed', serif;
     font-weight: 370;
     font-optical-sizing: auto;
-    font-size: 11px;
+    font-size: 12px;
     font-style: normal;
   }
 

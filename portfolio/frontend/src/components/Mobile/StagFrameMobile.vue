@@ -1,6 +1,6 @@
 <template>
   <!-- Start of Container for Stagnant Frame -->
-  <section class="outer-container mt-2 dark:text-custom-white">
+  <section class="outer-container mt-2 dark:text-custom-white flex mx-auto max-w-3xl">
     <!-- Start of Section for Profile Image and Profile Info -->
     <section class="flex flex-row gap-x-3 flex-1 px-2">
       <!-- Start of Section for Profile Info and Icons -->

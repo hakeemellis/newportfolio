@@ -2,7 +2,7 @@
   <!--Only exists to separate projects section from element -->
   <section
     id="projects"
-    class="flex flex-col gap-10 items-center dark:text-custom-white max-w-2xl"
+    class="flex flex-col gap-10 items-center dark:text-custom-white max-w-3xl"
   >
     <!-- Start of Projects Section -->
     <section
