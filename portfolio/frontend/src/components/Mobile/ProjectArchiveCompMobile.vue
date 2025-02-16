@@ -21,12 +21,12 @@
       <!-- Project Filters with AI -->
       <section class="flex flex-row flex-wrap gap-2 py-3">
         <button
-          class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+          class="tag-icon dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
           @click="generateSectorTagSuggestions"
         >
           &nbsp;
           <b
-            class="roboto-condensed-medium dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-700"
+            class="roboto-condensed-medium dark:text-slate-100 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800"
             style="font-size: 16.5px"
             >Generate Project Filters with AI</b
           >
@@ -147,7 +147,7 @@
         <section
           v-for="(sectorTag, sectorTagIndex) in sectorTags"
           :key="sectorTagIndex"
-          class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+          class="tag-icon dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
         >
           <button class="px-2" @click="selectTag(sectorTag)">
             {{ sectorTag }}
@@ -201,7 +201,7 @@
               <td class="break-words">
                 <a
                   :href="project.link"
-                  class="font-medium dark:text-rose-600 text-cyan-600 hover:transition-all hover:duration-500 hover:ease-in-out"
+                  class="font-medium dark:text-rose-400 text-cyan-600 hover:transition-all hover:duration-500 hover:ease-in-out"
                 >
                   <p class="text-sm roboto-condensed-medium-table">
                     {{ project.title }}
@@ -211,9 +211,9 @@
 
               <td class="break-words">
                 <!-- Appropriate Tags Section -->
-                <section class="flex flex-col md:flex-row flex-wrap gap-2 py-3">
+                <section class="flex flex-row md:flex-row flex-wrap gap-2 py-3">
                   <section
-                    class="tag-icon-table text-center dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table  dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
                     v-for="(tag, tagIndex) in project.tags"
                     :key="tagIndex"
                   >

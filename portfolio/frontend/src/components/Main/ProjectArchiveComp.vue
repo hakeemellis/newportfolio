@@ -21,12 +21,12 @@
       <!-- Project Filters with AI -->
       <section class="flex flex-row flex-wrap gap-2 py-3">
         <button
-          class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+          class="tag-icon dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
           @click="generateSectorTagSuggestions"
         >
           &nbsp;
           <b
-            class="roboto-condensed-medium dark:text-rose-800 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800"
+            class="roboto-condensed-medium dark:text-slate-100 text-cyan-800 hover:text-cyan-500 hover:dark:text-rose-800"
             style="font-size: 16px"
             >Generate Project Filters with AI</b
           >
@@ -147,7 +147,7 @@
         <section
           v-for="(sectorTag, sectorTagIndex) in sectorTags"
           :key="sectorTagIndex"
-          class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+          class="tag-icon dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
         >
           <button class="px-2" @click="selectTag(sectorTag)">
             {{ sectorTag }}
@@ -215,7 +215,7 @@
                   {{ project.year }}
                 </p>
               </td>
-              <td class="px-6 py-4 break-words">
+              <td class="px-6 py-4 break-words dark:text-rose-300">
                 <p class="text-sm">{{ project.title }}</p>
               </td>
               <td class="px-6 py-4 break-words">
@@ -227,7 +227,7 @@
                 <!-- Appropriate Tags Section -->
                 <section class="flex flex-row flex-wrap gap-2 py-3">
                   <section
-                    class="tag-icon-table dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                    class="tag-icon-table dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
                     v-for="(tag, tagIndex) in project.tags"
                     :key="tagIndex"
                   >
@@ -239,9 +239,11 @@
               <td class="px-6 py-4 break-words">
                 <a
                   :href="project.link"
-                  class="text-sm roboto-condensed-medium-table hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+                  class="roboto-condensed-medium-table hover:dark:text-rose-500 hover:text-cyan-800 hover:transition-all hover:duration-500 hover:ease-in-out"
+                  target="_blank"
+                  style="font-size: 16px"
                 >
-                  {{ project.link }}
+                  View Link
                 </a>
               </td>
               <td class="px-6 py-4 break-words">
@@ -422,6 +424,22 @@
             'Colors',
           ],
           Marketing: ['SEO', 'Advertising', 'Social Media'],
+          'Hospitality Industry': [
+            'Hotel',
+            'Hotel Booking',
+            'Flight Booking',
+            'Tourism',
+            'Hospitality',
+            'Hospitality Industry',
+          ],
+          Hospitality: [
+            'Hotel',
+            'Hotel Booking',
+            'Flight Booking',
+            'Tourism',
+            'Hospitality',
+            'Hospitality Industry',
+          ],
         };
 
         // Iterate/check through the synonyms object to see if the selected tag is similar

@@ -146,6 +146,18 @@
           v-model="random.contactMe"
           placeholder="Contact Me"
         />
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="random.linkedin"
+          placeholder="LinkedIn"
+        />
+        <input
+          class="dark:bg-zinc-800 rounded-lg p-2 max-w-xs"
+          type="text"
+          v-model="random.github"
+          placeholder="GitHub"
+        />
 
         <button
           class="text-xl font-semibold"
@@ -187,7 +199,9 @@
       const projectsContent = ref([
         { year: '', title: '', content: '', photoURL: '', link: '' },
       ]);
-      const randomContent = ref([{ resume: '', contactMe: '' }]);
+      const randomContent = ref([
+        { resume: '', contactMe: '', linkedin: '', github: '' },
+      ]);
       const photos = ref([]); // Photos fetched from Cloudinary - expecting array to be filled with photo objects
 
       // Router Instance for Navigation
@@ -355,7 +369,7 @@
         try {
           let tags = [];
           let attempts = 0;
-          const maxAttempts = 5; // Set a maximum number of attempts to avoid infinite loops
+          const maxAttempts = 25; // Set a maximum number of attempts to avoid infinite loops
 
           while (tags.length <= 1 && attempts < maxAttempts) {
             // Define response to assist with generating tags from {description} parameter - acts as "data" in the syntax: axios.post(url, data, config)
@@ -549,6 +563,8 @@
               return {
                 resume: random.resume || item.resume,
                 contactMe: random.contactMe || item.contactMe,
+                linkedin: random.linkedin || item.linkedin,
+                github: random.github || item.github,
               };
             }
 

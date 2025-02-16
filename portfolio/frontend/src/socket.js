@@ -21,4 +21,8 @@ const socket = io.connect('http://localhost:5001', {
   },
 });
 
+<<<<<<< HEAD
 export default socket; // Export WebSocket */
+=======
+export default socket; // Export WebSocket*/
+>>>>>>> b3459f9305240fc3ed94d9e90d343cb9e99cb200

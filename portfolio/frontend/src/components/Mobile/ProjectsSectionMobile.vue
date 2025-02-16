@@ -2,17 +2,17 @@
   <!--Only exists to separate projects section from element -->
   <section
     id="projects"
-    class="flex flex-col gap-10 items-center dark:text-custom-white"
+    class="flex flex-col gap-10 items-center dark:text-custom-white max-w-2xl"
   >
     <!-- Start of Projects Section -->
     <section
       v-for="(project, index) in limitedProjects"
       :key="index"
-      class="flex flex-col flex-1 gap-4 px-6 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-2"
+      class="flex flex-col flex-1 gap-5 px-6 roboto-condensed-regular hover:rounded-xl hover:shadow-md dark:hover:shadow-zinc-800 transition-all duration-500 ease-in-out py-2"
     >
       <!-- Start of Section with Year-->
       <section class="flex-[0.20]">
-        <p class="roboto-condensed-bold">
+        <p class="roboto-condensed-bold dark:text-rose-400">
           {{ project.title }}
         </p>
       </section>
@@ -28,22 +28,22 @@
           <!-- Inner Child Container with Company Role, Description, and Tags -->
           <section class="flex flex-col gap-10">
             <!-- Company Section -->
-            <section class="flex flex-col gap-4">
+            <section class="flex flex-col gap-5">
               <section>
                 <img
                   :src="project.photoURL"
-                  class="projects-photo dark:shadow-lg dark:shadow-zinc-800"
+                  class="projects-photo dark:shadow-md dark:shadow-zinc-800"
                 />
               </section>
               <p>
                 {{ project.content }}
               </p>
               <!-- Appropriate Tags Section -->
-              <section class="flex flex-row flex-wrap gap-2 py-3">
+              <section class="flex flex-row flex-wrap gap-2 py-1">
                 <section
                   v-for="(tag, tagIndex) in getFilteredTags(project.tags)"
                   :key="tagIndex"
-                  class="tag-icon dark:bg-slate-100 dark:text-black dark:shadow-md dark:shadow-slate-400 shadow-md shadow-zinc-400"
+                  class="tag-icon dark:bg-zinc-900 dark:text-slate-100 dark:shadow-sm dark:shadow-rose-900 shadow-md shadow-zinc-400 transition-all duration-100 ease-in-out"
                 >
                   <p style="font-size: 10px">{{ tag }}</p>
                 </section>
@@ -196,9 +196,9 @@
       0px 4px 4px 0px rgba(0, 0, 0, 0.25),
       0px 4px 4px 0px rgba(0, 0, 0, 0.25); /* Drop shadow */
     width: 30vw; /* Makes the width 50% of the viewport width */
-    max-width: 500px; /* maxes the total width it could expand to */
-    height: 61%; /* Utilizes up to 70% of photo's height/size */
-    margin: left; /* Center the image */
+    max-width: auto; /* maxes the total width it could expand to */
+    height: auto; /* Utilizes up to 70% of photo's height/size */
+    width: auto;
   }
 
   /* MEDIA STYLING */

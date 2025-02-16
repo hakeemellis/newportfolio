@@ -7,7 +7,7 @@ import { defineConfig, loadEnv } from 'vite'; // Import Vite configuration and e
 import vue from '@vitejs/plugin-vue'; // Import Vue plugin for Vite
 import { VitePWA } from 'vite-plugin-pwa';
 
-// Define Vite configuration function 
+// Define Vite configuration function
 export default defineConfig(({ mode }) => {
   // Load the environment variables based on the mode (staging, production, development, etc.)
   const env = loadEnv(mode, process.cwd(), 'VITE_');
@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
       vue(),
       VitePWA({
         registerType: 'autoUpdate', // Automatically update the service worker on every successful build
-        //includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'], 
+        //includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
         manifest: {
           name: env.VITE_APP_NAME,
           short_name: 'Portfolio',
@@ -56,7 +56,11 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           // Remove '/api' from the path
           rewrite: (path) => path.replace(/^\/api/, ''),
+<<<<<<< HEAD
           secure: true,
+=======
+          secure: env.VITE_ENV === 'production' ? true : false,
+>>>>>>> b3459f9305240fc3ed94d9e90d343cb9e99cb200
         },
       },
     },

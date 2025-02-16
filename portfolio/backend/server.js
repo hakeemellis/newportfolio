@@ -25,8 +25,13 @@ dotenv.config({
 const cors = require("cors"); // cors for handling cross-origin requests
 const http = require("http"); // http for handling WebSockets
 const session = require("express-session"); // to assist with session management (for authentication and security) i.e. server-side security
+<<<<<<< HEAD
 const MongoStore = require("connect-mongo");
 const crypto = require("crypto");
+=======
+const MongoStore = require("connect-mongo"); // to allow MongoDB to store secure session data
+const crypto = require("crypto"); // to generate a random unique ID for the session ID
+>>>>>>> b3459f9305240fc3ed94d9e90d343cb9e99cb200
 
 // Import Modular Variables: Database and Routes
 const app = express(); // defining the variable "app" to allow express to establish routing
@@ -68,14 +73,22 @@ app.use(
     resave: false, // Prevents unnecessary session updates in database - for performance eg. if user logged in and clicked to upload a photo, it will create data for the session - even if user does not upload a thing
     saveUninitialized: false, // Prevents unneccessary sessions from being stored to database - for performance eg. if true, and user only visits the site an empty session will be created within my database and stored
     // "false" is better for performance and security - because it forces the user to be authenticated before a session is created
+<<<<<<< HEAD
     proxy: true, // Trust the proxy - for security
+=======
+    proxy: true, // Trust proxy headers - for security
+>>>>>>> b3459f9305240fc3ed94d9e90d343cb9e99cb200
     store: store, // Use the defined MongoStore variable - to allow MongoDB to store secure session data
     genid: () => crypto.randomUUID(), // Always generate a new random unique ID for the session ID
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
       domain: process.env.DOMAIN_NAME, // Setting domain name for cookies
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie - for security
+<<<<<<< HEAD
       sameSite: "none", // Allows the cookie to be sent with cross-site requests
+=======
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Prevents the cookie from being sent with cross-site requests - for security (depending on environment)
+>>>>>>> b3459f9305240fc3ed94d9e90d343cb9e99cb200
       maxAge: 1000 * 60 * 60 * 24, // 1 day in milliseconds - for session duration
     },
   })
