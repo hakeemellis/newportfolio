@@ -68,7 +68,8 @@ app.use(
     resave: false, // Prevents unnecessary session updates in database - for performance eg. if user logged in and clicked to upload a photo, it will create data for the session - even if user does not upload a thing
     saveUninitialized: false, // Prevents unneccessary sessions from being stored to database - for performance eg. if true, and user only visits the site an empty session will be created within my database and stored
     // "false" is better for performance and security - because it forces the user to be authenticated before a session is created
-    store: store,
+    proxy: true, // Trust the proxy - for security
+    store: store, // Use the defined MongoStore variable - to allow MongoDB to store secure session data
     genid: () => crypto.randomUUID(), // Always generate a new random unique ID for the session ID
     cookie: {
       secure: process.env.NODE_ENV === "production", // Set to true if using HTTPS - for security
