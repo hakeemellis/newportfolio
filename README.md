@@ -16,7 +16,7 @@ Welcome to my personal portfolio! This project showcases my skills, projects, an
 - **Frontend**: Vue.js (Vite)
 - **Backend**: Node.js & Express.js
 - **Database**: MongoDB
-- **Styling**: Tailwind CSS (or specify your styling framework if different)
+- **Styling**: Tailwind CSS
 
 ## Deployment 
 - Netlify (Frontend) & Render (Backend)
